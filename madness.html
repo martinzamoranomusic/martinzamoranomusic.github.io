@@ -3,271 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎪 WELCOME TO THE MADNESS 🎪</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: repeating-linear-gradient(
-                45deg,
-                #CC8800,
-                #CC8800 10px,
-                #AA7700 10px,
-                #AA7700 20px
-            );
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            color: #4d2600;
-            overflow-x: hidden;
-            animation: bodyPulse 2s infinite;
-        }
-
-        @keyframes bodyPulse {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(20deg); }
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            background: #DD9900;
-            border: 10px solid #8B4513;
-            padding: 30px;
-            margin: 20px 0;
-            transform: rotate(-1deg);
-            box-shadow: 15px 15px 0px rgba(0,0,0,0.5);
-        }
-
-        .header h1 {
-            font-size: 4rem;
-            color: #FF0000;
-            text-shadow: 5px 5px 0px #FFFF00, 10px 10px 0px #00FF00;
-            animation: rainbow 3s infinite, spin 10s infinite;
-            letter-spacing: 5px;
-        }
-
-        @keyframes rainbow {
-            0% { color: #FF0000; }
-            20% { color: #FF7F00; }
-            40% { color: #FFFF00; }
-            60% { color: #00FF00; }
-            80% { color: #0000FF; }
-            100% { color: #FF0000; }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .marquee {
-            background: #996600;
-            padding: 15px;
-            border: 5px dashed #FFFF00;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-
-        .marquee h2 {
-            font-size: 2rem;
-            color: #FF00FF;
-            white-space: nowrap;
-            animation: scroll 10s linear infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .content-box {
-            background: linear-gradient(45deg, #CC8800 25%, #AA6600 25%, #AA6600 50%, #CC8800 50%, #CC8800 75%, #AA6600 75%, #AA6600);
-            background-size: 40px 40px;
-            border: 8px ridge #FFD700;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 0 50px rgba(204, 136, 0, 0.8);
-        }
-
-        .content-box h3 {
-            font-size: 2.5rem;
-            color: #8B0000;
-            text-decoration: underline wavy #FFD700;
-            margin-bottom: 20px;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .content-box p {
-            font-size: 1.5rem;
-            line-height: 2;
-            color: #2F4F4F;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border: 3px double #8B4513;
-            margin: 15px 0;
-        }
-
-        .blink {
-            animation: blink 0.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0; }
-        }
-
-        .button-zone {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .madness-button {
-            font-size: 2rem;
-            padding: 20px 40px;
-            background: radial-gradient(circle, #FF0000, #8B0000);
-            color: #FFFF00;
-            border: 5px outset #FFD700;
-            cursor: pointer;
-            font-family: 'Comic Sans MS', cursive;
-            font-weight: bold;
-            text-transform: uppercase;
-            animation: pulse 1s infinite;
-            box-shadow: 0 0 30px #FF0000;
-        }
-
-        .madness-button:hover {
-            animation: shake 0.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-10px) rotate(-5deg); }
-            75% { transform: translateX(10px) rotate(5deg); }
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin: 40px 0;
-            font-size: 1.2rem;
-            color: #000080;
-            text-decoration: none;
-            background: #FFD700;
-            padding: 15px;
-            border: 3px solid #8B4513;
-        }
-
-        .back-link:hover {
-            background: #FFA500;
-            animation: wiggle 0.3s infinite;
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
-        }
-
-        .floating {
-            position: fixed;
-            font-size: 3rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
-        }
-
-        .emoji1 { top: 10%; left: 10%; animation-delay: 0s; }
-        .emoji2 { top: 20%; right: 15%; animation-delay: 0.5s; }
-        .emoji3 { bottom: 30%; left: 20%; animation-delay: 1s; }
-        .emoji4 { bottom: 15%; right: 10%; animation-delay: 1.5s; }
-    </style>
+    <title>Martin Zamorano</title>
+    <link rel="stylesheet" href="madness-styles.css">
 </head>
 <body>
-    <div class="floating emoji1">🎪</div>
-    <div class="floating emoji2">🤡</div>
-    <div class="floating emoji3">🎉</div>
-    <div class="floating emoji4">🎨</div>
-
-    <div class="container">
-        <div class="header">
-            <h1>🎪 CONGRATULATIONS! 🎪</h1>
-            <h2 style="color: #00FF00; font-size: 2rem;">YOU'VE JOINED THE MADNESS!</h2>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MZ</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
+    </nav>
 
-        <div class="marquee">
-            <h2 class="blink">⭐ WELCOME TO THE OCHER DIMENSION ⭐ THIS IS YOUR NEW REALITY ⭐ THERE'S NO ESCAPE ⭐</h2>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Martín Zamorano</h1>
+            <p class="hero-subtitle">The Man. The Legend</p>
+            <div class="hero-buttons">
+                <a href="projects.html" class="btn btn-primary">Meet the team behind Martin Zamorano</a>
+                <a href="downloads.html" class="btn btn-secondary">Get Resources</a>
+            </div>
         </div>
-
-        <div class="content-box">
-            <h3>🎯 WHAT IS THIS PLACE?! 🎯</h3>
-            <p>
-                YOU HAVE ENTERED A REALM WHERE <span class="blink">DESIGN PRINCIPLES</span> COME TO DIE!
-                This is what happens when you click mysterious buttons on the internet.
-            </p>
-            <p>
-                <strong style="font-size: 2rem;">FUN FACTS:</strong><br>
-                ✨ This page was designed by a committee of colorblind circus performers<br>
-                🎨 The color scheme was inspired by a jar of mustard<br>
-                🤹 Comic Sans is scientifically proven to increase chaos by 847%<br>
-                🎪 Your eyes will adjust... maybe... probably not
-            </p>
+        <div class="scroll-indicator">
+            <span></span>
         </div>
+    </section>
 
-        <div class="content-box">
-            <h3>📢 SPECIAL OFFER! 📢</h3>
-            <p style="font-size: 1.8rem; color: #FF0000;">
-                <span class="blink">ACT NOW!</span> Subscribe to receive MORE pages like this directly to your eyeballs!
-                <br><br>
-                Side effects may include: confusion, laughter, questioning your life choices, and an inexplicable craving for mustard.
-            </p>
+    <section class="cards-section">
+        <div class="container">
+            <h2 class="section-title">What I Offer</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📁</div>
+                    <h3>Projects</h3>
+                    <p>Explore my latest work and creative endeavors.</p>
+                    <a href="projects.html" class="card-link">Learn More →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⬇️</div>
+                    <h3>Downloads</h3>
+                    <p>Access resources, files, and materials.</p>
+                    <a href="downloads.html" class="card-link">Browse Files →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">ℹ️</div>
+                    <h3>About Me</h3>
+                    <p>Learn more about my background and expertise.</p>
+                    <a href="about.html" class="card-link">Read More →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✉️</div>
+                    <h3>Get in Touch</h3>
+                    <p>Connect with me for collaborations.</p>
+                    <a href="contact.html" class="card-link">Contact Me →</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="button-zone">
-            <button class="madness-button" onclick="alert('YOU CANNOT CLICK YOUR WAY OUT OF THIS! 🎪')">
-                MORE MADNESS?!
-            </button>
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2>Welcome to the Newsletter</h2>
+                <p>You're already subscribed! Enjoy your stay.</p>
+                <div class="subscribed-message">
+                    <span class="checkmark">✓</span>
+                    <p>Successfully subscribed</p>
+                    <a href="index.html" class="back-link">← Return to homepage</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <a href="index.html" class="back-link">
-            ← Escape Back to Sanity (if you dare)
-        </a>
-    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Martin Zamorano. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
 
-    <script>
-        // Random page shaking
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                document.body.style.transform = `rotate(${Math.random() * 4 - 2}deg)`;
-                setTimeout(() => {
-                    document.body.style.transform = 'rotate(0deg)';
-                }, 100);
-            }
-        }, 1000);
-
-        // Random alert
-        setTimeout(() => {
-            alert('🎪 WELCOME TO THE MADNESS! There is no escape! Just kidding... or am I? 🤡');
-        }, 3000);
-    </script>
+    <script src="madness-script.js"></script>
 </body>
 </html>
