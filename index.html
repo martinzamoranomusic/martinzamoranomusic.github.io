@@ -1,11 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Zamorano</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>Download files below:</p>
-    <a href="files/myfile.zip" download>Download File</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MZ</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to My Space</h1>
+            <p class="hero-subtitle">Placeholder tagline - Your journey starts here. Unfortunately. Now fuck off.</p>
+            <div class="hero-buttons">
+                <a href="projects.html" class="btn btn-primary">Explore Projects</a>
+                <a href="downloads.html" class="btn btn-secondary">Get Resources</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <section class="cards-section">
+        <div class="container">
+            <h2 class="section-title">What I Offer</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📁</div>
+                    <h3>Projects</h3>
+                    <p>Explore my latest work and creative endeavors.</p>
+                    <a href="projects.html" class="card-link">Learn More →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⬇️</div>
+                    <h3>Downloads</h3>
+                    <p>Access resources, files, and materials.</p>
+                    <a href="downloads.html" class="card-link">Browse Files →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">ℹ️</div>
+                    <h3>About Me</h3>
+                    <p>Learn more about my background and expertise.</p>
+                    <a href="about.html" class="card-link">Read More →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✉️</div>
+                    <h3>Get in Touch</h3>
+                    <p>Connect with me for collaborations.</p>
+                    <a href="contact.html" class="card-link">Contact Me →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Martin Zamorano. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
