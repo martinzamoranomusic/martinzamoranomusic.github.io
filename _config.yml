@@ -10,6 +10,7 @@ plugins: []
 # Include game files and assets
 include:
   - labyrinth.html
+  - labyrinth-giveup.html
   - labyrinth-styles.css
   - labyrinth-game.js
   - slap.html
