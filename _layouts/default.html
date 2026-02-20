@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'de' }}">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Martín Zamorano</title>
+    <meta name="description" content="{{ page.description | default: site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}" />
+    {% if page.bg_image %}
+    <style>
+        body {
+            background-image: url('{{ page.bg_image | relative_url }}');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 11, 11, .82);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header,
+        main.page-content,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    {% endif %}
+</head>
+
+<body>
+    <header>
+        <div class="site-title">
+            <a href="{{ '/' | relative_url }}">Martín Zamorano</a>
+            <span class="subtitle">KOMPONIST &amp; PIANIST</span>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{{ '/vita' | relative_url }}" {% if page.url contains '/vita' %}class="active" {% endif
+                        %}>VITA</a></li>
+                <li><a href="{{ '/musik' | relative_url }}" {% if page.url=='/musik/' or page.url=='/musik'
+                        %}class="active" {% endif %}>PIANO</a></li>
+                <li><a href="{{ '/improvisation' | relative_url }}" {% if page.url contains '/improvisation'
+                        %}class="active" {% endif %}>IMPROVISATION</a></li>
+                <li><a href="{{ '/healing' | relative_url }}" {% if page.url contains '/healing' %}class="active" {%
+                        endif %}>The Healing Project</a></li>
+                <li><a href="{{ '/zamoranoandstamer' | relative_url }}" {% if page.url contains '/zamoranoandstamer'
+                        %}class="active" {% endif %}>Zamorano&amp;Stamer</a></li>
+                <li><a href="{{ '/musiktheorie' | relative_url }}" {% if page.url contains '/musiktheorie'
+                        %}class="active" {% endif %}>KONTRAPUNKT &amp; MUSIKTHEORIE</a></li>
+                <li><a href="{{ '/transcriptions' | relative_url }}" {% if page.url contains '/transcriptions'
+                        %}class="active" {% endif %}>Jazz Transcriptions</a></li>
+                <li><a href="{{ '/mental-pocus-records' | relative_url }}" {% if page.url
+                        contains '/mental-pocus-records' %}class="active" {% endif %}>Mental Pocus Records</a></li>
+                <li><a href="{{ '/kontakt' | relative_url }}" {% if page.url contains '/kontakt' %}class="active" {%
+                        endif %}>Kontakt</a></li>
+            </ul>
+        </nav>
+        <div class="lang-switcher">
+            {% assign base = page.url | remove: '/en' | remove: '/es' %}
+            <a href="{{ base | relative_url }}" {% if page.lang=='de' or page.lang==nil %}class="active" {% endif
+                %}>DE</a>
+            <a href="{{ '/en' | append: base | relative_url }}" {% if page.lang=='en' %}class="active" {% endif
+                %}>EN</a>
+            <a href="{{ '/es' | append: base | relative_url }}" {% if page.lang=='es' %}class="active" {% endif
+                %}>ES</a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        {{ content }}
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <a href="{{ '/impressum' | relative_url }}">Impressum</a>
+            <a href="{{ '/datenschutz' | relative_url }}">Datenschutz</a>
+        </nav>
+        <p class="footer-copy">&copy; {{ 'now' | date: '%Y' }} Martín Zamorano</p>
+    </footer>
+</body>
+
+</html>

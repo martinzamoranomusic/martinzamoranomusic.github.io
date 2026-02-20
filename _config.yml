@@ -1,0 +1,19 @@
+title: Martín Zamorano
+description: Komponist & Pianist | Composer & Pianist | Compositor & Pianista
+baseurl: ""
+url: "https://martinzamoranomusic.github.io"
+
+# Build settings
+markdown: kramdown
+theme: ~
+plugins: []
+
+# Exclude scraper files
+exclude:
+  - scraper.py
+  - debug_html.py
+  - debug_page.html
+  - test.txt
+  - scraped/
+  - Gemfile
+  - Gemfile.lock

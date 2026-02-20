@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Martín Zamorano</title>
+    <meta name="description" content="Komponist & Pianist | Composer & Pianist | Compositor & Pianista" />
+    <link rel="stylesheet" href="/assets/style.css" />
+    
+    <style>
+        body {
+            background-image: url('/assets/images/bg_home.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 11, 11, .82);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header,
+        main.page-content,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <header>
+        <div class="site-title">
+            <a href="/">Martín Zamorano</a>
+            <span class="subtitle">KOMPONIST &amp; PIANIST</span>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/vita" >VITA</a></li>
+                <li><a href="/musik" >PIANO</a></li>
+                <li><a href="/improvisation" >IMPROVISATION</a></li>
+                <li><a href="/healing" >The Healing Project</a></li>
+                <li><a href="/zamoranoandstamer" >Zamorano&amp;Stamer</a></li>
+                <li><a href="/musiktheorie" >KONTRAPUNKT &amp; MUSIKTHEORIE</a></li>
+                <li><a href="/transcriptions" >Jazz Transcriptions</a></li>
+                <li><a href="/mental-pocus-records" >Mental Pocus Records</a></li>
+                <li><a href="/kontakt" >Kontakt</a></li>
+            </ul>
+        </nav>
+        <div class="lang-switcher">
+            
+            <a href="/" class="active" >DE</a>
+            <a href="/en/" >EN</a>
+            <a href="/es/" >ES</a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="home-hero">
+  <h1>Moin, moin!</h1>
+  <p class="tagline">Komponist &amp; Pianist — Hamburg</p>
+  <p>Willkommen auf der Homepage von Martín Zamorano</p>
+  <div class="home-links">
+    <a href="https://martinzamorano.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
+    <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/martinzamoranomusic" target="_blank" rel="noopener">Facebook</a>
+  </div>
+</div>
+
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 Martín Zamorano</p>
+    </footer>
+</body>
+
+</html>
