@@ -6,10 +6,10 @@ const martinContainer = document.querySelector('.martin-container');
 // Progressive damage images - Martin gets worse as he's slapped more
 const martinImages = [
     'scraped/assets/3a900e2a-5b03-415d-bb2c-73904c085423.png',           // 0-9 slaps: Fresh Martin
-    'scraped/assets/ChatGPT Image Feb 20, 2026 at 11_34_47 PM.png',      // 10-24 slaps: Slightly damaged
-    'scraped/assets/ChatGPT Image Feb 20, 2026 at 11_37_40 PM.png',      // 25-49 slaps: Getting worse
-    'scraped/assets/ChatGPT Image Feb 20, 2026 at 11_39_32 PM.png',      // 50-74 slaps: Pretty bad
-    'scraped/assets/ChatGPT Image Feb 20, 2026 at 11_43_51 PM.png'       // 75+ slaps: Completely destroyed
+    'scraped/assets/martin_damage_1.png',      // 10-24 slaps: Slightly damaged
+    'scraped/assets/martin_damage_2.png',      // 25-49 slaps: Getting worse
+    'scraped/assets/martin_damage_3.png',      // 50-74 slaps: Pretty bad
+    'scraped/assets/martin_damage_4.png'       // 75+ slaps: Completely destroyed
 ];
 
 // Array of slap sound effects (visual feedback text)
