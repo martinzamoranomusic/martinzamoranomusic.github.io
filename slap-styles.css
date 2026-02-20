@@ -91,6 +91,10 @@ body {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="8" y="40" font-size="48" class="hand-wave">👋</text><style>.hand-wave{animation:wave 0.5s ease-in-out infinite;transform-origin:center;}@keyframes wave{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}</style></svg>') 32 32, pointer;
 }
 
+.martin-image:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="16" y="36" font-size="36">👋</text></svg>') 32 32, pointer;
+}
+
 .martin-image.slapped {
     animation: slap 0.3s ease;
 }
