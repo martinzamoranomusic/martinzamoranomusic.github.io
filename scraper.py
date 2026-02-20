@@ -34,22 +34,22 @@ from markdownify import markdownify as md
 from playwright.async_api import async_playwright
 
 # ── Config ────────────────────────────────────────────────────────────────────
-ENTRY_POINT   = "https://www.martinzamorano.com/home"
-BASE_DOMAIN   = "martinzamorano.com"
-OUTPUT_DIR    = Path("scraped")
-ASSETS_DIR    = OUTPUT_DIR / "assets"
-MAX_PAGES     = 50          # safety cap
-WAIT_MS       = 3000        # ms to wait for JS to settle after navigation
-REQUEST_DELAY = 0.8         # seconds between page loads (be polite)
+ENTRY_POINT = "https://www.martinzamorano.com/home"
+BASE_DOMAIN = "martinzamorano.com"
+OUTPUT_DIR = Path("scraped")
+ASSETS_DIR = OUTPUT_DIR / "assets"
+MAX_PAGES = 50  # safety cap
+WAIT_MS = 3000  # ms to wait for JS to settle after navigation
+REQUEST_DELAY = 0.8  # seconds between page loads (be polite)
 # ──────────────────────────────────────────────────────────────────────────────
 
 
 def slugify(url: str) -> str:
     """Turn a URL into a safe filename slug."""
     parsed = urllib.parse.urlparse(url)
-    path   = parsed.path.strip("/") or "index"
-    slug   = re.sub(r"[^a-zA-Z0-9_\-]", "_", path)
-    slug   = re.sub(r"_+", "_", slug).strip("_") or "index"
+    path = parsed.path.strip("/") or "index"
+    slug = re.sub(r"[^a-zA-Z0-9_\-]", "_", path)
+    slug = re.sub(r"_+", "_", slug).strip("_") or "index"
     return slug
 
 
@@ -65,7 +65,7 @@ def normalise(url: str, base: str) -> str | None:
     """Resolve relative URLs and strip fragments/query-strings."""
     try:
         full = urllib.parse.urljoin(base, url)
-        p    = urllib.parse.urlparse(full)
+        p = urllib.parse.urlparse(full)
         # Keep only scheme + netloc + path
         clean = urllib.parse.urlunparse((p.scheme, p.netloc, p.path, "", "", ""))
         return clean if p.scheme in ("http", "https") else None
@@ -79,13 +79,13 @@ def download_image(img_url: str, assets_dir: Path) -> str | None:
     or None on failure.
     """
     try:
-        parsed   = urllib.parse.urlparse(img_url)
+        parsed = urllib.parse.urlparse(img_url)
         filename = Path(parsed.path).name
         if not filename:
             return None
         # Avoid duplicate names from different paths
         safe_name = re.sub(r"[^a-zA-Z0-9_\-\.]", "_", filename)
-        local     = assets_dir / safe_name
+        local = assets_dir / safe_name
 
         if not local.exists():
             resp = requests.get(img_url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
@@ -116,7 +116,7 @@ def html_to_markdown(html: str, page_url: str, assets_dir: Path) -> tuple[str, l
 
     # ── Download images and rewrite src ──────────────────────────────────────
     for img in soup.find_all("img", src=True):
-        src       = normalise(img["src"], page_url)
+        src = normalise(img["src"], page_url)
         if src:
             local = download_image(src, assets_dir)
             if local:
@@ -153,15 +153,15 @@ async def scrape() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True)
     ASSETS_DIR.mkdir(exist_ok=True)
 
-    visited:  set[str]   = set()
-    queue:    list[str]  = [ENTRY_POINT]
-    site_map: list[dict] = []   # [{url, slug, title}]
+    visited: set[str] = set()
+    queue: list[str] = [ENTRY_POINT]
+    site_map: list[dict] = []  # [{url, slug, title}]
 
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(headless=True)
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                       "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
         )
         page = await context.new_page()
 
@@ -172,8 +172,8 @@ async def scrape() -> None:
                 continue
             visited.add(url)
 
-            slug     = slugify(url)
-            md_path  = OUTPUT_DIR / f"{slug}.md"
+            slug = slugify(url)
+            md_path = OUTPUT_DIR / f"{slug}.md"
 
             print(f"\n🔍 [{len(visited)}/{MAX_PAGES}] {url}")
             print(f"   → {md_path}")

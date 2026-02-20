@@ -6,17 +6,21 @@ Usage:  python debug_html.py [url]
 import asyncio
 import sys
 from pathlib import Path
+
 from playwright.async_api import async_playwright
 
 URL = sys.argv[1] if len(sys.argv) > 1 else "https://www.martinzamorano.com/vita"
 
+
 async def main():
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(headless=True)
-        page = await browser.new_page(user_agent=(
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-        ))
+        page = await browser.new_page(
+            user_agent=(
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            )
+        )
         await page.goto(URL, wait_until="networkidle", timeout=30_000)
         await page.wait_for_timeout(3000)
         html = await page.content()
@@ -30,5 +34,6 @@ async def main():
         for c in unique[:80]:
             print(" ", c)
         await browser.close()
+
 
 asyncio.run(main())

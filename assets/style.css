@@ -1,0 +1,560 @@
+/* ============================================================
+   Martín Zamorano — martinzamoranomusic.github.io
+   Dark minimal aesthetic matching martinzamorano.com
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #111111;
+    --bg-card: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #d4d0c8;
+    --text-muted: #888;
+    --accent: #c8a97e;
+    /* warm gold – matches the original site's warm tones */
+    --accent2: #e07070;
+    /* rose red for hover states */
+    --font-body: 'Georgia', 'Times New Roman', serif;
+    --font-ui: 'Helvetica Neue', 'Arial', sans-serif;
+    --max-w: 860px;
+    --nav-h: 60px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Links --- */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+a:hover {
+    color: var(--accent2);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17, 17, 17, .96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 2rem;
+    height: var(--nav-h);
+}
+
+.site-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.site-title a {
+    font-family: var(--font-ui);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.site-title a:hover {
+    color: var(--accent);
+}
+
+.site-title .subtitle {
+    font-family: var(--font-ui);
+    font-size: .6rem;
+    letter-spacing: .15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* --- Main nav --- */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: .1rem;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    font-family: var(--font-ui);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: .4rem .6rem;
+    border-radius: 2px;
+    transition: color .2s, background .2s;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--accent);
+    background: rgba(200, 169, 126, .08);
+}
+
+/* --- Lang switcher --- */
+.lang-switcher {
+    display: flex;
+    gap: .3rem;
+    font-family: var(--font-ui);
+    font-size: .7rem;
+    letter-spacing: .1em;
+}
+
+.lang-switcher a {
+    color: var(--text-muted);
+    padding: .25rem .4rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all .2s;
+}
+
+.lang-switcher a:hover,
+.lang-switcher a.active {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+main.page-content {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: .75rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.15rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .4rem;
+}
+
+h3 {
+    font-size: .95rem;
+    color: var(--accent);
+    text-transform: none;
+    letter-spacing: .04em;
+}
+
+p {
+    margin-bottom: 1.25rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+ul,
+ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+li {
+    margin-bottom: .35rem;
+}
+
+/* --- Home page hero --- */
+.home-hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+}
+
+.home-hero h1 {
+    font-size: 2.6rem;
+    letter-spacing: .12em;
+    color: #fff;
+    margin-bottom: .5rem;
+}
+
+.home-hero .tagline {
+    font-family: var(--font-ui);
+    font-size: .8rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.home-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.home-links a {
+    font-family: var(--font-ui);
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    padding: .5rem 1.2rem;
+    border-radius: 2px;
+    color: var(--accent);
+    transition: background .2s, color .2s;
+}
+
+.home-links a:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+/* --- Images --- */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 3px;
+}
+
+/* --- Gallery grid --- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.gallery a {
+    display: block;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    transition: border-color .2s;
+}
+
+.gallery a:hover {
+    border-color: var(--accent);
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    transition: transform .3s;
+}
+
+.gallery a:hover img {
+    transform: scale(1.03);
+}
+
+/* Lead portrait on vita page */
+.portrait {
+    float: right;
+    width: 280px;
+    margin: 0 0 1.5rem 2rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+    .portrait {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem;
+    }
+}
+
+/* --- Download / file links --- */
+.file-links {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.file-links a,
+.download-link {
+    font-family: var(--font-ui);
+    font-size: .8rem;
+    letter-spacing: .06em;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: .4rem .8rem;
+    border-radius: 2px;
+    transition: all .2s;
+}
+
+.file-links a::before,
+.download-link::before {
+    content: "↓";
+    color: var(--accent);
+}
+
+.file-links a:hover,
+.download-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(200, 169, 126, .05);
+}
+
+/* --- Healing artwork sections --- */
+.healing-stage {
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    border-left: 3px solid var(--accent);
+    background: var(--bg-card);
+    border-radius: 0 4px 4px 0;
+}
+
+.healing-stage h2 {
+    border-bottom: none;
+    margin-top: 0;
+    margin-bottom: .75rem;
+    font-size: 1rem;
+    color: var(--accent);
+}
+
+.healing-stage img {
+    margin-top: .75rem;
+    border-radius: 3px;
+}
+
+/* --- Video embed (YouTube 16:9) --- */
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- Bandcamp / external embeds placeholder --- */
+.bandcamp-embed {
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-card);
+    padding: 1rem;
+    font-family: var(--font-ui);
+    font-size: .85rem;
+    color: var(--text-muted);
+}
+
+/* --- Kontakt form --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 520px;
+    margin-top: 1.5rem;
+}
+
+.contact-form label {
+    font-family: var(--font-ui);
+    font-size: .75rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: .6rem .8rem;
+    border-radius: 3px;
+    font-family: var(--font-body);
+    font-size: .95rem;
+    width: 100%;
+    transition: border-color .2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact-form button {
+    font-family: var(--font-ui);
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    padding: .6rem 1.4rem;
+    cursor: pointer;
+    border-radius: 2px;
+    align-self: flex-start;
+    transition: all .2s;
+}
+
+.contact-form button:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    font-family: var(--font-ui);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.footer-nav a:hover {
+    color: var(--accent);
+}
+
+.footer-copy {
+    font-family: var(--font-ui);
+    font-size: .7rem;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    header {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        height: auto;
+        padding: .75rem 1rem;
+        gap: .5rem;
+    }
+
+    .main-nav {
+        grid-column: 1 / -1;
+        order: 3;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-nav ul {
+        flex-wrap: nowrap;
+    }
+
+    .lang-switcher {
+        order: 2;
+    }
+
+    main.page-content {
+        padding: 2rem 1rem 3rem;
+    }
+
+    .home-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+}
