@@ -3,7 +3,7 @@
 debug_html.py — Dump the fully-rendered HTML of one page to inspect structure.
 Usage:  python debug_html.py [url]
 """
-import asyncio
+import asyncio  # nav scraper
 import sys
 from pathlib import Path
 

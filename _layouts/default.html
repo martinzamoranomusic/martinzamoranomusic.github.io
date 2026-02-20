@@ -46,24 +46,25 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="{{ '/vita' | relative_url }}" {% if page.url contains '/vita' %}class="active" {% endif
-                        %}>Vita</a></li>
+                        %}>VITA</a></li>
+                <li><a href="{{ '/musik' | relative_url }}" {% if page.url=='/musik/' or page.url=='/musik'
+                        %}class="active" {% endif %}>PIANO</a></li>
                 <li><a href="{{ '/improvisation' | relative_url }}" {% if page.url contains '/improvisation'
-                        %}class="active" {% endif %}>Improvisation</a></li>
+                        %}class="active" {% endif %}>IMPROVISATION</a></li>
                 <li><a href="{{ '/healing' | relative_url }}" {% if page.url contains '/healing' %}class="active" {%
-                        endif %}>Healing Project</a></li>
+                        endif %}>The Healing Project</a></li>
                 <li><a href="{{ '/zamoranoandstamer' | relative_url }}" {% if page.url contains '/zamoranoandstamer'
                         %}class="active" {% endif %}>Zamorano&amp;Stamer</a></li>
                 <li><a href="{{ '/musiktheorie' | relative_url }}" {% if page.url contains '/musiktheorie'
-                        %}class="active" {% endif %}>Musiktheorie</a></li>
+                        %}class="active" {% endif %}>KONTRAPUNKT &amp; MUSIKTHEORIE</a></li>
                 <li><a href="{{ '/transcriptions' | relative_url }}" {% if page.url contains '/transcriptions'
-                        %}class="active" {% endif %}>Transcriptions</a></li>
+                        %}class="active" {% endif %}>Jazz Transcriptions</a></li>
                 <li><a href="{{ '/mental-pocus-records' | relative_url }}" {% if page.url
                         contains '/mental-pocus-records' %}class="active" {% endif %}>Mental Pocus Records</a></li>
                 <li><a href="{{ '/kontakt' | relative_url }}" {% if page.url contains '/kontakt' %}class="active" {%
                         endif %}>Kontakt</a></li>
             </ul>
         </nav>
-
         <div class="lang-switcher">
             {% assign base = page.url | remove: '/en' | remove: '/es' %}
             <a href="{{ base | relative_url }}" {% if page.lang=='de' or page.lang==nil %}class="active" {% endif
