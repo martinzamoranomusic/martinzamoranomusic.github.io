@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #1a1410 0%, #2d2419 100%);
+    color: #f5f0e8;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #C17A3A;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #C17A3A;
+    color: #C17A3A;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.back-button:hover {
+    background: #C17A3A;
+    color: #1a1410;
+}
+
+.slap-counter {
+    background: #2d2419;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(193, 122, 58, 0.2);
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.slap-counter p {
+    font-size: 1.5rem;
+    color: #d4c5b0;
+}
+
+.slap-counter span {
+    color: #C17A3A;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.martin-container {
+    position: relative;
+    display: inline-block;
+    padding: 2rem;
+}
+
+.martin-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    -webkit-user-select: none;
+    transform: scale(1.5) translateX(15%);
+    object-fit: cover;
+}
+
+.martin-image:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="8" y="40" font-size="48" class="hand-wave">👋</text><style>.hand-wave{animation:wave 0.5s ease-in-out infinite;transform-origin:center;}@keyframes wave{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}</style></svg>') 32 32, pointer;
+}
+
+.martin-image.slapped {
+    animation: slap 0.3s ease;
+}
+
+@keyframes slap {
+    0% { transform: scale(1.5) translateX(15%) rotate(0deg); }
+    25% { transform: scale(1.425) translateX(15%) rotate(-15deg); }
+    50% { transform: scale(1.47) translateX(15%) rotate(10deg); }
+    75% { transform: scale(1.485) translateX(15%) rotate(-5deg); }
+    100% { transform: scale(1.5) translateX(15%) rotate(0deg); }
+}
+
+.slap-effect {
+    position: absolute;
+    font-size: 3rem;
+    pointer-events: none;
+    animation: slapFly 1s ease-out forwards;
+    z-index: 100;
+}
+
+@keyframes slapFly {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0.5) rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .martin-image {
+        max-width: 100%;
+    }
+}
