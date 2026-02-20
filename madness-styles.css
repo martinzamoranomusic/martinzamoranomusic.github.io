@@ -20,6 +20,7 @@ body {
     background: var(--dark-bg);
     color: var(--text-primary);
     line-height: 1.6;
+    cursor: default;
 }
 
 .container {
@@ -53,7 +54,7 @@ body {
     font-weight: bold;
     color: var(--primary-color);
     font-family: 'Georgia', serif;
-    letter-spacing: 2px;
+    letter-spacing: 2.3px;
 }
 
 .nav-menu {
@@ -73,6 +74,7 @@ body {
 
 .nav-link:hover {
     color: var(--primary-color);
+    text-decoration: underline;
 }
 
 .hamburger {
@@ -112,7 +114,8 @@ body {
     color: var(--primary-color);
     font-family: 'Georgia', serif;
     font-weight: 400;
-    letter-spacing: 3px;
+    letter-spacing: 3.2px;
+    text-shadow: 1px 1px 2px rgba(193, 122, 58, 0.3);
 }
 
 .hero-subtitle {
@@ -150,19 +153,20 @@ body {
 .btn-primary:hover {
     background: var(--secondary-color);
     border-color: var(--secondary-color);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.01);
     box-shadow: 0 8px 20px rgba(193, 122, 58, 0.3);
 }
 
 .btn-secondary {
     background: transparent;
     border: 1px solid var(--primary-color);
-    color: var (--primary-color);
+    color: var(--primary-color);
 }
 
 .btn-secondary:hover {
     background: var(--primary-color);
     color: var(--dark-bg);
+    transform: scale(0.99);
 }
 
 .scroll-indicator {
@@ -195,7 +199,7 @@ body {
     color: var(--text-primary);
     font-family: 'Georgia', serif;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
 }
 
 .cards-grid {
@@ -213,7 +217,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) rotate(0.3deg);
     border-color: var(--primary-color);
     box-shadow: 0 10px 30px rgba(193, 122, 58, 0.2);
 }
@@ -221,6 +225,7 @@ body {
 .card-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    filter: hue-rotate(5deg);
 }
 
 .card h3 {
@@ -228,7 +233,7 @@ body {
     color: var(--text-primary);
     font-family: 'Georgia', serif;
     font-weight: 400;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
 }
 
 .card p {
@@ -249,6 +254,7 @@ body {
 
 .card-link:hover {
     color: var(--accent);
+    text-decoration: underline;
 }
 
 /* Newsletter Section */
@@ -274,7 +280,7 @@ body {
     color: var(--text-primary);
     font-family: 'Georgia', serif;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
 }
 
 .newsletter-box p {
@@ -283,50 +289,42 @@ body {
     font-style: italic;
 }
 
-.newsletter-form {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+.subscribed-message {
+    padding: 2rem 0;
 }
 
-.newsletter-input {
-    flex: 1;
-    min-width: 250px;
-    padding: 0.875rem 1.25rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    background: var(--dark-bg);
+.checkmark {
+    font-size: 3rem;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 1rem;
+    animation: checkmarkPop 0.5s ease;
+}
+
+@keyframes checkmarkPop {
+    0% { transform: scale(0) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(360deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+.subscribed-message p {
+    font-size: 1.2rem;
     color: var(--text-primary);
-    font-size: 0.95rem;
-    transition: all 0.3s;
-    font-family: 'Georgia', serif;
+    margin-bottom: 1.5rem;
 }
 
-.newsletter-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(193, 122, 58, 0.1);
-}
-
-.btn-madness {
-    padding: 0.875rem 2rem;
-    border-radius: 4px;
-    border: none;
-    background: var(--primary-color);
-    color: var(--dark-bg);
+.back-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all 0.3s;
+    transition: color 0.3s;
     letter-spacing: 0.5px;
-    font-family: 'Georgia', serif;
 }
 
-.btn-madness:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(193, 122, 58, 0.3);
+.back-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 /* Footer */
@@ -364,6 +362,7 @@ body {
 
 .social-link:hover {
     color: var(--primary-color);
+    text-decoration: underline;
 }
 
 /* Animations */
