@@ -104,7 +104,7 @@ function draw() {
     ctx.font = `${cellSize * 0.8}px Arial`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('🎯', 
+    ctx.fillText('🎹', 
         gameState.goal.x * cellSize + cellSize / 2, 
         gameState.goal.y * cellSize + cellSize / 2
     );
@@ -290,8 +290,28 @@ function winLevel() {
     const minutes = Math.floor(elapsed / 60);
     const seconds = elapsed % 60;
     
-    document.getElementById('winStats').textContent = 
-        `Completed in ${minutes}:${seconds.toString().padStart(2, '0')} with ${gameState.moves} moves!`;
+    document.getElementById('winStats').innerHTML = 
+        `Completed in ${minutes}:${seconds.toString().padStart(2, '0')} with ${gameState.moves} moves.<br>Martin would have done better.`;
+    
+    // Show the disappointed Martin image
+    const winContent = document.querySelector('.win-content');
+    
+    // Check if image already exists, if not create it
+    let martinImg = document.getElementById('martinWinImg');
+    if (!martinImg) {
+        martinImg = document.createElement('img');
+        martinImg.id = 'martinWinImg';
+        martinImg.src = 'scraped/assets/martin_bgremoved.png';
+        martinImg.style.width = '200px';
+        martinImg.style.height = 'auto';
+        martinImg.style.marginBottom = '1rem';
+        martinImg.style.display = 'block';
+        martinImg.style.marginLeft = 'auto';
+        martinImg.style.marginRight = 'auto';
+        // Insert image before the h2
+        winContent.insertBefore(martinImg, winContent.firstChild);
+    }
+    
     document.getElementById('winMessage').classList.remove('hidden');
 }
 
