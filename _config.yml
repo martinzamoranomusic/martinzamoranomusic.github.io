@@ -7,12 +7,27 @@ url: "https://martinzamoranomusic.github.io"
 markdown: kramdown
 plugins: []
 
-# Exclude scraper files
+# Include game files and assets
+include:
+  - labyrinth.html
+  - labyrinth-styles.css
+  - labyrinth-game.js
+  - slap.html
+  - slap-styles.css
+  - slap-script.js
+  - avatar.png
+
+# Exclude scraper files but keep assets
 exclude:
   - scraper.py
   - debug_html.py
   - debug_page.html
+  - debug_musik.html
   - test.txt
-  - scraped/
+  - scraped/*.md
+  - scraped/_site_map.md
   - Gemfile
   - Gemfile.lock
+  - scrape_musik.py
+  - scrape_musik2.py
+  - get_backgrounds.py
