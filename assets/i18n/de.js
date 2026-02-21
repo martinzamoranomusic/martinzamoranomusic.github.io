@@ -23,7 +23,7 @@ window.I18N_DE = {
   'nav.slap':               'Slap-O-Mat',
 
   /* ── index.html ─────────────────────────────────────────── */
-  'home.h1':                'Moin.',
+  'home.h1':                'Moin, moin!',
   'home.h1.stupid':         'JETZT NEU: Diese Website!',
   'home.tagline':           'Komponist &amp; Pianist — Hamburg',
   'home.tagline.stupid':    'Der heißeste Musiker Hamburgs. Was auch immer das heißt.',
@@ -109,7 +109,7 @@ window.I18N_DE = {
 
   /* ── kontakt.html ───────────────────────────────────────── */
   'kontakt.h2':             'Kontakt',
-  'kontakt.intro':          'Si quieres contactarme mándame un email, rellenando el formulario de abajo.',
+  'kontakt.intro':          'Wenn du Kontakt aufnehmen möchtest, schreib mir eine E-Mail über das untenstehende Formular.',
   'kontakt.intro.stupid':   'Wenn du wirklich schreiben musst, tu es. Keine Garantie auf Antwort.',
   'kontakt.name':           'Ihr Name *',
   'kontakt.phone':          'Telefon',
