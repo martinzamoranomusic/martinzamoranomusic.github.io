@@ -132,16 +132,18 @@ window.I18N_EN = {
 
   /* ── kontakt.html ───────────────────────────────────────── */
   'kontakt.h2':             'Contact',
-  'kontakt.intro':          'If you want to get in touch, send me an email by filling out the form below.',
-  'kontakt.intro.stupid':   'If you really must write, go ahead. No guarantee of a reply.',
-  'kontakt.name':           'Your Name *',
+  'kontakt.intro':          'If you\'d like to get in touch, drop me an email using the form below.',
+  'kontakt.intro.stupid':   'If you absolutely must write, go ahead. No guarantee of a reply.',
+  'kontakt.name':           'Your name *',
   'kontakt.phone':          'Phone',
   'kontakt.email':          'Email *',
-  'kontakt.message':        'Your Message *',
+  'kontakt.message':        'Your message *',
   'kontakt.submit':         'Send',
   'bodyguard.h2':           'To speak to Martin, you\'ll have to get past us first!',
   'bodyguard.instructions': 'Slap them away to continue!',
   'bodyguard.victory':      'You may now speak to Martin.',
+  'pigeon.instruction':     'Catch the carrier pigeon to send your message!',
+  'pigeon.caught':          'Got it! You can now send.',
 
   /* ── impressum.html ─────────────────────────────────────── */
   'impressum.h1':           'Impressum',

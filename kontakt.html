@@ -33,7 +33,16 @@
       <label style="display:none;">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
       </label>
-      <button type="submit" data-i18n="kontakt.submit">Absenden</button>
+
+      <!-- Madness-mode pigeon gate -->
+      <div id="pigeon-arena" style="display:none;">
+        <p id="pigeon-instruction" data-i18n="pigeon.instruction"></p>
+        <div id="pigeon-field">
+          <img id="pigeon" src="assets/images/dadalan-real-aq2u-OMPw4U-unsplash.png" alt="Brieftaube" draggable="false" />
+        </div>
+      </div>
+
+      <button type="submit" id="kontakt-submit" data-i18n="kontakt.submit">Absenden</button>
     </form>
   </main>
 

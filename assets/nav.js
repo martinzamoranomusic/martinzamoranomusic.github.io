@@ -395,7 +395,7 @@
       { img: 'assets/images/Martin_sel_-_9_of_21.jpg',                                 role: t('vita.team.member3.role'), bio: t('vita.team.member3.bio') },
       { img: 'assets/images/IMG_3796.jpg',                               role: t('vita.team.member4.role'), bio: t('vita.team.member4.bio') },
       { img: 'assets/images/IMG_3701.jpg',                           role: t('vita.team.member5.role'), bio: t('vita.team.member5.bio') },
-      { img: 'assets/images/IMG_3796.jpg',                                             role: t('vita.team.member6.role'), bio: t('vita.team.member6.bio') },
+      { img: 'assets/images/IMG_3769.jpg',                                             role: t('vita.team.member6.role'), bio: t('vita.team.member6.bio') },
       { img: 'assets/images/IMG_4000.jpg',                                             role: t('vita.team.member7.role'), bio: t('vita.team.member7.bio') },
     ];
 
@@ -414,10 +414,170 @@
     }
   }
 
+  /* ── 17. Pigeon minigame (madness mode, kontakt page only) ──────────── */
+  function initPigeonGame() {
+    const filename = path.split('/').pop() || 'index.html';
+    if (mode !== 'stupid') return;
+    if (filename !== 'kontakt.html') return;
+
+    const arena      = document.getElementById('pigeon-arena');
+    const submitBtn  = document.getElementById('kontakt-submit');
+    const instruction= document.getElementById('pigeon-instruction');
+    const field      = document.getElementById('pigeon-field');
+    const pigeon     = document.getElementById('pigeon');
+    if (!arena || !submitBtn || !pigeon || !field) return;
+
+    arena.style.display = 'block';
+    submitBtn.disabled  = true;
+    submitBtn.classList.add('pigeon-locked');
+
+    const FLEE_RADIUS  = 220;   // px — pigeon reacts from far away
+    const BASE_SPEED   = 18;    // px per frame base flee speed
+    const PREDICT      = 10;    // frames ahead the pigeon predicts cursor position
+    const MARGIN       = 8;
+    const CATCH_RADIUS = 14;    // px — tiny hitbox, must be nearly pixel-perfect
+    const IDLE_SPEED   = 0.6;   // px per frame random drift when calm
+
+    let caught = false;
+    let pigeonX = 0, pigeonY = 0;
+    let velX = 0, velY = 0;           // pigeon velocity
+    let idleAngle = Math.random() * Math.PI * 2;
+    let animId;
+
+    // Cursor tracking with velocity
+    let mouseX = -999, mouseY = -999;
+    let prevMouseX = -999, prevMouseY = -999;
+    let cursorVelX = 0, cursorVelY = 0;
+
+    function fieldRect() { return field.getBoundingClientRect(); }
+    function pigeonHalf() { return { w: pigeon.offsetWidth / 2, h: pigeon.offsetHeight / 2 }; }
+    function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
+
+    function randomPos() {
+      const r  = fieldRect();
+      const ph = pigeonHalf();
+      return {
+        x: ph.w + MARGIN + Math.random() * (r.width  - ph.w * 2 - MARGIN * 2),
+        y: ph.h + MARGIN + Math.random() * (r.height - ph.h * 2 - MARGIN * 2)
+      };
+    }
+
+    function placePigeon(x, y) {
+      pigeonX = x; pigeonY = y;
+      const ph = pigeonHalf();
+      pigeon.style.left = (x - ph.w) + 'px';
+      pigeon.style.top  = (y - ph.h) + 'px';
+    }
+
+    const start = randomPos();
+    placePigeon(start.x, start.y);
+
+    field.addEventListener('mousemove', function(e) {
+      const r = fieldRect();
+      prevMouseX = mouseX; prevMouseY = mouseY;
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+      cursorVelX = mouseX - prevMouseX;
+      cursorVelY = mouseY - prevMouseY;
+    });
+    field.addEventListener('mouseleave', function() {
+      mouseX = -999; mouseY = -999;
+      cursorVelX = 0; cursorVelY = 0;
+    });
+    field.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      const r   = fieldRect();
+      const tch = e.touches[0];
+      prevMouseX = mouseX; prevMouseY = mouseY;
+      mouseX = tch.clientX - r.left;
+      mouseY = tch.clientY - r.top;
+      cursorVelX = mouseX - prevMouseX;
+      cursorVelY = mouseY - prevMouseY;
+    }, { passive: false });
+
+    function flee() {
+      if (caught) return;
+
+      const r  = fieldRect();
+      const ph = pigeonHalf();
+
+      // Predict where the cursor will be in PREDICT frames
+      const predX = mouseX + cursorVelX * PREDICT;
+      const predY = mouseY + cursorVelY * PREDICT;
+
+      const dx   = pigeonX - predX;
+      const dy   = pigeonY - predY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < FLEE_RADIUS && dist > 0 && mouseX > -900) {
+        // Speed scales up sharply as cursor gets closer
+        const urgency = 1 + Math.pow((FLEE_RADIUS - dist) / FLEE_RADIUS, 2) * 5;
+        const speed   = BASE_SPEED * urgency;
+
+        velX = (dx / dist) * speed;
+        velY = (dy / dist) * speed;
+
+        // If pigeon is near a wall and fleeing into it, pick a perpendicular escape
+        let nx = pigeonX + velX;
+        let ny = pigeonY + velY;
+        const hitLeft   = nx < ph.w + MARGIN;
+        const hitRight  = nx > r.width  - ph.w - MARGIN;
+        const hitTop    = ny < ph.h + MARGIN;
+        const hitBottom = ny > r.height - ph.h - MARGIN;
+
+        if (hitLeft || hitRight || hitTop || hitBottom) {
+          // Bounce perpendicularly away from the wall
+          if (hitLeft || hitRight) velX = -velX * 0.8;
+          if (hitTop  || hitBottom) velY = -velY * 0.8;
+          // Add a random lateral nudge so it doesn't just oscillate
+          const nudge = (Math.random() - 0.5) * BASE_SPEED * 3;
+          if (hitLeft || hitRight) velY += nudge;
+          else velX += nudge;
+        }
+
+        idleAngle = Math.atan2(velY, velX); // keep idle direction coherent
+      } else {
+        // Idle: slow random drift, angle drifts gradually
+        idleAngle += (Math.random() - 0.5) * 0.15;
+        velX = Math.cos(idleAngle) * IDLE_SPEED;
+        velY = Math.sin(idleAngle) * IDLE_SPEED;
+      }
+
+      // Apply velocity with clamping
+      const newX = clamp(pigeonX + velX, ph.w + MARGIN, r.width  - ph.w - MARGIN);
+      const newY = clamp(pigeonY + velY, ph.h + MARGIN, r.height - ph.h - MARGIN);
+      placePigeon(newX, newY);
+
+      // Flip sprite based on horizontal direction
+      pigeon.style.transform = velX < 0 ? 'scaleX(-1)' : 'scaleX(1)';
+
+      // Catch check — tiny hitbox, cursor must be nearly dead-on
+      const catchDx = mouseX - pigeonX;
+      const catchDy = mouseY - pigeonY;
+      if (Math.sqrt(catchDx * catchDx + catchDy * catchDy) < CATCH_RADIUS) {
+        caught = true;
+        cancelAnimationFrame(animId);
+        pigeon.classList.add('pigeon-caught-anim');
+        if (instruction) {
+          instruction.setAttribute('data-i18n', 'pigeon.caught');
+          instruction.textContent = t('pigeon.caught');
+          instruction.classList.add('pigeon-caught-text');
+        }
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('pigeon-locked');
+        return;
+      }
+
+      animId = requestAnimationFrame(flee);
+    }
+
+    animId = requestAnimationFrame(flee);
+  }
+
   /* ── Run ────────────────────────────────────────────────────────────── */
   buildHeader();
   applyMode();
-  applyTranslations();   // page body translations
+  applyTranslations();
   buildModeToggle();
   wireLangSwitcher();
   markActiveLink();
@@ -428,5 +588,6 @@
   showHotFirePopup();
   showFakeReviews();
   showVitaTeamSection();
+  initPigeonGame();
 
 })();

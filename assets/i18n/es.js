@@ -139,6 +139,8 @@ window.I18N_ES = {
   'kontakt.email':          'Email *',
   'kontakt.message':        'Tu mensaje *',
   'kontakt.submit':         'Enviar',
+  'pigeon.instruction':     '¡Atrapa a la paloma mensajera para enviar tu mensaje!',
+  'pigeon.caught':          '¡Atrapada! Ya puedes enviar.',
   'bodyguard.h2':           '¡Para hablar con Martin, primero tenéis que pasar por nosotros!',
   'bodyguard.instructions': '¡Abofetéalos para continuar!',
   'bodyguard.victory':      'Ya puedes hablar con Martin.',

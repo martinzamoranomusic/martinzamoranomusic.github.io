@@ -141,8 +141,10 @@ window.I18N_DE = {
   'kontakt.message':        'Ihre Nachricht *',
   'kontakt.submit':         'Absenden',
   'bodyguard.h2':           'Wer Martin sprechen will, muss erst an uns vorbeikommen!',
-  'bodyguard.instructions': 'Es muss pervers verschellert werden!',
+  'bodyguard.instructions': 'Die Jungs wollen eine Verschellerung!',
   'bodyguard.victory':      'Sie dürfen jetzt mit Martin sprechen.',
+  'pigeon.instruction':     'Fang die Brieftaube, um die Nachricht abzuschicken!',
+  'pigeon.caught':          'Erwischt! Du kannst jetzt absenden.',
 
   /* ── impressum.html ─────────────────────────────────────── */
   'impressum.h1':           'Impressum',
