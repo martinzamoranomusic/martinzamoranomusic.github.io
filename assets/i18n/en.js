@@ -79,6 +79,7 @@ window.I18N_EN = {
 
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Your browser does not support the audio element.',
+  'improv.useless.btn': 'Useless Button',
 
   /* ── healing.html ───────────────────────────────────────── */
   'healing.intro':          'These five images are the visual component of the interdisciplinary project "Five Stages of Healing" on the theme of emotional healing. The starting point is the end of a romantic relationship and the exploration of the five stages of grief, based on Elisabeth Kübler-Ross\'s model, which I adapted to the process of heartbreak. While analysing my own thoughts and emotions during this time, an internal artistic dialogue emerged, combining poetry, painting, and music. The five images that resulted from this process serve as emotional material for the musical improvisation, reflecting the chaotic and cyclical nature of healing. They invite both the participating musicians and the audience to reflect on their own experiences of loss and acceptance.',

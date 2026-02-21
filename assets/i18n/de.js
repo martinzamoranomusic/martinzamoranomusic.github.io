@@ -80,6 +80,7 @@ window.I18N_DE = {
 
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Ihr Browser unterstützt kein Audio-Element.',
+  'improv.useless.btn':       'Nutzloser Knopf',
 
   /* ── healing.html ───────────────────────────────────────── */
   'healing.intro':          'Diese fünf Bilder sind der grafische Teil des interdisziplinären Kunstwerks „Five Stages of Healing" zum Thema „Emotionales Heilen". Ausgangspunkt ist die Auseinandersetzung mit den fünf Phasen der Trauer nach dem Modell von Elisabeth Kübler-Ross und die künstlerische Übertragung dieser psychologischen Theorie auf den Prozess des Liebeskummers. Daraus entsteht ein innerer künstlerischer Dialog, der Dichtung, Malerei und Musik miteinander verbindet. Die fünf Bilder, die aus dem emotionalen Prozess hervorgehen und als emotionales Material für die musikalische Improvisation dienen, spiegeln die chaotische und zyklische Natur des Heilens wider und schildern zugleich die wesentlichen Aspekte jeder Phase des Prozesses. Sie laden sowohl die mitwirkenden Musiker:innen als auch das Publikum dazu ein, eigene Erfahrungen von Verlust und Akzeptanz zu reflektieren.',

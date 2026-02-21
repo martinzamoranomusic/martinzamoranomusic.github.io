@@ -79,6 +79,7 @@ window.I18N_ES = {
 
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Tu navegador no soporta el elemento de audio.',
+  'improv.useless.btn': 'Botón Inútil',
 
   /* ── healing.html ───────────────────────────────────────── */
   'healing.intro':          'Estas cinco imágenes son el componente visual de la obra de arte interdisciplinaria "Five Stages of Healing" sobre el proceso de sanación emocional. El punto de partida es el final de una relación amorosa y la exploración de las cinco etapas del duelo, basadas en el modelo de Elisabeth Kübler-Ross, que he adaptado al proceso del desamor. A través del análisis de mis propios pensamientos y emociones durante este período, surgió un diálogo artístico interno que combina poesía, pintura y música. Las cinco imágenes que han resultado de este proceso sirven como inspiración para la improvisación musical, reflejando la naturaleza caótica y cíclica del proceso de recuperación emocional y a su vez delimitando las facetas esenciales de cada fase del proceso. Invitan tanto a los músicos participantes como al público a reflexionar sobre sus propias experiencias de pérdida y aceptación.',

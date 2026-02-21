@@ -574,6 +574,22 @@
     animId = requestAnimationFrame(flee);
   }
 
+  /* ── 18. Useless button (madness mode, improvisation page only) ─────── */
+  function showUselessButton() {
+    const filename = path.split('/').pop() || 'index.html';
+    if (mode !== 'stupid') return;
+    if (filename !== 'improvisation.html') return;
+
+    const btn = document.createElement('button');
+    btn.className = 'useless-btn';
+    btn.textContent = t('improv.useless.btn');
+    btn.type = 'button';
+    // does nothing — that's the point
+
+    const mainEl = document.querySelector('main.page-content');
+    if (mainEl) mainEl.appendChild(btn);
+  }
+
   /* ── Run ────────────────────────────────────────────────────────────── */
   buildHeader();
   applyMode();
@@ -589,5 +605,6 @@
   showFakeReviews();
   showVitaTeamSection();
   initPigeonGame();
+  showUselessButton();
 
 })();
