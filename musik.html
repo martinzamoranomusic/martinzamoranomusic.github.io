@@ -15,14 +15,15 @@
       content: ''; position: fixed; inset: 0;
       background: rgba(11,11,11,.82); z-index: 0; pointer-events: none;
     }
-    header, main.page-content, footer { position: relative; z-index: 1; }
+    header { position: relative; z-index: 100; }
+    main.page-content, footer { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
   <header></header>
 
   <main class="page-content">
-    <h2 data-i18n="musik.solo.h2">Solo Piano</h2>
+    <h2>Solo Piano</h2>
     <div class="video-embed">
       <iframe src="https://www.youtube-nocookie.com/embed/CBdmE6M_myM?rel=0" allowfullscreen loading="lazy"></iframe>
     </div>
@@ -47,7 +48,7 @@
     <div class="bandcamp-embed">
       <iframe src="https://bandcamp.com/EmbeddedPlayer/album=300092296/size=large/bgcol=111111/linkcol=ffffff/minimal=true/transparent=true/" seamless>Suite for Keys by Martin Zamorano</iframe>
     </div>
-    <h2 data-i18n="musik.projects.h2">Weitere Projekte</h2>
+  
   </main>
 
   <footer>

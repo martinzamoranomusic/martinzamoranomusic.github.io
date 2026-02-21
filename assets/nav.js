@@ -43,6 +43,11 @@
     const header = document.querySelector('header');
     if (!header) return;
 
+    // In madness-mode, kontakt goes through the bodyguard gate,
+    // and shows goes through the labyrinth gate.
+    const kontaktHref = root + (mode === 'stupid' ? 'bodyguard.html' : 'kontakt.html');
+    const showsHref   = root + (mode === 'stupid' ? 'shows-gate.html' : 'shows.html');
+
     header.innerHTML = [
       '<div class="site-title">',
       '  <a href="' + root + 'index.html">Mart\u00EDn Zamorano</a>',
@@ -76,8 +81,8 @@
       '      </ul>',
       '    </li>',
 
-      '    <li><a href="' + root + 'shows.html" data-i18n="nav.shows"></a></li>',
-      '    <li><a href="' + root + 'kontakt.html" data-i18n="nav.kontakt"></a></li>',
+      '    <li><a href="' + showsHref + '" data-i18n="nav.shows"></a></li>',
+      '    <li><a href="' + kontaktHref + '" data-i18n="nav.kontakt"></a></li>',
 
       '    <li data-nav-mode="fun"><a href="' + root + 'labyrinth.html" data-i18n="nav.labyrinth"></a></li>',
       '    <li data-nav-mode="fun"><a href="' + root + 'slap.html" data-i18n="nav.slap"></a></li>',
@@ -115,10 +120,14 @@
   /* ── 9. Active nav link ─────────────────────────────────────────────── */
   function markActiveLink() {
     const filename = path.split('/').pop() || 'index.html';
+    // Treat gate pages as their destination for active-link purposes
+    const activeFile = filename === 'bodyguard.html'  ? 'kontakt.html'
+                     : filename === 'shows-gate.html' ? 'shows.html'
+                     : filename;
     document.querySelectorAll('.main-nav a').forEach(function (a) {
       const href = a.getAttribute('href') || '';
       const hfile = href.split('/').pop();
-      if (hfile && hfile === filename) a.classList.add('active');
+      if (hfile && hfile === activeFile) a.classList.add('active');
     });
     // Mark parent dropdown button active if a child is active
     document.querySelectorAll('.has-dropdown').forEach(function (li) {
@@ -135,23 +144,26 @@
         e.stopPropagation();
         const li = btn.closest('.has-dropdown');
         const isOpen = li.classList.contains('open');
-        // Close all others first
-        document.querySelectorAll('.has-dropdown.open').forEach(function (el) {
-          el.classList.remove('open');
-          el.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-        });
+        closeAllDropdowns();
         if (!isOpen) {
           li.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
         }
       });
     });
-    // Click outside closes all dropdowns
-    document.addEventListener('click', function () {
-      document.querySelectorAll('.has-dropdown.open').forEach(function (el) {
-        el.classList.remove('open');
-        el.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-      });
+
+    // Close when clicking outside — use mousedown so it doesn't race with click
+    document.addEventListener('mousedown', function (e) {
+      if (!e.target.closest('.has-dropdown')) {
+        closeAllDropdowns();
+      }
+    });
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.has-dropdown.open').forEach(function (el) {
+      el.classList.remove('open');
+      el.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
     });
   }
 

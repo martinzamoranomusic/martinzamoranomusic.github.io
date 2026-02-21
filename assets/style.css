@@ -3,6 +3,50 @@
    Dark minimal aesthetic matching martinzamorano.com
    ============================================================ */
 
+/* Self-hosted fonts — no Google CDN, no GDPR issue */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/dm-sans-v17-latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/dm-sans-v17-latin-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/dm-sans-v17-latin-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('fonts/cormorant-garamond-v21-latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('fonts/cormorant-garamond-v21-latin-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('fonts/cormorant-garamond-v21-latin-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* --- Reset & Base --- */
 *,
 *::before,
@@ -22,8 +66,8 @@
     /* warm gold – matches the original site's warm tones */
     --accent2: #e07070;
     /* rose red for hover states */
-    --font-body: 'Georgia', 'Times New Roman', serif;
-    --font-ui: 'Helvetica Neue', 'Arial', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-ui:   'DM Sans', sans-serif;
     --max-w: 860px;
     --nav-h: 60px;
 }
@@ -36,8 +80,10 @@ body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.75;
+    font-size: .9375rem;   /* 15px — Inter reads better slightly smaller than 16px */
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -.01em; /* Inter's optical kern — removes the "web font" look */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -60,9 +106,10 @@ a:hover {
 header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(17, 17, 17, .96);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     display: flex;
@@ -70,6 +117,7 @@ header {
     gap: 1.5rem;
     height: var(--nav-h);
     flex-wrap: nowrap;
+    overflow: visible;  /* must NOT be hidden — dropdowns escape the header box */
 }
 
 .site-title {
@@ -124,7 +172,7 @@ header {
 .nav-dropdown-toggle {
     font-family: var(--font-ui);
     font-size: .72rem;
-    letter-spacing: .1em;
+    letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--text-muted);
     padding: .4rem .6rem;
@@ -163,7 +211,7 @@ header {
 .nav-dropdown {
     display: none;
     position: absolute;
-    top: calc(100% + .4rem);
+    top: 100%;           /* flush — no gap to accidentally exit */
     left: 0;
     background: rgba(17,17,17,.97);
     border: 1px solid var(--border);
@@ -175,6 +223,16 @@ header {
     backdrop-filter: blur(8px);
     /* never inherit flex layout from parent */
     flex-direction: column;
+}
+
+/* Invisible bridge fills any sub-pixel gap between button and panel */
+.has-dropdown.open > .nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    height: 6px;
 }
 
 .has-dropdown.open > .nav-dropdown {
@@ -198,7 +256,7 @@ header {
     gap: .3rem;
     font-family: var(--font-ui);
     font-size: .7rem;
-    letter-spacing: .1em;
+    letter-spacing: .06em;
     flex-shrink: 0;
 }
 
@@ -262,9 +320,9 @@ h2,
 h3,
 h4 {
     font-family: var(--font-ui);
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: -.02em;  /* tight, modern — no more wide uppercase spacing */
+    text-transform: none;    /* drop all-caps on headings; use it only where intentional */
     color: #fff;
     margin-top: 2.5rem;
     margin-bottom: .75rem;
@@ -272,18 +330,19 @@ h4 {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-top: 0;
 }
 
 h2 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    font-weight: 600;
     border-bottom: 1px solid var(--border);
     padding-bottom: .4rem;
 }
 
 h3 {
-    font-size: .95rem;
+    font-size: .9rem;
     color: var(--accent);
     text-transform: none;
     letter-spacing: .04em;
@@ -349,7 +408,7 @@ li {
 .home-links a {
     font-family: var(--font-ui);
     font-size: .75rem;
-    letter-spacing: .12em;
+    letter-spacing: .06em;
     text-transform: uppercase;
     border: 1px solid var(--accent);
     padding: .5rem 1.2rem;
@@ -567,7 +626,7 @@ img {
     text-transform: uppercase;
     border: 1px solid var(--accent);
     background: transparent;
-    color: var(--accent);
+    color: var (--accent);
     padding: .6rem 1.4rem;
     cursor: pointer;
     border-radius: 2px;
@@ -601,7 +660,7 @@ footer {
 .footer-nav a {
     font-family: var(--font-ui);
     font-size: .7rem;
-    letter-spacing: .1em;
+    letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--text-muted);
 }
@@ -620,7 +679,7 @@ footer {
 button.mode-toggle {
     font-family: var(--font-ui);
     font-size: .7rem;
-    letter-spacing: .1em;
+    letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--text-muted);
     background: none;
@@ -802,4 +861,18 @@ button.mode-toggle.active {
         align-items: flex-start;
         padding: 1rem;
     }
+}
+
+/* --- Bodyguard as a page (not fullscreen overlay) --- */
+.bodyguard-page {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.bodyguard-page-inner {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
 }

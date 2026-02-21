@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bring Martin to the Show | Martín Zamorano</title>
+  <link rel="stylesheet" href="labyrinth-styles.css" />
+  <script>
+    // Guard: only accessible in madness-mode
+    (function() {
+      var mode = (function() { try { return localStorage.getItem('mz_mode'); } catch(e) { return null; } })();
+      if (mode !== 'stupid') window.location.replace('shows.html');
+    })();
+  </script>
+</head>
+<body>
+  <div class="game-container">
+    <div class="header">
+      <h1>Bring Light to the Show</h1>
+      <p>Win the maze to see the shows list!</p>
+      <a href="shows.html" class="back-button">Skip (coward)</a>
+    </div>
+
+    <div class="game-info">
+      <div class="info-item"><span class="label">Level:</span><span id="level">1</span></div>
+      <div class="info-item"><span class="label">Time:</span><span id="timer">0:00</span></div>
+      <div class="info-item"><span class="label">Moves:</span><span id="moves">0</span></div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div class="mobile-controls" id="mobileControls">
+      <div class="arrow-pad">
+        <button class="arrow-btn arrow-up" id="btnUp">↑</button>
+        <div class="arrow-row">
+          <button class="arrow-btn arrow-left" id="btnLeft">←</button>
+          <button class="arrow-btn arrow-down" id="btnDown">↓</button>
+          <button class="arrow-btn arrow-right" id="btnRight">→</button>
+        </div>
+      </div>
+      <div class="tilt-toggle">
+        <label>
+          <input type="checkbox" id="tiltToggle">
+          <span>Enable Tilt Controls</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="resetBtn" class="game-button">Reset Level</button>
+      <button id="newGameBtn" class="game-button">New Game</button>
+    </div>
+
+    <div id="winMessage" class="win-message hidden">
+      <div class="win-content">
+        <h2>He made it!</h2>
+        <p id="winStats"></p>
+        <button id="nextLevelBtn" class="game-button">Go to Shows →</button>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>How to Play:</h3>
+      <ul>
+        <li>Use <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> arrow keys to move</li>
+        <li>Navigate through the maze to reach the piano</li>
+        <li>Avoid walls</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="labyrinth-game.js"></script>
+  <script>
+    // Override winLevel to redirect to shows.html instead of showing next-level flow
+    document.getElementById('nextLevelBtn').addEventListener('click', function() {
+      window.location.href = 'shows.html';
+    }, true); // capture phase so it fires before labyrinth-game.js's own listener
+  </script>
+</body>
+</html>
