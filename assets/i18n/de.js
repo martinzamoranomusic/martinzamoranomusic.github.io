@@ -3,7 +3,7 @@ window.I18N_DE = {
 
   /* ── Shared chrome ───────────────────────────────────────── */
   'site.subtitle':          'KOMPONIST &amp; PIANIST',
-  'site.footer.copy':       '&copy; 2025 Martín Zamorano',
+  'site.footer.copy':       '&copy; 2026 Martín Zamorano',
   'site.mode.toggle':       'Join the Madness',
 
   /* ── Navigation ─────────────────────────────────────────── */

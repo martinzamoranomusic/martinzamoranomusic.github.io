@@ -725,8 +725,19 @@ button.mode-toggle.active {
 }
 
 .show-project {
-    color: var(--text-muted);
+    color: var (--text-muted);
     font-style: italic;
+}
+
+.show-venue a {
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    transition: color .2s, border-color .2s;
+}
+
+.show-venue a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 .shows-table--past td { opacity: .5; }
