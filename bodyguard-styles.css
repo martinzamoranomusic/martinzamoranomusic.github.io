@@ -1,0 +1,153 @@
+.bodyguard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.bodyguard-overlay.hidden {
+    display: none;
+}
+
+.bodyguard-container {
+    text-align: center;
+    max-width: 1200px;
+    width: 90%;
+    padding: 2rem;
+}
+
+.bodyguard-container h2 {
+    color: #C17A3A;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bodyguard-instructions {
+    color: #f5f0e8;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.bodyguards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.bodyguard-box {
+    background: rgba(45, 36, 25, 0.8);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #C17A3A;
+    min-width: 300px;
+    position: relative;
+}
+
+.bodyguard-box.defeated {
+    opacity: 0.3;
+    pointer-events: none;
+    border-color: #666;
+}
+
+.bodyguard-box h3 {
+    color: #C17A3A;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.slap-counter-small {
+    background: rgba(193, 122, 58, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    color: #d4c5b0;
+    font-size: 1.2rem;
+}
+
+.slap-counter-small span {
+    color: #C17A3A;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.bodyguard-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    -webkit-user-select: none;
+    border-radius: 8px;
+}
+
+.bodyguard-image:hover {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="8" y="40" font-size="48" class="hand-wave">👋</text><style>.hand-wave{animation:wave 0.5s ease-in-out infinite;transform-origin:center;}@keyframes wave{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}</style></svg>') 32 32, pointer;
+}
+
+.bodyguard-image:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="16" y="36" font-size="36">👋</text></svg>') 32 32, pointer;
+}
+
+.bodyguard-image.slapped {
+    animation: bodyguard-slap 0.3s ease;
+}
+
+@keyframes bodyguard-slap {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg) scale(0.95); }
+    50% { transform: rotate(10deg) scale(0.98); }
+    75% { transform: rotate(-5deg) scale(0.99); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+.slap-effect-bodyguard {
+    position: absolute;
+    font-size: 2rem;
+    pointer-events: none;
+    animation: slapFlyBodyguard 1s ease-out forwards;
+    z-index: 100;
+    color: #C17A3A;
+    font-weight: bold;
+}
+
+@keyframes slapFlyBodyguard {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0.5) rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .bodyguard-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .bodyguards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .bodyguard-box {
+        min-width: 250px;
+    }
+    
+    .bodyguard-image {
+        max-width: 250px;
+    }
+}

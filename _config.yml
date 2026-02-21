@@ -16,6 +16,8 @@ include:
   - slap.html
   - slap-styles.css
   - slap-script.js
+  - bodyguard-styles.css
+  - bodyguard-script.js
   - avatar.png
 
 # Exclude scraper files but keep assets
