@@ -282,6 +282,103 @@
     document.body.appendChild(overlay);
   }
 
+  /* ── 15. Fake reviews (madness mode, index page only) ───────────────── */
+  function showFakeReviews() {
+    const filename = path.split('/').pop() || 'index.html';
+    if (mode !== 'stupid') return;
+    if (filename !== 'index.html' && filename !== '') return;
+
+    const data = {
+      de: {
+        title: 'Was andere sagen',
+        reviews: [
+          { stars: '★★★☆☆', text: 'Ich hab nur reingehört, und fand das schon ok.', author: 'Birgit — Bild-Zeitung' },
+          { stars: '★★★★☆', text: 'Ich steh nicht auf Klassik, aber Zamorano kann man sich geben.', author: 'Friedrich Merz' },
+          { stars: '★★★☆☆', text: 'Passt ganz gut im Hintergrund beim Wechseln der Bremsbeläge.', author: 'Rainer — Bundesagentur für Arbeit' },
+          { stars: '★★☆☆☆', text: 'Hab ihn aus Versehen auf Spotify gespielt. Nicht schlecht, aber ich wollte eigentlich Rammstein.', author: 'Kevin, Bewertung auf Google Maps' },
+          { stars: '★★★★★', text: 'Meine Katze hat aufgehört, die Pflanzen zu fressen. Ich weiß nicht ob das daran liegt.', author: 'Hannelore, Hamburg-Bergedorf' },
+          { stars: '★★★☆☆', text: 'Klingt wie Musik. Definitiv Musik.', author: 'Hans-Dieter, ehemaliger Finanzbeamter' },
+          { stars: '★★★★☆', text: 'Ich hab meiner Mutter das geschickt. Sie hat nicht geantwortet. Aber sie hat auch sonst nie geantwortet.', author: 'Torsten, WhatsApp-Gruppenleiter' },
+          { stars: '★☆☆☆☆', text: 'Ich dachte, das wäre ein Podcast über Steuern. War es nicht. Trotzdem okay.', author: 'Siegfried, Steuerberater i.R.' },
+          { stars: '★★★★☆', text: 'Hab beim Zuhören aus Versehen ein Gemälde gekauft. Keine Ahnung wie das passiert ist.', author: 'Gudrun, Kunstmesse Hamburg' },
+          { stars: '★★★☆☆', text: 'Mein Arzt sagt, ich soll mich entspannen. Das hier zählt glaube ich nicht, aber es hat auch nicht geschadet.', author: 'Bernd, Krankenkassenmitglied' },
+          { stars: '★★★★★', text: 'Ich hab den Link an meinen Ex geschickt. Er hat zurückgeschrieben. Danke, Martín.', author: 'Sabrina, wieder glücklich vergeben' },
+          { stars: '★★☆☆☆', text: 'Die Musik ist gut, aber die Website hat mich verwirrt. Wo ist der Warenkorb?', author: 'Manfred, Online-Shopper' },
+          { stars: '★★★☆☆', text: 'Hab ihn auf einer Hochzeit gehört. Die Ehe hat gehalten. Zufall? Vielleicht.', author: 'Elfriede, Standesamt Altona' },
+          { stars: '★★★★☆', text: 'Sehr schön. Hab dabei geweint, aber ich weine auch bei IKEA-Werbung.', author: 'Jürgen, emotional offen seit 2019' },
+          { stars: '★★★☆☆', text: 'Ich versteh die Noten nicht, aber die Töne klingen nett.', author: 'Waltraud, Rentnerin aus Pinneberg' },
+        ],
+      },
+      en: {
+        title: 'What people are saying',
+        reviews: [
+          { stars: '★★★☆☆', text: 'I only listened for a bit, and it was actually fine.', author: 'Birgit — Bild-Zeitung' },
+          { stars: '★★★★☆', text: 'Not really into classical, but Zamorano is alright.', author: 'Friedrich Merz' },
+          { stars: '★★★☆☆', text: 'Works quite well in the background while changing brake pads.', author: 'Rainer — Federal Employment Agency' },
+          { stars: '★★☆☆☆', text: 'Accidentally played it on Spotify. Not bad, but I wanted Rammstein.', author: 'Kevin, Google Maps review' },
+          { stars: '★★★★★', text: 'My cat stopped eating my plants. Not sure if that\'s related.', author: 'Hannelore, Hamburg-Bergedorf' },
+          { stars: '★★★☆☆', text: 'Sounds like music. Definitely music.', author: 'Hans-Dieter, retired tax officer' },
+          { stars: '★★★★☆', text: 'I sent it to my mum. She didn\'t reply. But she never replies anyway.', author: 'Torsten, WhatsApp group admin' },
+          { stars: '★☆☆☆☆', text: 'I thought this was a podcast about tax returns. It wasn\'t. Still fine.', author: 'Siegfried, retired accountant' },
+          { stars: '★★★★☆', text: 'I accidentally bought a painting while listening. No idea how that happened.', author: 'Gudrun, Hamburg Art Fair' },
+          { stars: '★★★☆☆', text: 'My doctor says I need to relax. This probably doesn\'t count, but it didn\'t hurt either.', author: 'Bernd, health insurance member' },
+          { stars: '★★★★★', text: 'I sent the link to my ex. He texted back. Thank you, Martín.', author: 'Sabrina, happily taken again' },
+          { stars: '★★☆☆☆', text: 'The music is good but the website confused me. Where\'s the checkout button?', author: 'Manfred, online shopper' },
+          { stars: '★★★☆☆', text: 'Heard him at a wedding. The marriage lasted. Coincidence? Maybe.', author: 'Elfriede, Registry Office Altona' },
+          { stars: '★★★★☆', text: 'Very beautiful. I cried, but I also cry at IKEA commercials.', author: 'Jürgen, emotionally open since 2019' },
+          { stars: '★★★☆☆', text: 'I don\'t understand the notes, but the sounds are nice.', author: 'Waltraud, retiree from Pinneberg' },
+        ],
+      },
+      es: {
+        title: 'Lo que dicen por ahí',
+        reviews: [
+          { stars: '★★★☆☆', text: 'Solo escuché un momento y la verdad es que no estuvo mal.', author: 'Birgit — Bild-Zeitung' },
+          { stars: '★★★★☆', text: 'No soy muy de clásica, pero Zamorano se puede escuchar.', author: 'Friedrich Merz' },
+          { stars: '★★★☆☆', text: 'Va muy bien de fondo mientras cambias las pastillas de freno.', author: 'Rainer — Agencia Federal de Empleo' },
+          { stars: '★★☆☆☆', text: 'Lo puse sin querer en Spotify. No está mal, pero quería Rammstein.', author: 'Kevin, reseña en Google Maps' },
+          { stars: '★★★★★', text: 'Mi gato dejó de comerse las plantas. No sé si tiene algo que ver.', author: 'Hannelore, Hamburgo-Bergedorf' },
+          { stars: '★★★☆☆', text: 'Suena a música. Definitivamente música.', author: 'Hans-Dieter, ex funcionario de Hacienda' },
+          { stars: '★★★★☆', text: 'Se lo mandé a mi madre. No contestó. Pero tampoco contesta nunca.', author: 'Torsten, administrador de grupo de WhatsApp' },
+          { stars: '★☆☆☆☆', text: 'Pensé que era un podcast sobre la declaración de la renta. No lo era. Pero bueno.', author: 'Siegfried, asesor fiscal jubilado' },
+          { stars: '★★★★☆', text: 'Compré un cuadro sin querer mientras escuchaba. No sé muy bien cómo pasó.', author: 'Gudrun, Feria de Arte de Hamburgo' },
+          { stars: '★★★☆☆', text: 'Mi médico dice que me relaje. Esto probablemente no cuenta, pero tampoco ha hecho daño.', author: 'Bernd, asegurado sanitario' },
+          { stars: '★★★★★', text: 'Le mandé el enlace a mi ex. Me escribió. Gracias, Martín.', author: 'Sabrina, felizmente comprometida de nuevo' },
+          { stars: '★★☆☆☆', text: 'La música está bien, pero la web me confundió. ¿Dónde está el carrito?', author: 'Manfred, comprador online' },
+          { stars: '★★★☆☆', text: 'Lo escuché en una boda. El matrimonio aguantó. ¿Casualidad? Quizás.', author: 'Elfriede, Registro Civil de Altona' },
+          { stars: '★★★★☆', text: 'Muy bonito. Lloré, pero también lloro con los anuncios de IKEA.', author: 'Jürgen, emocionalmente abierto desde 2019' },
+          { stars: '★★★☆☆', text: 'No entiendo las notas, pero los sonidos son agradables.', author: 'Waltraud, jubilada de Pinneberg' },
+        ],
+      },
+    };
+
+    const content = data[lang] || data['de'];
+
+    // Fisher-Yates shuffle, then take first 6
+    const pool = content.reviews.slice();
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    const picked = pool.slice(0, 6);
+
+    const section = document.createElement('section');
+    section.className = 'fake-reviews';
+
+    const cards = picked.map(function (r) {
+      return '<div class="fake-review-card">'
+        + '<p class="fake-review-stars">' + r.stars + '</p>'
+        + '<p class="fake-review-text">\u201C' + r.text + '\u201D</p>'
+        + '<p class="fake-review-author">— ' + r.author + '</p>'
+        + '</div>';
+    }).join('');
+
+    section.innerHTML = '<h2>' + content.title + '</h2>'
+      + '<div class="fake-reviews-grid">' + cards + '</div>';
+
+    const mainEl = document.querySelector('main.page-content');
+    if (mainEl) mainEl.appendChild(section);
+  }
+
   /* ── Run ────────────────────────────────────────────────────────────── */
   buildHeader();
   applyMode();
@@ -294,5 +391,6 @@
   applyFunNavVisibility();
   guardFunPage();
   showHotFirePopup();
+  showFakeReviews();
 
 })();
