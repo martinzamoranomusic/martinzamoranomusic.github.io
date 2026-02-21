@@ -463,7 +463,7 @@ li {
 
 /* Venue links inherit the show-venue table style */
 .home-show-venue a {
-    color: var(--text);
+    color: var (--text);
     border-bottom: 1px solid var(--border);
     transition: color .2s, border-color .2s;
 }
@@ -1232,4 +1232,70 @@ button.mode-toggle.active {
   text-transform: uppercase;
   color: var(--text-muted);
   margin: 0;
+}
+
+/* ============================================================
+   VITA TEAM SECTION (stupid mode, vita page)
+   ============================================================ */
+#vita-team-section h2 {
+  border-bottom: none;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s;
+}
+
+.team-card:hover {
+  border-color: var(--accent);
+}
+
+.team-card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  display: block;
+  transition: transform .3s;
+}
+
+.team-card:hover img {
+  transform: scale(1.03);
+}
+
+.team-card-role {
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: .75rem 1rem .2rem;
+  margin: 0;
+}
+
+.team-card-bio {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .95rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 0 1rem .85rem;
+  margin: 0;
+  flex: 1;
 }

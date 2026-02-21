@@ -60,6 +60,23 @@ window.I18N_ES = {
   'vita.photo3':            'Zamorano 4 (Crédito: Alan Finlay)',
   'vita.photo4':            'Zamorano 5 (Crédito: Lukas Palatinus)',
 
+  /* ── vita.html — Sección de equipo (Modo Madness) ────────── */
+  'vita.team.h2':              'El equipo detrás de Martín Zamorano Music',
+  'vita.team.member1.role':    'El Pianista',
+  'vita.team.member1.bio':     'Pulsa teclas. A veces varias a la vez. Estudió muchísimo tiempo para esto.',
+  'vita.team.member2.role':    'El Compositor',
+  'vita.team.member2.bio':     'Inventa notas. Las escribe. Luego se pregunta si era lo que quería decir.',
+  'vita.team.member3.role':    'El Productor',
+  'vita.team.member3.bio':     'Responsable del sonido. Y del otro sonido. Y básicamente de todos los sonidos.',
+  'vita.team.member4.role':    'El Manager de Booking',
+  'vita.team.member4.bio':     'Responde emails cuando se acuerda. Muy majo. Responde pronto.',
+  'vita.team.member5.role':    'El Director de Redes Sociales',
+  'vita.team.member5.bio':     'Publica de vez en cuando. Sobre todo de madrugada. Contenido: dudoso. Engagement: sorprendentemente bueno.',
+  'vita.team.member6.role':    'El Filósofo',
+  'vita.team.member6.bio':     'Hace preguntas que nadie hizo. También las responde. Generalmente al piano.',
+  'vita.team.member7.role':    'El Departamento de IT',
+  'vita.team.member7.bio':     'Una vez reinició un ordenador. Funcionó. Desde entonces es el experto en informática.',
+
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Tu navegador no soporta el elemento de audio.',
 

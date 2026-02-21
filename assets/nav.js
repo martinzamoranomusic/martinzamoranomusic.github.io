@@ -379,6 +379,41 @@
     if (mainEl) mainEl.appendChild(section);
   }
 
+  /* ── 16. Vita team section (madness mode, vita page only) ───────────── */
+  function showVitaTeamSection() {
+    const filename = path.split('/').pop() || 'index.html';
+    if (mode !== 'stupid') return;
+    if (filename !== 'vita.html') return;
+
+    // Hide the regular photo gallery
+    const gallery = document.getElementById('vita-gallery');
+    if (gallery) gallery.style.display = 'none';
+
+    const members = [
+      { img: 'assets/images/465449436_9404329929594584_3540499126917132473_n.jpg',     role: t('vita.team.member1.role'), bio: t('vita.team.member1.bio') },
+      { img: 'assets/images/Kuenstlerfoto_1_-3-.JPG',     role: t('vita.team.member2.role'), bio: t('vita.team.member2.bio') },
+      { img: 'assets/images/Martin_sel_-_9_of_21.jpg',                                 role: t('vita.team.member3.role'), bio: t('vita.team.member3.bio') },
+      { img: 'assets/images/IMG_3796.jpg',                               role: t('vita.team.member4.role'), bio: t('vita.team.member4.bio') },
+      { img: 'assets/images/IMG_3701.jpg',                           role: t('vita.team.member5.role'), bio: t('vita.team.member5.bio') },
+      { img: 'assets/images/IMG_3796.jpg',                                             role: t('vita.team.member6.role'), bio: t('vita.team.member6.bio') },
+      { img: 'assets/images/IMG_4000.jpg',                                             role: t('vita.team.member7.role'), bio: t('vita.team.member7.bio') },
+    ];
+
+    const cards = members.map(function (m) {
+      return '<div class="team-card">'
+        + '<img src="' + root + m.img + '" alt="' + m.role + '" />'
+        + '<p class="team-card-role">' + m.role + '</p>'
+        + '<p class="team-card-bio">' + m.bio + '</p>'
+        + '</div>';
+    }).join('');
+
+    const section = document.getElementById('vita-team-section');
+    if (section) {
+      section.innerHTML = '<h2>' + t('vita.team.h2') + '</h2>'
+        + '<div class="team-grid">' + cards + '</div>';
+    }
+  }
+
   /* ── Run ────────────────────────────────────────────────────────────── */
   buildHeader();
   applyMode();
@@ -392,5 +427,6 @@
   guardFunPage();
   showHotFirePopup();
   showFakeReviews();
+  showVitaTeamSection();
 
 })();

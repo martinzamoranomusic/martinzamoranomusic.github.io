@@ -61,6 +61,23 @@ window.I18N_DE = {
   'vita.photo3':            'Foto Zamorano 4 (Credit: Alan Finlay)',
   'vita.photo4':            'Foto Zamorano 5 (Credit: Lukas Palatinus)',
 
+  /* ── vita.html — Teamsection (Madness Mode) ─────────────────────────── */
+  'vita.team.h2':              'Triff das Team hinter Martín Zamorano Music',
+  'vita.team.member1.role':    'Der Pianist',
+  'vita.team.member1.bio':     'Drückt die Tasten. Manchmal mehrere gleichzeitig. Hat dafür sehr lange studiert.',
+  'vita.team.member2.role':    'Der Komponist',
+  'vita.team.member2.bio':     'Erfindet Noten. Schreibt sie auf. Fragt sich dann, ob das so gemeint war.',
+  'vita.team.member3.role':    'Der Produzent',
+  'vita.team.member3.bio':     'Zuständig für den Sound. Und für den anderen Sound. Und eigentlich für alle Sounds.',
+  'vita.team.member4.role':    'Der Booking Manager',
+  'vita.team.member4.bio':     'Beantwortet E-Mails, wenn er daran denkt. Sehr netter Kerl. Antwortet bald.',
+  'vita.team.member5.role':    'Der Social-Media-Direktor',
+  'vita.team.member5.bio':     'Postet gelegentlich. Vorwiegend spät nachts. Inhalte: unklar. Engagement: überraschend gut.',
+  'vita.team.member6.role':    'Der Philosoph',
+  'vita.team.member6.bio':     'Stellt Fragen, die niemand gestellt hat. Beantwortet sie auch. Meistens am Klavier.',
+  'vita.team.member7.role':    'Die IT-Abteilung',
+  'vita.team.member7.bio':     'Hat einmal einen Computer neu gestartet. Es hat funktioniert. Seitdem ist er der IT-Experte.',
+
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Ihr Browser unterstützt kein Audio-Element.',
 
