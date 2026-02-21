@@ -112,6 +112,7 @@ window.I18N_EN = {
   'kontakt.submit':         'Send',
   'bodyguard.h2':           'To speak to Martin, you\'ll have to get past us first!',
   'bodyguard.instructions': 'Slap them away to continue!',
+  'bodyguard.victory':      'You may now speak to Martin.',
 
   /* ── impressum.html ─────────────────────────────────────── */
   'impressum.h1':           'Impressum',

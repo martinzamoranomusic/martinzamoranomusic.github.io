@@ -112,6 +112,7 @@ window.I18N_DE = {
   'kontakt.submit':         'Absenden',
   'bodyguard.h2':           'Um Martin zu sprechen, müssen Sie erst an uns vorbeikommen!',
   'bodyguard.instructions': 'Slap them away to continue!',
+  'bodyguard.victory':      'Sie dürfen jetzt mit Martin sprechen.',
 
   /* ── impressum.html ─────────────────────────────────────── */
   'impressum.h1':           'Impressum',

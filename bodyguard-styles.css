@@ -133,11 +133,22 @@
 }
 
 @media (max-width: 768px) {
+  .bodyguard-container {
+    padding: 12px;
+  }
+
+  .bodyguard-banner h2,
+  .victory-banner h2 {
+    font-size: 1.3rem;
+  }
+
   .bodyguards {
-    gap: 2rem;
+    gap: 1rem;
+    flex-wrap: nowrap;
   }
 
   .bodyguard-image {
-    width: 200px;
+    width: 42vw;
+    max-width: 200px;
   }
 }
