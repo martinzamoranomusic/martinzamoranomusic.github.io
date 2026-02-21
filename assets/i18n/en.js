@@ -1,0 +1,156 @@
+/* i18n/en.js — all English texts */
+window.I18N_EN = {
+
+  /* ── Shared chrome ───────────────────────────────────────── */
+  'site.subtitle':          'COMPOSER &amp; PIANIST',
+  'site.footer.copy':       '&copy; 2025 Martín Zamorano',
+  'site.mode.toggle':       '🎭 Stupid Mode',
+
+  /* ── Navigation ─────────────────────────────────────────── */
+  'nav.vita':               'BIOGRAPHY',
+  'nav.piano':              'PIANO',
+  'nav.improvisation':      'IMPROVISATION',
+  'nav.healing':            'The Healing Project',
+  'nav.zamorano':           'Zamorano&amp;Stamer',
+  'nav.musiktheorie':       'COUNTERPOINT &amp; MUSIC THEORY',
+  'nav.transcriptions':     'Jazz Transcriptions',
+  'nav.mpr':                'Mental Pocus Records',
+  'nav.labyrinth':          'Help me get to the Show',
+  'nav.slap':               'Slap-O-Mat',
+  'nav.kontakt':            'Contact',
+
+  /* ── index.html ─────────────────────────────────────────── */
+  'home.h1':                'Moin, moin!',
+  'home.h1.stupid':         'NEW: This Website!',
+  'home.tagline':           'Composer &amp; Pianist — Hamburg',
+  'home.tagline.stupid':    'A person who makes sounds — somewhere in Germany',
+  'home.welcome':           'Welcome to Martín Zamorano\'s homepage',
+  'home.welcome.stupid':    'You got lost. That\'s fine. Stay calm.',
+  'meta.home.description':  'Pianist, Composer &amp; Music Educator — Hamburg',
+
+  /* ── vita.html ───────────────────────────────────────────── */
+  'vita.intro':             'Imagine if Radiohead\'s frontman Thom Yorke had piano lessons with Bach and Brad Mehldau, and then improvised over Minimal Music with Pharoah Sanders — that\'s one of the many ways you could describe Martín Zamorano\'s music.',
+  'vita.intro.stupid':      'Imagine someone practised piano for a very, very long time and is now wondering whether that was a good idea.',
+  'vita.p1':                '<strong>Martín Zamorano</strong> (*1995, Madrid) is a Hamburg-based pianist, composer, and music educator. His artistic identity is shaped by a genre-fluid approach that connects classical roots with jazz tradition, pop culture, folk, and free improvisation. In his music, polyphony, groove, and melancholic lyricism merge into a personal musical language – always seeking emotional depth and artistic integrity.',
+  'vita.p1.stupid':         '<strong>Martín Zamorano</strong> (*1995, Madrid) presses keys. Sometimes the keys sound good. He lives in Hamburg, where it rains a lot.',
+  'vita.p2':                'After receiving a classical piano education at the Conservatorio Arturo Soria in Madrid, he studied Composition (B.Mus.) and Music Theory (M.Mus.) at the Hochschule für Musik und Theater Hamburg, followed by a second master\'s degree (Dr. Langner Master) in Jazz Performance &amp; Production, where he deepened his work as a pianist and improviser. He is active in Hamburg\'s music scene – from pop-influenced projects like FiNDiNG CLEO or his folk duo Zamorano &amp; Stamer to avant-garde improvisation in the jazz quartet WARMBLUETIG or the SPIIC ensemble led by Vlatko Kucan. He also collaborates regularly with artists such as Asya Fateyeva, Barry Guy, and Moritz Baumgärtner. In 2023, he founded the ECOllective Ensemble, and in 2024, he co-initiated the experimental label Mental Pocus Records.',
+  'vita.p2.stupid':         'He collected many degrees because he didn\'t know when to stop. He plays in several bands most people have never heard of. That\'s called art.',
+  'vita.p3':                'His music has been featured at festivals such as Elbjazz, FOLKBaltica, the Bachfest Hamburg, and the Festival for Early Music in Cologne. Awards include a prize at the Leipzig Opera Composition Competition (2019), participation in the Genre-Fluid Composers Lab (New Amsterdam, NY, 2020), and the DAAD Prize for outstanding international students (2021). In the 2025/26 season, he will collaborate for the first time with the Deutsches SchauSpielHaus Hamburg, performing in <em>Vampire\'s Mountain</em>, directed by Philippe Quesne.',
+  'vita.p3.stupid':         'He won a prize once. He doesn\'t quite remember what for. He now works in theatre because musicians sometimes get lost.',
+  'vita.p4':                'Since 2021, he has taught music theory at the Hochschule für Musik Lübeck and, since 2023, piano in popular music at the State Youth Music School in Hamburg. His teaching bridges European classical traditions and jazz with current musical trends – aiming to shape a musically grounded future without neglecting the past.',
+  'vita.p4.stupid':         'He teaches children how to play the piano. The children ask when the break is.',
+  'vita.presskit.h2':       'Current Curriculum + Press Kit',
+  'vita.pdf.deu':           'VITA (DEU) 2025 — Short and Long (PDF)',
+  'vita.pdf.eng':           'VITA (ENG) 2025 — Short and Long (PDF)',
+  'vita.pdf.esp':           'VITA (ESP) 2025 — Corta y Larga (PDF)',
+  'vita.photo1':            'Zamorano 1 (Credit: Alan Finlay)',
+  'vita.photo2':            'Zamorano 2 (Credit: Alan Finlay)',
+  'vita.photo3':            'Zamorano 4 (Credit: Alan Finlay)',
+  'vita.photo4':            'Zamorano 5 (Credit: Lukas Palatinus)',
+
+  /* ── improvisation.html ─────────────────────────────────── */
+  'improv.audio.unsupported': 'Your browser does not support the audio element.',
+
+  /* ── healing.html ───────────────────────────────────────── */
+  'healing.intro':          'These five images are the visual component of the interdisciplinary project "Five Stages of Healing" on the theme of emotional healing. The starting point is the end of a romantic relationship and the exploration of the five stages of grief, based on Elisabeth Kübler-Ross\'s model, which I adapted to the process of heartbreak. While analysing my own thoughts and emotions during this time, an internal artistic dialogue emerged, combining poetry, painting, and music. The five images that resulted from this process serve as emotional material for the musical improvisation, reflecting the chaotic and cyclical nature of healing. They invite both the participating musicians and the audience to reflect on their own experiences of loss and acceptance.',
+  'healing.intro.stupid':   'Martin fell in love with someone. It didn\'t work out. He painted five pictures. Now you can look at them.',
+  'healing.poems.h2':       'Poems',
+  'healing.essay.h2':       'Five Stages of Healing',
+  'healing.essay.p1':       'A few years ago, I was introduced by Volkhardt Preuß, during one of his renowned seminars – in this case on Monteverdi\'s Orfeo – to the five stages of the Annunciation of Mary. What fascinated me most was how Renaissance painters and thinkers used these five theological chapters as a foundation to explore fundamental human emotions and depict artistic approaches to the unexpected. This is described in remarkable detail in Michael Baxandall\'s book <em>Painting and Experience in Fifteenth-Century Italy</em>.',
+  'healing.essay.p2':       'Even back then, I noticed the thematic similarity between the Annunciation of Mary and the five stages of grief. However, at the time, I only knew the latter as a cliché within popular culture. A good example of this is Trevor, the violent, brutal, yet strangely fascinating character from the video game GTA 5. He mentions "Denial" as "the first stage of the grieving process" when delivering the news to a rival biker gang that he has brutally killed one of their members.',
+  'healing.essay.p3':       'Years later – in the aftermath of the disappointing and unexpected end of a brief but intense romantic relationship – I recalled this five-stage model. I decided to approach my heartbreak analytically in hopes of gaining some insight into this psychological journey, which has so often consumed so much of my energy, pain, and effort throughout my life. In a short time, a five-part constellation of emotional states and thought patterns emerged from the experiences and reflections I noted down. With a few adjustments, this constellation aligned surprisingly well with the five stages of grief.',
+  'healing.essay.p4':       'I firmly believe that art is often another medium – another playing field – for experiencing the processes of "life" and the essence of existence parallel to life itself, in an aesthetic form. Through art, we can partially re-experience what we have already felt internally, but from other perspectives – often through the lens of other people, as art is fundamentally a collective phenomenon. At the same time, art provides a portal to emotional landscapes and experiences we will never encounter in reality – but what does "reality" even mean? At its best, this process of (re)experiencing leads to an insight into existence itself. Such insight need not be purely rational; it can serve as spiritual water for the soul, bringing "Fried und Freud" (peace and joy). This is why I believe art can be profoundly therapeutic – both for the creators and, ideally, for its audience.',
+  'healing.essay.p5':       'Thus, the step from analysing my emotions and thoughts during heartbreak to creating an artistic expression was a small one. Even during the process of writing things down, I began composing short poems or collecting emotional imagery – for instance, when I suddenly noticed, while hanging up laundry, how a memory pierced me like a sharp sting of frustration. Or when I opened the empty mailbox – admittedly with a touch of wounded pride – and had to acknowledge that a faint hope still lingered in me, that everything might still turn out alright.',
+  'healing.essay.p6':       'This is how these five pieces came into being, portraying and accompanying the process of healing in the context of heartbreak. I do not consider them artworks in the traditional sense of paintings, as I lack the skill of a painter, but rather as a kind of graphic notation or a foundation for music – a prompt for improvisation.',
+  'healing.essay.p7':       'I experienced this heartbreak not only as an emotional journey but also through analysing and documenting my feelings and thoughts, and most of all through painting, writing poetry, and improvising in connection with the five stages of grief. After studying deeper the psychological theory of Elisabeth Kübler-Ross, its original author, I came to understand that this process is not linear – as is often suggested by visualizations of the five stages as a curve. Instead, it is a deeply chaotic phenomenon. The stages, with their distinct characteristics, intermingle over time, occur simultaneously, return to earlier stages, and lead to ever-changing emotional states and insights.',
+  'healing.essay.p8':       'On a smaller scale, healing is a constantly repeating cycle. And yet, on a larger scale, there is a process that ideally culminates in the never-ending step of acceptance. From acceptance springs self-efficacy – that uniquely human ability to trust in one\'s inner resources and abilities to overcome any traumatic experience.',
+
+  /* ── zamoranoandstamer.html ─────────────────────────────── */
+  'zas.p1':                 'A long-standing friendship and a deep love of folk music unite these two Hamburg-based musicians, who have come together as a duo to explore the meeting point between Nordic folk music and jazz.',
+  'zas.p1.stupid':          'Two people who like folk music and at some point thought: "Why don\'t we do this together?"',
+  'zas.p2':                 'In their arrangements of tunes from Scandinavia and the Celtic world, they combine improvisational elements and harmonic subtleties with the melodic richness and expressiveness of traditional music.',
+  'zas.p2.stupid':          'They play old melodies, but weirdly. That\'s intentional.',
+  'zas.p3':                 'Finn Stamer\'s expressiveness and playful virtuosity on the violin shape the melodic language, while Martín Zamorano lays the foundation with his polyphonic approach and groove-oriented, percussive sound. The duo\'s versatility is reflected in their varied instrumentation, including Hardanger fiddle, octave violin, prepared piano, and Fender Rhodes. In their own compositions, this versatility crystallises into music that ranges from introspective and meditative moments to outbursts of ecstatic, affirmative vitality.',
+  'zas.p3.stupid':          'Finn plays violin very fast. Martín presses keys very rhythmically. Sometimes they also play weird instruments. It sounds good.',
+  'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
+  'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
+
+  /* ── musiktheorie.html ──────────────────────────────────── */
+  'mt.thesis1.h2':          'Improvisation as an Ornamental Layer over a Harmonic Framework: Parallels between Early Music and Jazz (2025)',
+  'mt.thesis1.sub':         'Master\'s Thesis (Dr. Langner Jazz Master 2022–2025)',
+  'mt.thesis1.link':        'Flesh &amp; Bones — Master\'s Thesis (PDF)',
+  'mt.suite.h2':            'Suite in Baroque Style Over the Jazz Standard "Alone Together"',
+  'mt.suite.link':          'Suite "Alone Together" — Score (PDF)',
+  'mt.thesis2.h2':          'Negative Harmony, Connections between Jazz Theory and Classical Music Theory (2022)',
+  'mt.thesis2.link':        'Negative Harmony — Master\'s Thesis (PDF)',
+  'mt.concerto.h2':         'Concerto Grosso in the Style of Muffat',
+  'mt.concerto.sub':        'Performed by Ensemble Kairos',
+  'mt.concerto.link':       'Score Concerto Grosso (PDF)',
+  'mt.various.h2':          'Various Style-Faithful Compositions and Counterpoint Studies',
+  'mt.prelude.link':        'Prelude and Fugue in C (PDF)',
+  'mt.fugue.link':          'Fugue on the Theme of The Art of Fugue (PDF)',
+  'mt.sonata1.link':        'Sonata in Classical Style — 1st Movement (PDF)',
+  'mt.sonata2.link':        'Sonata in Classical Style — 2nd Movement (PDF)',
+  'mt.sonata3.link':        'Sonata in Classical Style — 3rd Movement (PDF)',
+
+  /* ── mental-pocus-records.html ──────────────────────────── */
+  'mpr.p1':                 'Mental Pocus Records is a collaborative space for explorative music, improvisation, sonic poetry and a bit of weird magic. The label is based in Hamburg (Germany) and is curated by Danica Hobden and Martín Zamorano.',
+  'mpr.p2':                 'The philosophy behind our idea is simple:',
+  'mpr.li1':                'Create a musical space in Hamburg and Germany for young artists that work within the realms of improvised art, regardless of genre, form or language.',
+  'mpr.li2':                'Connect improvisation artists within Hamburg and Europe.',
+  'mpr.li3':                'Share music independently of the financial agendas of the so-called "music industry".',
+  'mpr.p3':                 'Here are some of the latest releases. For more, visit us on <a href="https://mentalpocusrecords.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a> or <a href="https://www.instagram.com/mentalpocusrecords/" target="_blank" rel="noopener">Instagram</a>.',
+
+  /* ── kontakt.html ───────────────────────────────────────── */
+  'kontakt.h2':             'Contact',
+  'kontakt.intro':          'If you want to get in touch, send me an email by filling out the form below.',
+  'kontakt.intro.stupid':   'If you really must write, go ahead. No guarantee of a reply.',
+  'kontakt.name':           'Your Name *',
+  'kontakt.phone':          'Phone',
+  'kontakt.email':          'Email *',
+  'kontakt.message':        'Your Message *',
+  'kontakt.submit':         'Send',
+  'bodyguard.h2':           'To speak to Martin, you\'ll have to get past us first!',
+  'bodyguard.instructions': 'Slap them away to continue!',
+
+  /* ── impressum.html ─────────────────────────────────────── */
+  'impressum.h1':           'Impressum',
+  'impressum.responsible.h3': 'Responsible for the content of this website:',
+  'impressum.legal.h2':     'Legal Notices',
+  'impressum.liability.h3': 'Liability',
+  'impressum.liability.p':  'The contents of this website are created with the greatest possible care. However, the provider assumes no liability for the accuracy, completeness or timeliness of the content provided. Use of the website content is at the user\'s own risk.',
+  'impressum.links.h3':     'External Links',
+  'impressum.links.p':      'This website contains links to third-party websites ("external links"). These websites are subject to the liability of the respective operators. The provider checked the third-party content for any legal violations at the time of initial linking. Should any legal violations become apparent, such links will be removed immediately.',
+  'impressum.copyright.h3': 'Copyright',
+  'impressum.copyright.p':  'The content published on this website is subject to German copyright law. Any use not permitted by German copyright law requires the prior written consent of the provider or respective rights holder. This applies in particular to reproduction, editing, translation, storage, processing or transmission of content in databases or other electronic media and systems.',
+
+  /* ── datenschutz.html ───────────────────────────────────── */
+  'datenschutz.h2':         'Privacy Policy',
+  'datenschutz.p1':         'This privacy policy is currently being set up.',
+  'datenschutz.p2':         'For questions regarding data protection please contact: <a href="mailto:info@martinzamorano.com">info@martinzamorano.com</a>',
+
+  /* ── labyrinth.html ─────────────────────────────────────── */
+  'labyrinth.h1':           'Bring Martin to the Show',
+  'labyrinth.subtitle':     'Use arrow keys to navigate him through the maze!',
+  'labyrinth.label.level':  'Level:',
+  'labyrinth.label.time':   'Time:',
+  'labyrinth.label.moves':  'Moves:',
+  'labyrinth.tilt':         'Enable Tilt Controls',
+  'labyrinth.hint':         '🎹 Reach the piano to advance to the next level!',
+  'labyrinth.reset':        'Reset Level',
+  'labyrinth.newgame':      'New Game',
+  'labyrinth.win.h2':       'Level Complete!',
+  'labyrinth.win.nextlevel':'Next Level',
+  'labyrinth.win.giveup':   'Give Up',
+  'labyrinth.howto.h3':     'How to Play:',
+  'labyrinth.howto.li1':    'Use <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> arrow keys to move',
+  'labyrinth.howto.li2':    'Navigate through the maze to reach the 🎹 piano',
+  'labyrinth.howto.li3':    'Avoid walls',
+  'labyrinth.howto.li4':    'Each level gets progressively harder',
+  'labyrinth.back':         '← Back to Home',
+
+  /* ── slap.html ───────────────────────────────────────────── */
+  'slap.h1':                'Slap-O-Mat',
+  'slap.counter':           'Slaps delivered:',
+  'slap.back':              '← Back to Home',
+};

@@ -9,7 +9,7 @@
     body {
       background-image: url('../assets/images/bg_improvisation.jpg');
       background-size: cover; background-attachment: fixed;
-      background-position: center top; background-repeat: no-repeat;
+      background-position: center; background-repeat: no-repeat;
     }
     body::before {
       content: ''; position: fixed; inset: 0;
@@ -22,21 +22,21 @@
   <header>
     <div class="site-title">
       <a href="../index.html">Martín Zamorano</a>
-      <span class="subtitle">COMPOSITOR &amp; PIANISTA</span>
+      <span class="subtitle" data-i18n="site.subtitle">COMPOSITOR Y PIANISTA</span>
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="vita.html">CURRÍCULUM</a></li>
-        <li><a href="../musik.html">PIANO</a></li>
-        <li><a href="improvisation.html">IMPROVISACIÓN</a></li>
-        <li><a href="healing.html">The Healing Project</a></li>
-        <li><a href="../zamoranoandstamer.html">Zamorano&amp;Stamer</a></li>
-        <li><a href="../musiktheorie.html">CONTRAPUNTO &amp; TEORÍA MUSICAL</a></li>
-        <li><a href="../transcriptions.html">Jazz Transcriptions</a></li>
-        <li><a href="../mental-pocus-records.html">Mental Pocus Records</a></li>
-        <li><a href="../labyrinth.html">Help me get to the Show</a></li>
-        <li><a href="../slap.html">Slap-O-Mat</a></li>
-        <li><a href="../kontakt.html">Contacto</a></li>
+        <li><a href="vita.html" data-i18n="nav.vita">BIOGRAFÍA</a></li>
+        <li><a href="../musik.html" data-i18n="nav.piano">PIANO</a></li>
+        <li><a href="improvisation.html" data-i18n="nav.improvisation">IMPROVISACIÓN</a></li>
+        <li><a href="healing.html" data-i18n="nav.healing">The Healing Project</a></li>
+        <li><a href="../zamoranoandstamer.html" data-i18n="nav.zamorano">Zamorano&amp;Stamer</a></li>
+        <li><a href="../musiktheorie.html" data-i18n="nav.musiktheorie">CONTRAPUNTO Y TEORÍA MUSICAL</a></li>
+        <li><a href="../transcriptions.html" data-i18n="nav.transcriptions">Transcripciones de Jazz</a></li>
+        <li><a href="../mental-pocus-records.html" data-i18n="nav.mpr">Mental Pocus Records</a></li>
+        <li><a href="../labyrinth.html" data-i18n="nav.labyrinth">Ayúdame a llegar al Show</a></li>
+        <li><a href="../slap.html" data-i18n="nav.slap">Slap-O-Mat</a></li>
+        <li><a href="../kontakt.html" data-i18n="nav.kontakt">Contacto</a></li>
       </ul>
     </nav>
     <div class="lang-switcher">
@@ -69,8 +69,11 @@
       <a href="../impressum.html">Impressum</a>
       <a href="../datenschutz.html">Datenschutz</a>
     </nav>
-    <p class="footer-copy">&copy; 2025 Martín Zamorano</p>
+    <p class="footer-copy" data-i18n="site.footer.copy">&copy; 2025 Martín Zamorano</p>
   </footer>
+  <script src="../assets/i18n/de.js"></script>
+  <script src="../assets/i18n/en.js"></script>
+  <script src="../assets/i18n/es.js"></script>
   <script src="../assets/nav.js"></script>
 </body>
 </html>
