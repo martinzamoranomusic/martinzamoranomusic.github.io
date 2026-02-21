@@ -30,6 +30,9 @@ window.I18N_ES = {
   'home.welcome':           'Bienvenidos a la página web de Martín Zamorano',
   'home.welcome.stupid':    'Te has perdido. No pasa nada. Mantén la calma.',
   'meta.home.description':  'Pianista, Compositor &amp; Pedagogo Musical — Hamburgo',
+  'home.shows.title':       'Próximos Conciertos',
+  'home.shows.more':        'Todos los Conciertos →',
+  'home.shows.empty':       'No hay conciertos próximos.',
 
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Imagínese que Thom Yorke, el líder de Radiohead, hubiera tomado clases de piano con Bach y Brad Mehldau, y luego improvisara sobre música minimalista con Pharoah Sanders: esa es una de las muchas formas de describir la música de Martín Zamorano.',

@@ -30,6 +30,9 @@ window.I18N_EN = {
   'home.welcome':           'Welcome to Martín Zamorano\'s homepage',
   'home.welcome.stupid':    'You got lost. That\'s fine. Stay calm.',
   'meta.home.description':  'Pianist, Composer &amp; Music Educator — Hamburg',
+  'home.shows.title':       'Upcoming Shows',
+  'home.shows.more':        'All Shows →',
+  'home.shows.empty':       'No upcoming shows.',
 
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Imagine if Radiohead\'s frontman Thom Yorke had piano lessons with Bach and Brad Mehldau, and then improvised over Minimal Music with Pharoah Sanders — that\'s one of the many ways you could describe Martín Zamorano\'s music.',

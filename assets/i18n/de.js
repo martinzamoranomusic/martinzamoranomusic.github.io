@@ -30,6 +30,9 @@ window.I18N_DE = {
   'home.welcome':           'Willkommen auf der Homepage von Martín Zamorano',
   'home.welcome.stupid':    'Du hast dich verirrt. Macht nichts.',
   'meta.home.description':  'Pianist, Komponist &amp; Musikpädagoge — Hamburg',
+  'home.shows.title':       'Nächste Shows',
+  'home.shows.more':        'Alle Shows →',
+  'home.shows.empty':       'Keine bevorstehenden Shows.',
 
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Stellen Sie sich vor, Thom Yorke, der Frontmann von Radiohead, hätte Klavierunterricht bei Bach und Brad Mehldau genommen und würde dann über Minimal Music mit Pharoah Sanders improvisieren – das ist eine der vielen Möglichkeiten, wie man die Musik von Martín Zamorano beschreiben könnte.',

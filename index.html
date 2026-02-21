@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Martín Zamorano</title>
   <meta name="description" content="Pianist, Komponist & Musikpädagoge — Hamburg" />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&display=swap" />
   <link rel="stylesheet" href="assets/style.css" />
   <style>
     body {
@@ -37,14 +33,22 @@
   <main class="page-content">
     <div class="home-hero">
       <h1 data-i18n="home.h1">Moin, moin!</h1>
-      <p class="tagline" data-i18n="home.tagline">Komponist &amp; Pianist — Hamburg</p>
       <p data-i18n="home.welcome">Willkommen auf der Homepage von Martín Zamorano</p>
+      <p class="tagline" data-i18n="home.tagline">Komponist &amp; Pianist — Hamburg</p>
       <div class="home-links">
         <a href="https://martinzamorano.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a>
         <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/martinzamoranomusic" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
+
+    <section class="home-shows">
+      <h2 data-i18n="home.shows.title">Nächste Shows</h2>
+      <div id="home-shows-list">
+        <p class="home-shows-loading">…</p>
+      </div>
+      <a href="shows.html" class="home-shows-more" data-i18n="home.shows.more">Alle Shows →</a>
+    </section>
   </main>
 
   <footer>
@@ -59,5 +63,71 @@
   <script src="assets/i18n/en.js"></script>
   <script src="assets/i18n/es.js"></script>
   <script src="assets/nav.js"></script>
+  <script>
+    // Fetch shows.html, parse upcoming rows, render the next 3
+    (function() {
+      var today = new Date();
+      today.setHours(0,0,0,0);
+
+      fetch('shows.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+
+          // Collect all rows from non-past tables
+          var upcoming = [];
+          doc.querySelectorAll('.shows-table:not(.shows-table--past) tbody tr').forEach(function(row) {
+            var dateCell  = row.querySelector('.show-date');
+            var venueCell = row.querySelector('.show-venue');
+            var cityCell  = row.querySelector('.show-city');
+            var projCell  = row.querySelector('.show-project');
+            if (!dateCell) return;
+
+            // Parse DD.MM.YYYY
+            var parts = dateCell.textContent.trim().split('.');
+            if (parts.length < 3) return;
+            var d = new Date(+parts[2], +parts[1] - 1, +parts[0]);
+            if (d < today) return;
+
+            upcoming.push({
+              date:    dateCell.textContent.trim(),
+              venue:   venueCell ? venueCell.innerHTML.trim() : '',
+              city:    cityCell  ? cityCell.textContent.trim()  : '',
+              project: projCell  ? projCell.textContent.trim()  : '',
+              dateObj: d
+            });
+          });
+
+          // Sort ascending, take first 3
+          upcoming.sort(function(a,b){ return a.dateObj - b.dateObj; });
+          var next3 = upcoming.slice(0, 3);
+
+          var container = document.getElementById('home-shows-list');
+          if (next3.length === 0) {
+            var emptyMsg = (window.I18N_DE && window.I18N_DE['home.shows.empty']) ? '' : '';
+            // Use the active language via nav.js's t() — but that's scoped, so read from the active dict directly
+            var activeLang = (function(){ try { return localStorage.getItem('mz_lang') || 'de'; } catch(e){ return 'de'; } })();
+            var dicts = { de: window.I18N_DE, en: window.I18N_EN, es: window.I18N_ES };
+            var d = dicts[activeLang] || window.I18N_DE;
+            container.innerHTML = '<p class="home-shows-empty">' + (d['home.shows.empty'] || 'Keine bevorstehenden Shows.') + '</p>';
+            return;
+          }
+
+          var rows = next3.map(function(s) {
+            return '<div class="home-show-row">'
+              + '<span class="home-show-date">' + s.date + '</span>'
+              + '<span class="home-show-venue">' + s.venue + '</span>'
+              + '<span class="home-show-city">'  + s.city  + '</span>'
+              + '<span class="home-show-project">' + s.project + '</span>'
+              + '</div>';
+          });
+          container.innerHTML = rows.join('');
+        })
+        .catch(function() {
+          document.getElementById('home-shows-list').innerHTML = '';
+        });
+    })();
+  </script>
 </body>
 </html>

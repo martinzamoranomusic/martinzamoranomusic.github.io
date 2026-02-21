@@ -422,6 +422,111 @@ li {
     color: var(--bg);
 }
 
+/* --- Home page upcoming shows --- */
+.home-shows {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+}
+
+.home-shows h2 {
+    border-bottom: none;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+}
+
+.home-show-row {
+    display: grid;
+    grid-template-columns: 7rem auto 1fr;
+    gap: .5rem 1.25rem;
+    padding: .65rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+}
+
+.home-show-row:last-child {
+    border-bottom: none;
+}
+
+.home-show-date {
+    font-size: .8rem;
+    color: var(--accent);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.home-show-venue {
+    font-size: .875rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+/* Venue links inherit the show-venue table style */
+.home-show-venue a {
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    transition: color .2s, border-color .2s;
+}
+
+.home-show-venue a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.home-show-city {
+    font-size: .8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.home-show-project {
+    grid-column: 2 / -1;
+    font-size: .8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.home-shows-more {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: var(--font-ui);
+    font-size: .75rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    padding: .45rem 1.1rem;
+    border-radius: 2px;
+    color: var(--accent);
+    transition: background .2s, color .2s;
+}
+
+.home-shows-more:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.home-shows-loading,
+.home-shows-empty {
+    color: var(--text-muted);
+    font-size: .85rem;
+    font-style: italic;
+    padding: .5rem 0;
+}
+
+@media (max-width: 600px) {
+    .home-show-row {
+        grid-template-columns: 6rem 1fr;
+    }
+
+    .home-show-city {
+        display: none; /* city is usually obvious on mobile, save space */
+    }
+
+    .home-show-project {
+        grid-column: 1 / -1;
+    }
+}
+
 /* --- Images --- */
 img {
     max-width: 100%;
