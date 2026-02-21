@@ -5,6 +5,7 @@ window.I18N_ES = {
   'site.subtitle':          'COMPOSITOR &amp; PIANISTA',
   'site.footer.copy':       '&copy; 2025 Martín Zamorano',
   'site.mode.toggle':       'Join the Madness',
+  'site.mode.toggle.off':   'Ahora en serio',
 
   /* ── Navigation ─────────────────────────────────────────── */
   'nav.vita':               'CURRÍCULUM',
@@ -143,7 +144,7 @@ window.I18N_ES = {
   'labyrinth.label.time':   'Tiempo:',
   'labyrinth.label.moves':  'Movimientos:',
   'labyrinth.tilt':         'Activar control por inclinación',
-  'labyrinth.hint':         '🎹 ¡Llega al piano para avanzar al siguiente nivel!',
+  'labyrinth.hint':         '¡Llega al piano para avanzar al siguiente nivel!',
   'labyrinth.reset':        'Reiniciar nivel',
   'labyrinth.newgame':      'Nueva partida',
   'labyrinth.win.h2':       '¡Nivel completado!',
@@ -151,7 +152,7 @@ window.I18N_ES = {
   'labyrinth.win.giveup':   'Rendirse',
   'labyrinth.howto.h3':     'Cómo jugar:',
   'labyrinth.howto.li1':    'Usa las teclas <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> para moverte',
-  'labyrinth.howto.li2':    'Navega por el laberinto hasta llegar al piano 🎹',
+  'labyrinth.howto.li2':    'Navega por el laberinto hasta llegar al piano',
   'labyrinth.howto.li3':    'Evita las paredes',
   'labyrinth.howto.li4':    'Cada nivel es más difícil',
   'labyrinth.back':         '← Volver al inicio',

@@ -5,6 +5,7 @@ window.I18N_EN = {
   'site.subtitle':          'COMPOSER &amp; PIANIST',
   'site.footer.copy':       '&copy; 2026 Martín Zamorano',
   'site.mode.toggle':       'Join the Madness',
+  'site.mode.toggle.off':   'Now seriously',
 
   /* ── Navigation ─────────────────────────────────────────── */
   'nav.vita':               'BIOGRAPHY',
@@ -157,7 +158,7 @@ window.I18N_EN = {
   'labyrinth.back':         '← Back to Home',
 
   /* ── slap.html ───────────────────────────────────────────── */
-  'slap.h1':                'Slap-O-Mat',
+  'slap.h1':                'Interactive Martin Experience',
   'slap.counter':           'Slaps delivered:',
   'slap.back':              '← Back to Home',
 };

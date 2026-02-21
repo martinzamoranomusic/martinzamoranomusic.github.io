@@ -194,7 +194,10 @@
     const btn = document.createElement('button');
     btn.className = 'mode-toggle';
     btn.setAttribute('aria-pressed', mode === 'stupid' ? 'true' : 'false');
-    btn.textContent = t('site.mode.toggle') || 'Join the Madness';
+    // In madness mode show the "turn off" label, otherwise the "join" label
+    btn.textContent = mode === 'stupid'
+      ? (dict['site.mode.toggle.off'] || 'Now seriously')
+      : (dict['site.mode.toggle']     || 'Join the Madness');
     if (mode === 'stupid') btn.classList.add('active');
     btn.addEventListener('click', function () {
       const next = recall('mode', 'regular') === 'stupid' ? 'regular' : 'stupid';
@@ -222,6 +225,63 @@
     }
   }
 
+  /* ── 14. HotFire popup (madness mode, index page only) ─────────────── */
+  function showHotFirePopup() {
+    const filename = path.split('/').pop() || 'index.html';
+    if (mode !== 'stupid') return;
+    if (filename !== 'index.html' && filename !== '') return;
+
+    const captions = {
+      de: 'Mart\u00EDn Zamorano z\u00FCndet das hei\u00DFeste Album des Jahres 1789',
+      en: 'Mart\u00EDn Zamorano about to drop the hottest album of 1789',
+      es: 'Mart\u00EDn Zamorano a punto de lanzar el \u00E1lbum m\u00E1s caliente del 1789',
+    };
+    const caption = captions[lang] || captions['en'];
+
+    const overlay = document.createElement('div');
+    overlay.id = 'hotfire-overlay';
+    overlay.style.cssText = [
+      'position:fixed', 'inset:0', 'z-index:9999',
+      'background:rgba(0,0,0,.75)',
+      'display:flex', 'align-items:center', 'justify-content:center',
+      'cursor:pointer',
+    ].join(';');
+
+    overlay.innerHTML = [
+      '<div style="position:relative;display:inline-block;">',
+      '  <img src="' + root + 'assets/images/hotFire.jpeg"',
+      '       alt="Hot Fire"',
+      '       style="display:block;max-width:min(88vw,480px);max-height:72vh;border-radius:4px;box-shadow:0 0 40px #ff6a00aa;" />',
+      '  <p style="',
+      '    position:absolute;top:0;left:0;right:0;',
+      '    font-family:\'Cormorant Garamond\',serif;',
+      '    font-size:clamp(.85rem,2.2vw,1.05rem);',
+      '    color:#fff;',
+      '    text-shadow:0 2px 8px #000,0 0 20px #ff6a00;',
+      '    margin:0;padding:.5em .75em;',
+      '    line-height:1.35;',
+      '    text-align:center;',
+      '    background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,transparent 100%);',
+      '    border-radius:4px 4px 0 0;',
+      '  ">' + caption + '</p>',
+      '  <p style="',
+      '    position:absolute;bottom:0;left:0;right:0;',
+      '    color:rgba(255,255,255,.6);font-size:.75rem;',
+      '    margin:0;padding:.4em;',
+      '    text-align:center;',
+      '    background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 100%);',
+      '    border-radius:0 0 4px 4px;',
+      '  ">click anywhere to close</p>',
+      '</div>',
+    ].join('');
+
+    overlay.addEventListener('click', function () {
+      document.body.removeChild(overlay);
+    });
+
+    document.body.appendChild(overlay);
+  }
+
   /* ── Run ────────────────────────────────────────────────────────────── */
   buildHeader();
   applyMode();
@@ -233,5 +293,6 @@
   wireHamburger();
   applyFunNavVisibility();
   guardFunPage();
+  showHotFirePopup();
 
 })();
