@@ -115,7 +115,7 @@ function draw() {
 
 // Draw player
 let playerImage = new Image();
-playerImage.src = 'avatar.png';
+playerImage.src = 'assets/images/IMG_4000.png';
 let imageLoaded = false;
 
 playerImage.onload = function() {
@@ -301,7 +301,7 @@ function winLevel() {
     if (!martinImg) {
         martinImg = document.createElement('img');
         martinImg.id = 'martinWinImg';
-        martinImg.src = 'scraped/assets/martin_bgremoved.png';
+        martinImg.src = 'assets/images/martin_bgremoved.png';
         martinImg.style.width = '200px';
         martinImg.style.height = 'auto';
         martinImg.style.marginBottom = '1rem';
