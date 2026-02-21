@@ -8,16 +8,19 @@ window.I18N_DE = {
 
   /* ── Navigation ─────────────────────────────────────────── */
   'nav.vita':               'VITA',
+  'nav.music':              'MUSIK',
   'nav.piano':              'PIANO',
   'nav.improvisation':      'IMPROVISATION',
-  'nav.healing':            'The Healing Project',
   'nav.zamorano':           'Zamorano&amp;Stamer',
+  'nav.projects':           'PROJEKTE',
+  'nav.healing':            'The Healing Project',
   'nav.musiktheorie':       'KONTRAPUNKT &amp; MUSIKTHEORIE',
   'nav.transcriptions':     'Jazz Transcriptions',
   'nav.mpr':                'Mental Pocus Records',
+  'nav.shows':              'SHOWS',
+  'nav.kontakt':            'KONTAKT',
   'nav.labyrinth':          'Help me get to the Show',
   'nav.slap':               'Slap-O-Mat',
-  'nav.kontakt':            'Kontakt',
 
   /* ── index.html ─────────────────────────────────────────── */
   'home.h1':                'Moin.',
