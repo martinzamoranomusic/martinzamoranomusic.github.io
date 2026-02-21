@@ -4,7 +4,7 @@ window.I18N_DE = {
   /* ── Shared chrome ───────────────────────────────────────── */
   'site.subtitle':          'KOMPONIST &amp; PIANIST',
   'site.footer.copy':       '&copy; 2025 Martín Zamorano',
-  'site.mode.toggle':       '🎭 Stupid Mode',
+  'site.mode.toggle':       'Join the Madness',
 
   /* ── Navigation ─────────────────────────────────────────── */
   'nav.vita':               'VITA',
@@ -20,12 +20,12 @@ window.I18N_DE = {
   'nav.kontakt':            'Kontakt',
 
   /* ── index.html ─────────────────────────────────────────── */
-  'home.h1':                'Moin, moin!',
+  'home.h1':                'Moin.',
   'home.h1.stupid':         'JETZT NEU: Diese Website!',
   'home.tagline':           'Komponist &amp; Pianist — Hamburg',
-  'home.tagline.stupid':    'Jemand, der Geräusche macht — irgendwo in Deutschland',
+  'home.tagline.stupid':    'Der heißeste Musiker Hamburgs. Was auch immer das heißt.',
   'home.welcome':           'Willkommen auf der Homepage von Martín Zamorano',
-  'home.welcome.stupid':    'Du hast dich verirrt. Macht nichts. Bleib ruhig.',
+  'home.welcome.stupid':    'Du hast dich verirrt. Macht nichts.',
   'meta.home.description':  'Pianist, Komponist &amp; Musikpädagoge — Hamburg',
 
   /* ── vita.html ───────────────────────────────────────────── */

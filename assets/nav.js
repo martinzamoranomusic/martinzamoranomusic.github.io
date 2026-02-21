@@ -14,25 +14,14 @@
     try { return localStorage.getItem(PREFIX + key) ?? fallback; } catch { return fallback; }
   }
 
-  /* ── 3. Get current language from localStorage (for local testing) or URL path (for production) ───── */
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
-  const langMatch = path.match(/^\/(en|es)(\/.*)?$/);
-  const urlLang = langMatch ? langMatch[1] : 'de';
-  
-  // For local file:// testing, use localStorage; for production, use URL
-  const isFileProtocol = window.location.protocol === 'file:';
-  const lang = isFileProtocol ? recall('lang', 'de') : urlLang;
-  
-  // Keep in sync with storage
-  persist('lang', lang);
-
+  /* ── 3. Language + mode — always from localStorage ─────────────────── */
+  const lang = recall('lang', 'de');
   const mode = recall('mode', 'regular');
 
   /* ── 4. Translate the page ──────────────────────────────────────────── */
   const dict = DICTS[lang] || DICTS['de'];
 
   function t(key) {
-    // Stupid-mode variant first, then normal key
     if (mode === 'stupid' && dict[key + '.stupid'] !== undefined) {
       return dict[key + '.stupid'];
     }
@@ -44,10 +33,8 @@
       const key = el.dataset.i18n;
       const val = t(key);
       if (!val) return;
-      // Use innerHTML for keys that contain markup (strong, em, a, kbd…)
       el.innerHTML = val;
     });
-
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       const key = el.dataset.i18nPlaceholder;
       const val = t(key);
@@ -61,16 +48,15 @@
   }
 
   /* ── 6. Wire lang switcher ──────────────────────────────────────────── */
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+
   document.querySelectorAll('.lang-switcher a[data-lang]').forEach(function (a) {
     const l = a.dataset.lang;
-    
     a.classList.toggle('active', l === lang);
-    
-    // Make all language links work via localStorage + reload (like stupid mode toggle)
     a.style.cursor = 'pointer';
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      if (l !== lang) {  // Only reload if actually changing language
+      if (l !== lang) {
         persist('lang', l);
         location.reload();
       }
@@ -85,34 +71,48 @@
     }
   });
 
-  /* ── 8. Mode toggle button ──────────────────────────────────────────── */
+  /* ── 8. Mode toggle — injected into footer ──────────────────────────── */
   function buildModeToggle() {
-    const header = document.querySelector('header');
-    if (!header || header.querySelector('.mode-toggle')) return;
+    const footer = document.querySelector('footer');
+    if (!footer || footer.querySelector('.mode-toggle')) return;
 
     const btn = document.createElement('button');
     btn.className = 'mode-toggle';
     btn.setAttribute('aria-pressed', mode === 'stupid' ? 'true' : 'false');
-    btn.innerHTML = t('site.mode.toggle') || '🎭 Stupid Mode';
+    btn.textContent = t('site.mode.toggle') || 'Join the Madness';
     if (mode === 'stupid') btn.classList.add('active');
 
     btn.addEventListener('click', function () {
       const next = recall('mode', 'regular') === 'stupid' ? 'regular' : 'stupid';
       persist('mode', next);
-      // Reload so every data-i18n element re-renders cleanly
       location.reload();
     });
 
-    header.appendChild(btn);
+    footer.appendChild(btn);
   }
 
-  /* ── 9. Inject nav translation keys (nav text from dict) ────────────── */
-  // The nav links already have data-i18n attributes in the HTML,
-  // so applyTranslations() handles them automatically.
+  /* ── 9. Fun-mode nav visibility + guard ────────────────────────────── */
+  const FUN_PAGES = ['labyrinth.html', 'slap.html', 'kontakt.html'];
+
+  function applyFunNavVisibility() {
+    document.querySelectorAll('.main-nav li[data-nav-mode="fun"]').forEach(function (li) {
+      li.style.display = mode === 'stupid' ? '' : 'none';
+    });
+  }
+
+  function guardFunPage() {
+    if (mode === 'stupid') return;
+    const filename = window.location.pathname.split('/').pop() || 'index.html';
+    if (FUN_PAGES.some(function (p) { return filename === p; })) {
+      window.location.replace('index.html');
+    }
+  }
 
   /* ── Run ─────────────────────────────────────────────────── */
   applyMode();
   applyTranslations();
   buildModeToggle();
+  applyFunNavVisibility();
+  guardFunPage();
 
 })();

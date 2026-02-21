@@ -4,7 +4,7 @@ window.I18N_EN = {
   /* ── Shared chrome ───────────────────────────────────────── */
   'site.subtitle':          'COMPOSER &amp; PIANIST',
   'site.footer.copy':       '&copy; 2025 Martín Zamorano',
-  'site.mode.toggle':       '🎭 Stupid Mode',
+  'site.mode.toggle':       'Join the Madness',
 
   /* ── Navigation ─────────────────────────────────────────── */
   'nav.vita':               'BIOGRAPHY',

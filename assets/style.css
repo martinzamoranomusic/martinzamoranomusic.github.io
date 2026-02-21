@@ -518,6 +518,25 @@ footer {
     color: var(--text-muted);
 }
 
+/* Mode toggle button — lives in footer, matches footer link style */
+button.mode-toggle {
+    font-family: var(--font-ui);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color .2s;
+}
+
+button.mode-toggle:hover,
+button.mode-toggle.active {
+    color: var(--accent);
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
