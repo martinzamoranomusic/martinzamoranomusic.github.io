@@ -100,14 +100,18 @@ function draw() {
     }
     
     // Draw goal
-    ctx.fillStyle = '#C17A3A';
-    ctx.font = `${cellSize * 0.8}px Arial`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('🎹', 
-        gameState.goal.x * cellSize + cellSize / 2, 
-        gameState.goal.y * cellSize + cellSize / 2
-    );
+    const goalX = gameState.goal.x * cellSize + cellSize / 2;
+    const goalY = gameState.goal.y * cellSize + cellSize / 2;
+    if (goalImageLoaded) {
+        const imgSize = cellSize * 1.0;
+        ctx.drawImage(goalImage, goalX - imgSize / 2, goalY - imgSize / 2, imgSize, imgSize);
+    } else {
+        ctx.fillStyle = '#C17A3A';
+        ctx.font = `${cellSize * 0.8}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🎹', goalX, goalY);
+    }
     
     // Draw player (placeholder - will be replaced with image)
     drawPlayer(cellSize);
@@ -120,6 +124,16 @@ let imageLoaded = false;
 
 playerImage.onload = function() {
     imageLoaded = true;
+    draw();
+};
+
+// Load goal image
+let goalImage = new Image();
+goalImage.src = 'assets/images/lulu-wu-35fycLrg6U8-unsplash.jpg';
+let goalImageLoaded = false;
+
+goalImage.onload = function() {
+    goalImageLoaded = true;
     draw();
 };
 

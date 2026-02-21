@@ -35,26 +35,24 @@
     </div>
   </header>
 
-  <!-- Bodyguard Overlay -->
+  <!-- Bodyguard overlay -->
   <div id="bodyguardOverlay" class="bodyguard-overlay">
     <div class="bodyguard-container">
-      <h2 data-i18n="kontakt.bodyguard.title">Um Martin zu sprechen, müssen Sie erst an uns vorbeikommen!</h2>
-      <p class="bodyguard-instructions" data-i18n="kontakt.bodyguard.instructions">Slap them away to continue!</p>
+      <div id="bodyguardBanner" class="bodyguard-banner">
+        <h2 data-i18n="bodyguard.title">You must defeat the bodyguards to speak to Martin!</h2>
+      </div>
+
       <div class="bodyguards">
-        <div class="bodyguard-box" id="hendrikBox">
-          <h3>Hendrik</h3>
-          <div class="slap-counter-small">
-            <span id="hendrikSlaps">0</span> / 10 slaps
-          </div>
-          <img id="hendrikImg" src="assets/images/HendrikBodyguard.png" alt="Hendrik the Bodyguard" class="bodyguard-image">
-        </div>
         <div class="bodyguard-box" id="lucasBox">
-          <h3>Lucas</h3>
-          <div class="slap-counter-small">
-            <span id="lucasSlaps">0</span> / 10 slaps
-          </div>
-          <img id="lucasImg" src="assets/images/LucasBodyguard.png" alt="Lucas the Bodyguard" class="bodyguard-image">
+          <img src="assets/images/LucasBodyguard.png" alt="Bodyguard" class="bodyguard-image" id="lucasImg" />
         </div>
+        <div class="bodyguard-box" id="hendrikBox">
+          <img src="assets/images/HendrikBodyguard.png" alt="Bodyguard" class="bodyguard-image" id="hendrikImg" />
+        </div>
+      </div>
+
+      <div id="victoryBanner" class="victory-banner hidden">
+        <h2 data-i18n="bodyguard.victory">You may now speak to Martin!</h2>
       </div>
     </div>
   </div>

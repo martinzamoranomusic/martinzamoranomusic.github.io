@@ -1,153 +1,143 @@
 .bodyguard-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
+  overflow: hidden;
 }
 
 .bodyguard-overlay.hidden {
-    display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .bodyguard-container {
-    text-align: center;
-    max-width: 1200px;
-    width: 90%;
-    padding: 2rem;
+  text-align: center;
+  color: white;
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
 }
 
-.bodyguard-container h2 {
-    color: #C17A3A;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.bodyguard-banner {
+  margin-bottom: 2rem;
 }
 
-.bodyguard-instructions {
-    color: #f5f0e8;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.bodyguard-banner h2 {
+  font-size: 2rem;
+  color: #ff6b6b;
+  margin: 0;
 }
 
 .bodyguards {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6rem;
+  flex-wrap: wrap;
 }
 
 .bodyguard-box {
-    background: rgba(45, 36, 25, 0.8);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid #C17A3A;
-    min-width: 300px;
-    position: relative;
-}
-
-.bodyguard-box.defeated {
-    opacity: 0.3;
-    pointer-events: none;
-    border-color: #666;
-}
-
-.bodyguard-box h3 {
-    color: #C17A3A;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-.slap-counter-small {
-    background: rgba(193, 122, 58, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    color: #d4c5b0;
-    font-size: 1.2rem;
-}
-
-.slap-counter-small span {
-    color: #C17A3A;
-    font-weight: bold;
-    font-size: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bodyguard-image {
-    max-width: 300px;
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.1s;
-    user-select: none;
-    -webkit-user-select: none;
-    border-radius: 8px;
+  width: 320px;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">👋</text></svg>') 16 16, pointer;
+  transition: transform 0.1s;
 }
 
 .bodyguard-image:hover {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="8" y="40" font-size="48" class="hand-wave">👋</text><style>.hand-wave{animation:wave 0.5s ease-in-out infinite;transform-origin:center;}@keyframes wave{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}</style></svg>') 32 32, pointer;
-}
-
-.bodyguard-image:active {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><text x="16" y="36" font-size="36">👋</text></svg>') 32 32, pointer;
+  transform: scale(1.05);
 }
 
 .bodyguard-image.slapped {
-    animation: bodyguard-slap 0.3s ease;
+  animation: shake 0.3s ease-in-out;
 }
 
-@keyframes bodyguard-slap {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-15deg) scale(0.95); }
-    50% { transform: rotate(10deg) scale(0.98); }
-    75% { transform: rotate(-5deg) scale(0.99); }
-    100% { transform: rotate(0deg) scale(1); }
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-10px) rotate(-5deg); }
+  75% { transform: translateX(10px) rotate(5deg); }
 }
 
 .slap-effect-bodyguard {
-    position: absolute;
-    font-size: 2rem;
-    pointer-events: none;
-    animation: slapFlyBodyguard 1s ease-out forwards;
-    z-index: 100;
-    color: #C17A3A;
-    font-weight: bold;
+  position: absolute;
+  font-size: 3rem;
+  pointer-events: none;
+  animation: slapFly 1s ease-out forwards;
+  z-index: 10;
 }
 
-@keyframes slapFlyBodyguard {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(0.5) rotate(360deg);
-    }
+.slap-effect-bodyguard.final-slap {
+  font-size: 12rem;
+  animation: finalSlapGrow 0.5s ease-out forwards;
+}
+
+@keyframes finalSlapGrow {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+
+@keyframes slapFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx, 0), var(--ty, -100px)) scale(0.5) rotate(360deg);
+  }
+}
+
+.victory-banner {
+  margin-bottom: 2rem;
+  display: none;
+}
+
+.victory-banner h2 {
+  font-size: 2rem;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+.victory-banner.hidden {
+  display: none;
+}
+
+.victory-banner.visible {
+  display: block;
 }
 
 @media (max-width: 768px) {
-    .bodyguard-container h2 {
-        font-size: 1.8rem;
-    }
-    
-    .bodyguards {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .bodyguard-box {
-        min-width: 250px;
-    }
-    
-    .bodyguard-image {
-        max-width: 250px;
-    }
+  .bodyguards {
+    gap: 2rem;
+  }
+
+  .bodyguard-image {
+    width: 200px;
+  }
 }
