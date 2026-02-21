@@ -26,7 +26,7 @@ window.I18N_EN = {
   'home.h1':                'Moin, moin!',
   'home.h1.stupid':         'NEW: This Website!',
   'home.tagline':           'Composer &amp; Pianist — Hamburg',
-  'home.tagline.stupid':    'A person who makes sounds — somewhere in Germany',
+  'home.tagline.stupid':    'A person who makes sounds. Loves nothing more than playing at weddings.',
   'home.welcome':           'Welcome to Martín Zamorano\'s homepage',
   'home.welcome.stupid':    'You got lost. That\'s fine. Stay calm.',
   'meta.home.description':  'Pianist, Composer &amp; Music Educator — Hamburg',
@@ -36,7 +36,7 @@ window.I18N_EN = {
 
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Imagine if Radiohead\'s frontman Thom Yorke had piano lessons with Bach and Brad Mehldau, and then improvised over Minimal Music with Pharoah Sanders — that\'s one of the many ways you could describe Martín Zamorano\'s music.',
-  'vita.intro.stupid':      'Imagine someone practised piano for a very, very long time and is now wondering whether that was a good idea.',
+  'vita.intro.stupid':      'If there\'s only one thing that you need to know about me: it\'s that I love love. That\'s why I would love to play at your wedding.',
   'vita.p1':                '<strong>Martín Zamorano</strong> (*1995, Madrid) is a Hamburg-based pianist, composer, and music educator. His artistic identity is shaped by a genre-fluid approach that connects classical roots with jazz tradition, pop culture, folk, and free improvisation. In his music, polyphony, groove, and melancholic lyricism merge into a personal musical language – always seeking emotional depth and artistic integrity.',
   'vita.p1.stupid':         '<strong>Martín Zamorano</strong> (*1995, Madrid) presses keys. Sometimes the keys sound good. He lives in Hamburg, where it rains a lot.',
   'vita.p2':                'After receiving a classical piano education at the Conservatorio Arturo Soria in Madrid, he studied Composition (B.Mus.) and Music Theory (M.Mus.) at the Hochschule für Musik und Theater Hamburg, followed by a second master\'s degree (Dr. Langner Master) in Jazz Performance &amp; Production, where he deepened his work as a pianist and improviser. He is active in Hamburg\'s music scene – from pop-influenced projects like FiNDiNG CLEO or his folk duo Zamorano &amp; Stamer to avant-garde improvisation in the jazz quartet WARMBLUETIG or the SPIIC ensemble led by Vlatko Kucan. He also collaborates regularly with artists such as Asya Fateyeva, Barry Guy, and Moritz Baumgärtner. In 2023, he founded the ECOllective Ensemble, and in 2024, he co-initiated the experimental label Mental Pocus Records.',
