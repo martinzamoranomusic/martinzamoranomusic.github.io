@@ -35,6 +35,11 @@ window.I18N_EN = {
   'home.shows.more':        'All Shows →',
   'home.shows.empty':       'No upcoming shows.',
 
+  /* ── Album promo ─────────────────────────────────────────── */
+  'home.album.eyebrow':     'Out now',
+  'home.album.desc':        'The new album — available now on Bandcamp to stream and download.',
+  'home.album.cta':         'Listen on Bandcamp →',
+
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Imagine if Radiohead\'s frontman Thom Yorke had piano lessons with Bach and Brad Mehldau, and then improvised over Minimal Music with Pharoah Sanders — that\'s one of the many ways you could describe Martín Zamorano\'s music.',
   'vita.intro.stupid':      'If there\'s only one thing that you need to know about me: it\'s that I love love. That\'s why I would love to play at your wedding.',
@@ -78,7 +83,7 @@ window.I18N_EN = {
   'zas.p2':                 'In their arrangements of tunes from Scandinavia and the Celtic world, they combine improvisational elements and harmonic subtleties with the melodic richness and expressiveness of traditional music.',
   'zas.p2.stupid':          'They play old melodies, but weirdly. That\'s intentional.',
   'zas.p3':                 'Finn Stamer\'s expressiveness and playful virtuosity on the violin shape the melodic language, while Martín Zamorano lays the foundation with his polyphonic approach and groove-oriented, percussive sound. The duo\'s versatility is reflected in their varied instrumentation, including Hardanger fiddle, octave violin, prepared piano, and Fender Rhodes. In their own compositions, this versatility crystallises into music that ranges from introspective and meditative moments to outbursts of ecstatic, affirmative vitality.',
-  'zas.p3.stupid':          'Finn plays violin very fast. Martín presses keys very rhythmically. Sometimes they also play weird instruments. It sounds good.',
+  'zas.p3.stupid':          'Finn plays violin very fast. Martín presses keys very rhythmically. Sometimes they also play weird instruments. It sounds good, for most of it.',
   'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
   'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
 
@@ -138,7 +143,7 @@ window.I18N_EN = {
   'datenschutz.p2':         'For questions regarding data protection please contact: <a href="mailto:info@martinzamorano.com">info@martinzamorano.com</a>',
 
   /* ── labyrinth.html ─────────────────────────────────────── */
-  'labyrinth.h1':           'Bring Martin to the Show',
+  'labyrinth.h1':           'Bring the Light to the Show',
   'labyrinth.subtitle':     'Use arrow keys to navigate him through the maze!',
   'labyrinth.label.level':  'Level:',
   'labyrinth.label.time':   'Time:',

@@ -35,6 +35,11 @@ window.I18N_ES = {
   'home.shows.more':        'Todos los Conciertos →',
   'home.shows.empty':       'No hay conciertos próximos.',
 
+  /* ── Album promo ─────────────────────────────────────────── */
+  'home.album.eyebrow':     'Disponible ahora',
+  'home.album.desc':        'El nuevo álbum — disponible ahora en Bandcamp para escuchar y descargar.',
+  'home.album.cta':         'Escuchar en Bandcamp →',
+
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Imagínese que Thom Yorke, el líder de Radiohead, hubiera tomado clases de piano con Bach y Brad Mehldau, y luego improvisara sobre música minimalista con Pharoah Sanders: esa es una de las muchas formas de describir la música de Martín Zamorano.',
   'vita.intro.stupid':      'Imagínate que alguien estudió piano durante muchísimo tiempo y ahora se pregunta si fue buena idea.',

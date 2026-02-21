@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +9,22 @@
 <body>
     <div class="game-container">
         <div class="header">
-            <h1>Bring Light to the Show</h1>
-            <p>Use arrow keys to navigate him through the maze!</p>
-            <a href="index.html" class="back-button">← Back to Home</a>
+            <h1 data-i18n="labyrinth.h1">Bringe Martin zur Show</h1>
+            <p data-i18n="labyrinth.subtitle">Nutze die Pfeiltasten um ihn durch das Labyrinth zu navigieren!</p>
+            <a href="index.html" class="back-button" data-i18n="labyrinth.back">← Zurück zur Startseite</a>
         </div>
 
         <div class="game-info">
             <div class="info-item">
-                <span class="label">Level:</span>
+                <span class="label" data-i18n="labyrinth.label.level">Level:</span>
                 <span id="level">1</span>
             </div>
             <div class="info-item">
-                <span class="label">Time:</span>
+                <span class="label" data-i18n="labyrinth.label.time">Zeit:</span>
                 <span id="timer">0:00</span>
             </div>
             <div class="info-item">
-                <span class="label">Moves:</span>
+                <span class="label" data-i18n="labyrinth.label.moves">Schritte:</span>
                 <span id="moves">0</span>
             </div>
         </div>
@@ -43,37 +43,40 @@
             <div class="tilt-toggle">
                 <label>
                     <input type="checkbox" id="tiltToggle">
-                    <span>Enable Tilt Controls</span>
+                    <span data-i18n="labyrinth.tilt">Enable Tilt Controls</span>
                 </label>
             </div>
         </div>
 
         <div class="controls">
-            
-            <button id="resetBtn" class="game-button">Reset Level</button>
-            <button id="newGameBtn" class="game-button">New Game</button>
+            <button id="resetBtn" class="game-button" data-i18n="labyrinth.reset">Reset Level</button>
+            <button id="newGameBtn" class="game-button" data-i18n="labyrinth.newgame">Neues Spiel</button>
         </div>
 
         <div id="winMessage" class="win-message hidden">
             <div class="win-content">
-                <h2>Level Complete!</h2>
+                <h2 data-i18n="labyrinth.win.h2">Level Abgeschlossen!</h2>
                 <p id="winStats"></p>
-                <button id="nextLevelBtn" class="game-button">Next Level</button>
-                <a href="labyrinth-giveup.html" class="game-button" style="display: inline-block; text-decoration: none;">Give Up</a>
+                <button id="nextLevelBtn" class="game-button" data-i18n="labyrinth.win.nextlevel">Nächstes Level</button>
+                <a href="labyrinth-giveup.html" class="game-button" style="display: inline-block; text-decoration: none;" data-i18n="labyrinth.win.giveup">Aufgeben</a>
             </div>
         </div>
 
         <div class="instructions">
-            <h3>How to Play:</h3>
+            <h3 data-i18n="labyrinth.howto.h3">Wie man spielt:</h3>
             <ul>
-                <li>Use <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> arrow keys to move</li>
-                <li>Navigate through the maze to reach the piano</li>
-                <li>Avoid walls</li>
-                <li>Each level gets progressively harder</li>
+                <li data-i18n="labyrinth.howto.li1">Nutze die <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> Pfeiltasten zum Bewegen</li>
+                <li data-i18n="labyrinth.howto.li2">Navigiere durch das Labyrinth um das Klavier zu erreichen.</li>
+                <li data-i18n="labyrinth.howto.li3">Lauf nicht gegen die Wand. Du Idiot.</li>
+                <li data-i18n="labyrinth.howto.li4">Es wird immer schwerer.</li>
             </ul>
         </div>
     </div>
 
+    <script src="assets/i18n/de.js"></script>
+    <script src="assets/i18n/en.js"></script>
+    <script src="assets/i18n/es.js"></script>
+    <script src="assets/nav.js"></script>
     <script src="labyrinth-game.js"></script>
 </body>
 </html>

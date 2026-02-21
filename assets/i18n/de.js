@@ -20,8 +20,8 @@ window.I18N_DE = {
   'nav.mpr':                'Mental Pocus Records',
   'nav.shows':              'SHOWS',
   'nav.kontakt':            'KONTAKT',
-  'nav.labyrinth':          'Help me get to the Show',
-  'nav.slap':               'Slap-O-Mat',
+  'nav.labyrinth':          'Hilf mir, zur Show zu kommen',
+  'nav.slap':               'Schell-O-Mat',
 
   /* ── index.html ─────────────────────────────────────────── */
   'home.h1':                'Moin, moin!',
@@ -34,6 +34,12 @@ window.I18N_DE = {
   'home.shows.title':       'Nächste Shows',
   'home.shows.more':        'Alle Shows →',
   'home.shows.empty':       'Keine bevorstehenden Shows.',
+
+  /* ── Album promo ─────────────────────────────────────────── */
+  'home.album.eyebrow':     'Jetzt verfügbar',
+  'home.album.desc':        'Mein neues Album — jetzt auf Bandcamp zum Streamen und Download.',
+  'home.album.desc.stupid': 'Das Album, auf das niemand gewartet hat! — jetzt erhältlich auf keiner Ihrer Lieblings-Musik-Streaming-Platforms.',
+  'home.album.cta':         'Auf Bandcamp anhören →',
 
   /* ── vita.html ───────────────────────────────────────────── */
   'vita.intro':             'Stellen Sie sich vor, Thom Yorke, der Frontmann von Radiohead, hätte Klavierunterricht bei Bach und Brad Mehldau genommen und würde dann über Minimal Music mit Pharoah Sanders improvisieren – das ist eine der vielen Möglichkeiten, wie man die Musik von Martín Zamorano beschreiben könnte.',
@@ -78,7 +84,7 @@ window.I18N_DE = {
   'zas.p2':                 'In ihren Arrangements von Tunes aus Skandinavien und dem Keltischen Raum verbinden sie improvisatorische Elemente und harmonische Feinheiten mit dem melodischen Reichtum und der Ausdruckskraft der traditionellen Musik.',
   'zas.p2.stupid':          'Sie spielen alte Melodien, aber komisch. Das ist auf Absicht.',
   'zas.p3':                 'Finn Stamers Expressivität und spielerische Virtuosität auf der Geige gestalten die melodische Sprache, während Martín Zamorano das Fundament mit seinem polyphonen Ansatz und groove-orientiertem, perkussivem Sound legt. Die Vielseitigkeit des Duos zeigt sich durch die vielfältige Instrumentation, wie Hardangerfiedel, Oktavgeige, präpariertes Klavier und Fender Rhodes. In ihren Eigenkompositionen kristallisiert sich diese Versatilität heraus, die von introspektiven und meditativen Momenten bis hin zu Ausbrüchen ekstatischer und affirmativer Vitalität reicht.',
-  'zas.p3.stupid':          'Finn spielt Geige sehr schnell. Martin drückt Tasten sehr rhythmisch. Manchmal spielen sie auch komische Instrumente. Es klingt gut.',
+  'zas.p3.stupid':          'Finn spielt Geige sehr schnell. Martin drückt Tasten sehr rhythmisch. Manchmal spielen sie auch komische Instrumente. Es klingt gut, also manchmal jedenfalls.',
   'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
   'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
 
@@ -117,8 +123,8 @@ window.I18N_DE = {
   'kontakt.email':          'Email *',
   'kontakt.message':        'Ihre Nachricht *',
   'kontakt.submit':         'Absenden',
-  'bodyguard.h2':           'Um Martin zu sprechen, müssen Sie erst an uns vorbeikommen!',
-  'bodyguard.instructions': 'Sie müssen pervers verschellert werden!',
+  'bodyguard.h2':           'Wer Martin sprechen will, muss erst an uns vorbeikommen!',
+  'bodyguard.instructions': 'Es muss pervers verschellert werden!',
   'bodyguard.victory':      'Sie dürfen jetzt mit Martin sprechen.',
 
   /* ── impressum.html ─────────────────────────────────────── */
