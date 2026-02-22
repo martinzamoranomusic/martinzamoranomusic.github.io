@@ -18,9 +18,9 @@ window.I18N_DE = {
   'nav.musiktheorie':       'KONTRAPUNKT &amp; MUSIKTHEORIE',
   'nav.transcriptions':     'Jazz Transcriptions',
   'nav.mpr':                'Mental Pocus Records',
-  'nav.shows':              'SHOWS',
+  'nav.shows':              'KONZERTE',
   'nav.kontakt':            'KONTAKT',
-  'nav.labyrinth':          'Hilf mir, zur Show zu kommen',
+  'nav.labyrinth':          'Hilfe',
   'nav.slap':               'Schell-O-Mat',
 
   /* ── index.html ─────────────────────────────────────────── */
@@ -31,9 +31,11 @@ window.I18N_DE = {
   'home.welcome':           'Willkommen auf der Homepage von Martín Zamorano',
   'home.welcome.stupid':    'Du hast dich verirrt. Macht nichts. Jetzt musst du leider was über Martin Zamorano erfahren.',
   'meta.home.description':  'Pianist, Komponist &amp; Musikpädagoge — Hamburg',
-  'home.shows.title':       'Nächste Shows',
-  'home.shows.more':        'Alle Shows →',
+  'home.shows.title':       'Nächste Konzerte',
+  'home.shows.more':        'Alle Konzerte →',
   'home.shows.empty':       'Keine bevorstehenden Shows.',
+  'shows.past':             'Vergangene Konzerte',
+  'shows.upcoming':         'Die nächsten Konzerte',
 
   /* ── Album promo ─────────────────────────────────────────── */
   'home.album.eyebrow':     'Jetzt verfügbar',

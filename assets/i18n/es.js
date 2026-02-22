@@ -20,7 +20,7 @@ window.I18N_ES = {
   'nav.mpr':                'Mental Pocus Records',
   'nav.shows':              'CONCIERTOS',
   'nav.kontakt':            'CONTACTO',
-  'nav.labyrinth':          'Help me get to the Show',
+  'nav.labyrinth':          'Ayuda',
   'nav.slap':               'Slap-O-Mat',
 
   /* ── index.html ─────────────────────────────────────────── */
@@ -34,6 +34,8 @@ window.I18N_ES = {
   'home.shows.title':       'Próximos Conciertos',
   'home.shows.more':        'Todos los Conciertos →',
   'home.shows.empty':       'No hay conciertos próximos.',
+  'shows.past':             'Conciertos pasados',
+  'shows.upcoming':         'Próximos Conciertos',
 
   /* ── Album promo ─────────────────────────────────────────── */
   'home.album.eyebrow':     'Disponible ahora',

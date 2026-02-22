@@ -301,3 +301,15 @@ kbd {
         display: block;
     }
 }
+
+/* Android & other coarse-pointer touch devices */
+@media (max-width: 768px) and (pointer: coarse) {
+    .mobile-controls {
+        display: block;
+    }
+}
+
+/* JS fallback — nav.js adds .is-touch to body */
+body.is-touch .mobile-controls {
+    display: block;
+}

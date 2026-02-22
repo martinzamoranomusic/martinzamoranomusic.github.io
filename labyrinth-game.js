@@ -6,6 +6,11 @@ const CANVAS_SIZE = 600;
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
+// Detect touch device and mark body for CSS fallback
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.body.classList.add('is-touch');
+}
+
 // Game state
 let gameState = {
     level: 1,
@@ -219,10 +224,12 @@ const moveDelay = 200; // milliseconds between moves
 
 document.getElementById('tiltToggle').addEventListener('change', async (e) => {
     tiltEnabled = e.target.checked;
-    
+
     if (tiltEnabled) {
-        // Request permission for iOS 13+
-        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        // iOS 13+ requires explicit permission; Android does not have this method
+        if (typeof DeviceOrientationEvent !== 'undefined' &&
+            typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // iOS path
             try {
                 const permission = await DeviceOrientationEvent.requestPermission();
                 if (permission !== 'granted') {
@@ -238,8 +245,7 @@ document.getElementById('tiltToggle').addEventListener('change', async (e) => {
                 return;
             }
         }
-        
-        // Start listening to device orientation
+        // Android (and granted iOS) — just start listening
         window.addEventListener('deviceorientation', handleTilt);
     } else {
         window.removeEventListener('deviceorientation', handleTilt);

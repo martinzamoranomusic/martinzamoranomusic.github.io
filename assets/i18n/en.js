@@ -20,7 +20,7 @@ window.I18N_EN = {
   'nav.mpr':                'Mental Pocus Records',
   'nav.shows':              'SHOWS',
   'nav.kontakt':            'CONTACT',
-  'nav.labyrinth':          'Help me get to the Show',
+  'nav.labyrinth':          'Help',
   'nav.slap':               'Slap-O-Mat',
 
   /* ── index.html ─────────────────────────────────────────── */
@@ -34,6 +34,8 @@ window.I18N_EN = {
   'home.shows.title':       'Upcoming Shows',
   'home.shows.more':        'All Shows →',
   'home.shows.empty':       'No upcoming shows.',
+  'shows.past':             'Past Shows',
+  'shows.upcoming':         'Upcoming Shows',
 
   /* ── Album promo ─────────────────────────────────────────── */
   'home.album.eyebrow':     'Out now',
