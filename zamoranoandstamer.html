@@ -29,6 +29,42 @@
 
     <img src="assets/images/FIN_0295.jpg" alt="Zamorano &amp; Stamer — Foto: Nils Jöhnk" style="margin: 2rem 0; border: 1px solid #2a2a2a;" />
 
+    <div class="video-grid">
+      <div class="video-item">
+        <h4 class="video-title">Spring - From the Klangmanufaktur</h4>
+        <div class="yt-thumb" data-vid="1L4Iy1oLn1U">
+          <img src="https://img.youtube.com/vi/1L4Iy1oLn1U/hqdefault.jpg" alt="" />
+          <div class="yt-thumb-btn">
+            <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.8 0 34 0 34 0S12.2 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.4 0 24 0 24s0 11.6 1.5 16.3a8.5 8.5 0 0 0 6 6C12.2 48 34 48 34 48s21.8 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.6 68 24 68 24s0-11.6-1.5-16.3z" fill="#888"/>
+              <path d="M27 34l18-10-18-10v20z" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-item">
+        <h4 class="video-title">Da lounge bar - From the Klangmanufaktur</h4>
+        <div class="yt-thumb" data-vid="o4MOWCQAhpk">
+          <img src="https://img.youtube.com/vi/o4MOWCQAhpk/hqdefault.jpg" alt="" />
+          <div class="yt-thumb-btn">
+            <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.8 0 34 0 34 0S12.2 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.4 0 24 0 24s0 11.6 1.5 16.3a8.5 8.5 0 0 0 6 6C12.2 48 34 48 34 48s21.8 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.6 68 24 68 24s0-11.6-1.5-16.3z" fill="#888"/>
+              <path d="M27 34l18-10-18-10v20z" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll('.yt-thumb').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var vid = el.dataset.vid;
+          el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        });
+      });
+    </script>
+
     <div class="file-links">
       <a href="assets/pdfs/Zamorano_Stamer_DEUTSCH_Presskit.pdf" target="_blank" data-i18n="zas.presskit.de">DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)</a>
       <a href="assets/pdfs/Zamorano_Stamer_ENGLISH_Press_kit.pdf" target="_blank" data-i18n="zas.presskit.en">ENGLISH Press Kit Zamorano&amp;Stamer (PDF)</a>

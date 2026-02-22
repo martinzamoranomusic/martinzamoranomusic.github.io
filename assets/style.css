@@ -397,29 +397,40 @@ li {
     margin-bottom: 2.5rem;
 }
 
+/* --- Home social icon links --- */
 .home-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.4rem;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2rem;
+    align-items: center;
 }
 
 .home-links a {
-    font-family: var(--font-ui);
-    font-size: .75rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    border: 1px solid var(--accent);
-    padding: .5rem 1.2rem;
-    border-radius: 2px;
-    color: var(--accent);
-    transition: background .2s, color .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    transition: color .2s, transform .2s;
+    line-height: 1;
 }
 
 .home-links a:hover {
-    background: var(--accent);
-    color: var(--bg);
+    color: var(--accent);
+    background: none;
+    transform: translateY(-2px);
+}
+
+.home-links a svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    display: block;
 }
 
 /* --- Home page upcoming shows --- */
@@ -1298,6 +1309,92 @@ button.mode-toggle.active {
   padding: 0 1rem .85rem;
   margin: 0;
   flex: 1;
+}
+
+/* --- Video grid — two side by side --- */
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* Individual video item with optional title above */
+.video-item {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.video-title {
+    font-family: var(--font-ui);
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    color: var(--text-muted);
+    margin: 0;
+    text-transform: none;
+    line-height: 1.3;
+}
+
+/* Custom YouTube thumbnail player */
+.yt-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.yt-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+    transition: transform .3s, opacity .3s;
+    margin: 0;
+}
+
+.yt-thumb:hover img {
+    transform: scale(1.03);
+    opacity: .85;
+}
+
+/* Gray YouTube play button */
+.yt-thumb-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.yt-thumb-btn svg {
+    width: 56px;
+    height: 56px;
+    opacity: .75;
+    transition: opacity .2s, transform .2s;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
+}
+
+.yt-thumb:hover .yt-thumb-btn svg {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Active iframe replaces the thumbnail */
+.yt-thumb iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
 }
 
 /* ── Pigeon minigame (kontakt.html, madness mode) ──────────────────── */

@@ -15,6 +15,82 @@ const martinImages = [
 // Array of slap sound effects (visual feedback text)
 const slapTexts = ['SLAP!', 'POW!', 'WHACK!', 'BAM!', 'SMACK!', 'BONK!'];
 
+// ── Synthetic slap sound (Web Audio API — no external file needed) ──
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function playSlap() {
+    if (!AudioCtx) return;
+    if (!audioCtx) audioCtx = new AudioCtx();
+
+    const now = audioCtx.currentTime;
+
+    const compressor = audioCtx.createDynamicsCompressor();
+    compressor.threshold.value = -4;
+    compressor.ratio.value = 8;
+    compressor.connect(audioCtx.destination);
+
+    // 1. Main slap body — full-band noise, low-passed at 8 kHz, natural decay
+    const bodyDur  = 0.15; // 150 ms
+    const bodySize = Math.floor(audioCtx.sampleRate * bodyDur);
+    const bodyBuf  = audioCtx.createBuffer(1, bodySize, audioCtx.sampleRate);
+    const bodyData = bodyBuf.getChannelData(0);
+    for (let i = 0; i < bodySize; i++) bodyData[i] = Math.random() * 2 - 1;
+
+    const bodySrc = audioCtx.createBufferSource();
+    bodySrc.buffer = bodyBuf;
+
+    // Low-pass keeps warmth, removes harsh hiss above 8 kHz
+    const lowpass = audioCtx.createBiquadFilter();
+    lowpass.type = 'lowpass';
+    lowpass.frequency.value = 8000;
+    lowpass.Q.value = 0.5;
+
+    // Mid presence boost around 1.5 kHz — the "smack" frequency
+    const presence = audioCtx.createBiquadFilter();
+    presence.type = 'peaking';
+    presence.frequency.value = 1500;
+    presence.gain.value = 9;
+    presence.Q.value = 1.0;
+
+    const bodyGain = audioCtx.createGain();
+    bodyGain.gain.setValueAtTime(0, now);
+    bodyGain.gain.linearRampToValueAtTime(1.8, now + 0.002); // fast attack
+    bodyGain.gain.exponentialRampToValueAtTime(0.001, now + bodyDur); // natural tail
+
+    bodySrc.connect(lowpass);
+    lowpass.connect(presence);
+    presence.connect(bodyGain);
+    bodyGain.connect(compressor);
+    bodySrc.start(now);
+    bodySrc.stop(now + bodyDur);
+
+    // 2. Flesh thump — short bandpass burst around 700 Hz for the "weight" of skin
+    const thumpDur  = 0.04; // 40 ms, subtle
+    const thumpSize = Math.floor(audioCtx.sampleRate * thumpDur);
+    const thumpBuf  = audioCtx.createBuffer(1, thumpSize, audioCtx.sampleRate);
+    const thumpData = thumpBuf.getChannelData(0);
+    for (let i = 0; i < thumpSize; i++) thumpData[i] = Math.random() * 2 - 1;
+
+    const thumpSrc = audioCtx.createBufferSource();
+    thumpSrc.buffer = thumpBuf;
+
+    const thumpBp = audioCtx.createBiquadFilter();
+    thumpBp.type = 'bandpass';
+    thumpBp.frequency.value = 700;
+    thumpBp.Q.value = 2.0;
+
+    const thumpGain = audioCtx.createGain();
+    thumpGain.gain.setValueAtTime(1.2, now);
+    thumpGain.gain.exponentialRampToValueAtTime(0.001, now + thumpDur);
+
+    thumpSrc.connect(thumpBp);
+    thumpBp.connect(thumpGain);
+    thumpGain.connect(compressor);
+    thumpSrc.start(now);
+    thumpSrc.stop(now + thumpDur);
+}
+
 function updateMartinImage() {
     let imageIndex;
     if (slapCount < 10) {
@@ -33,6 +109,8 @@ function updateMartinImage() {
 }
 
 martinImg.addEventListener('click', (e) => {
+    playSlap();
+
     // Increment counter
     slapCount++;
     slapCountDisplay.textContent = slapCount;
