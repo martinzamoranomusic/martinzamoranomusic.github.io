@@ -1280,14 +1280,10 @@ button.mode-toggle.active {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 15%;
   border-radius: 0;
   display: block;
   transition: transform .3s;
-}
-
-.team-card:hover img {
-  transform: scale(1.03);
 }
 
 .team-card-role {

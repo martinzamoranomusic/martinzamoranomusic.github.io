@@ -397,6 +397,9 @@
       { img: 'assets/images/IMG_3701.jpg',                           role: t('vita.team.member5.role'), bio: t('vita.team.member5.bio') },
       { img: 'assets/images/IMG_3769.jpg',                                             role: t('vita.team.member6.role'), bio: t('vita.team.member6.bio') },
       { img: 'assets/images/IMG_4000.jpg',                                             role: t('vita.team.member7.role'), bio: t('vita.team.member7.bio') },
+      { img: 'assets/images/Katja.png',                                                role: t('vita.team.member8.role'), bio: t('vita.team.member8.bio') },
+      { img: 'assets/images/Lucas.png',                                                role: t('vita.team.member9.role'), bio: t('vita.team.member9.bio') },
+      { img: 'assets/images/Hendrik.png',                                              role: t('vita.team.member10.role'), bio: t('vita.team.member10.bio') },
     ];
 
     const cards = members.map(function (m) {

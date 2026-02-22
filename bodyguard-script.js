@@ -9,8 +9,83 @@ document.addEventListener('DOMContentLoaded', function() {
     let lucasSlaps = 0;
     const SLAPS_TO_DEFEAT = 10;
 
+    // ── Synthetic slap sound (same as slap-o-mat) ──
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playSlap() {
+        if (!AudioCtx) return;
+        if (!audioCtx) audioCtx = new AudioCtx();
+
+        const now = audioCtx.currentTime;
+
+        const compressor = audioCtx.createDynamicsCompressor();
+        compressor.threshold.value = -4;
+        compressor.ratio.value = 8;
+        compressor.connect(audioCtx.destination);
+
+        // 1. Main slap body
+        const bodyDur  = 0.15;
+        const bodySize = Math.floor(audioCtx.sampleRate * bodyDur);
+        const bodyBuf  = audioCtx.createBuffer(1, bodySize, audioCtx.sampleRate);
+        const bodyData = bodyBuf.getChannelData(0);
+        for (let i = 0; i < bodySize; i++) bodyData[i] = Math.random() * 2 - 1;
+
+        const bodySrc = audioCtx.createBufferSource();
+        bodySrc.buffer = bodyBuf;
+
+        const lowpass = audioCtx.createBiquadFilter();
+        lowpass.type = 'lowpass';
+        lowpass.frequency.value = 8000;
+        lowpass.Q.value = 0.5;
+
+        const presence = audioCtx.createBiquadFilter();
+        presence.type = 'peaking';
+        presence.frequency.value = 1500;
+        presence.gain.value = 9;
+        presence.Q.value = 1.0;
+
+        const bodyGain = audioCtx.createGain();
+        bodyGain.gain.setValueAtTime(0, now);
+        bodyGain.gain.linearRampToValueAtTime(1.8, now + 0.002);
+        bodyGain.gain.exponentialRampToValueAtTime(0.001, now + bodyDur);
+
+        bodySrc.connect(lowpass);
+        lowpass.connect(presence);
+        presence.connect(bodyGain);
+        bodyGain.connect(compressor);
+        bodySrc.start(now);
+        bodySrc.stop(now + bodyDur);
+
+        // 2. Flesh thump
+        const thumpDur  = 0.04;
+        const thumpSize = Math.floor(audioCtx.sampleRate * thumpDur);
+        const thumpBuf  = audioCtx.createBuffer(1, thumpSize, audioCtx.sampleRate);
+        const thumpData = thumpBuf.getChannelData(0);
+        for (let i = 0; i < thumpSize; i++) thumpData[i] = Math.random() * 2 - 1;
+
+        const thumpSrc = audioCtx.createBufferSource();
+        thumpSrc.buffer = thumpBuf;
+
+        const thumpBp = audioCtx.createBiquadFilter();
+        thumpBp.type = 'bandpass';
+        thumpBp.frequency.value = 700;
+        thumpBp.Q.value = 2.0;
+
+        const thumpGain = audioCtx.createGain();
+        thumpGain.gain.setValueAtTime(1.2, now);
+        thumpGain.gain.exponentialRampToValueAtTime(0.001, now + thumpDur);
+
+        thumpSrc.connect(thumpBp);
+        thumpBp.connect(thumpGain);
+        thumpGain.connect(compressor);
+        thumpSrc.start(now);
+        thumpSrc.stop(now + thumpDur);
+    }
+
     hendrikImg.addEventListener('click', function(e) {
         if (hendrikSlaps >= SLAPS_TO_DEFEAT) return;
+        playSlap();
         hendrikSlaps++;
         hendrikImg.classList.add('slapped');
         setTimeout(() => hendrikImg.classList.remove('slapped'), 300);
@@ -23,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     lucasImg.addEventListener('click', function(e) {
         if (lucasSlaps >= SLAPS_TO_DEFEAT) return;
+        playSlap();
         lucasSlaps++;
         lucasImg.classList.add('slapped');
         setTimeout(() => lucasImg.classList.remove('slapped'), 300);

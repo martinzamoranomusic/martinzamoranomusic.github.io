@@ -61,21 +61,27 @@ window.I18N_EN = {
   'vita.photo4':            'Zamorano 5 (Credit: Lukas Palatinus)',
 
   /* ── vita.html — Team section (Madness Mode) ────────────── */
-  'vita.team.h2':              'Meet the Team Behind Martín Zamorano Music',
+  'vita.team.h2':              'Meet the Team Behind Martín Zamorano',
   'vita.team.member1.role':    'The Pianist',
   'vita.team.member1.bio':     'Presses keys. Sometimes several at once. Studied a very long time for this.',
   'vita.team.member2.role':    'The Composer',
   'vita.team.member2.bio':     'Invents notes. Writes them down. Then wonders if that\'s what he meant.',
   'vita.team.member3.role':    'The Producer',
-  'vita.team.member3.bio':     'Responsible for the sound. And the other sound. And basically all the sounds.',
+  'vita.team.member3.bio':     'Did you always wonder what a Producer actually does?',
   'vita.team.member4.role':    'The Booking Manager',
-  'vita.team.member4.bio':     'Answers emails when he remembers. Very nice guy. Will reply soon.',
+  'vita.team.member4.bio':     'He answers emails when he remembers, usually on the third Friday of the month. Very nice guy in general. Will probably reply soon.',
   'vita.team.member5.role':    'The Social Media Director',
-  'vita.team.member5.bio':     'Posts occasionally. Mostly late at night. Content: unclear. Engagement: surprisingly good.',
+  'vita.team.member5.bio':     'Posts occasionally. Mostly late at night. Content: unclear. Engagement: well, it has to be.',
   'vita.team.member6.role':    'The Philosopher',
-  'vita.team.member6.bio':     'Asks questions no one asked. Also answers them. Usually at the piano.',
+  'vita.team.member6.bio':     'He asks questions no one has asked. Answering them would truly be beneath him.',
   'vita.team.member7.role':    'The IT Department',
   'vita.team.member7.bio':     'Once restarted a computer. It worked. Has been the IT expert ever since.',
+  'vita.team.member8.role':    'Creative Director',
+  'vita.team.member8.bio':     'Has a firm grasp on aesthetics, as long as it\'s ochre. Apparently has a penchant for minigames.',
+  'vita.team.member9.role':    'Busy Bee &amp; Vibe-Coder',
+  'vita.team.member9.bio':     'Builds the Website. Sometimes asks himself whether that\s art as well.',
+  'vita.team.member10.role':   'CTO',
+  'vita.team.member10.bio':    'Responsible for everything. Yes, everything.',
 
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Your browser does not support the audio element.',
@@ -83,7 +89,7 @@ window.I18N_EN = {
 
   /* ── healing.html ───────────────────────────────────────── */
   'healing.intro':          'These five images are the visual component of the interdisciplinary project "Five Stages of Healing" on the theme of emotional healing. The starting point is the end of a romantic relationship and the exploration of the five stages of grief, based on Elisabeth Kübler-Ross\'s model, which I adapted to the process of heartbreak. While analysing my own thoughts and emotions during this time, an internal artistic dialogue emerged, combining poetry, painting, and music. The five images that resulted from this process serve as emotional material for the musical improvisation, reflecting the chaotic and cyclical nature of healing. They invite both the participating musicians and the audience to reflect on their own experiences of loss and acceptance.',
-  'healing.intro.stupid':   'Martin fell in love with someone. It didn\'t work out. He painted five pictures. Now you can look at them.',
+  'healing.intro.stupid':   'Martin fell in love with someone. It didn\'t work out. He painted five pictures. Have fun with them. Or don\'t. I don\'t care.',
   'healing.poems.h2':       'Poems',
   'healing.essay.h2':       'Five Stages of Healing',
   'healing.essay.p1':       'A few years ago, I was introduced by Volkhardt Preuß, during one of his renowned seminars – in this case on Monteverdi\'s Orfeo – to the five stages of the Annunciation of Mary. What fascinated me most was how Renaissance painters and thinkers used these five theological chapters as a foundation to explore fundamental human emotions and depict artistic approaches to the unexpected. This is described in remarkable detail in Michael Baxandall\'s book <em>Painting and Experience in Fifteenth-Century Italy</em>.',
@@ -97,11 +103,11 @@ window.I18N_EN = {
 
   /* ── zamoranoandstamer.html ─────────────────────────────── */
   'zas.p1':                 'A long-standing friendship and a deep love of folk music unite these two Hamburg-based musicians, who have come together as a duo to explore the meeting point between Nordic folk music and jazz.',
-  'zas.p1.stupid':          'Two people who like folk music and at some point thought: "Why don\'t we do this together?"',
+  'zas.p.stupid':           'A long-standing friendship and an unreasonable love of folk music unite these two Hamburg-based musicians, who have come together as a duo to explore the meeting point between Nordic folk music and jazz.',
   'zas.p2':                 'In their arrangements of tunes from Scandinavia and the Celtic world, they combine improvisational elements and harmonic subtleties with the melodic richness and expressiveness of traditional music.',
-  'zas.p2.stupid':          'They play old melodies, but weirdly. That\'s intentional.',
+  'zas.p2.stupid':          'In their arrangements of tunes from Scandinavia and the Boston Celtics world, they combine improvisational elements and harmonic subtleties with the melodic richness and expressiveness of traditional music.',
   'zas.p3':                 'Finn Stamer\'s expressiveness and playful virtuosity on the violin shape the melodic language, while Martín Zamorano lays the foundation with his polyphonic approach and groove-oriented, percussive sound. The duo\'s versatility is reflected in their varied instrumentation, including Hardanger fiddle, octave violin, prepared piano, and Fender Rhodes. In their own compositions, this versatility crystallises into music that ranges from introspective and meditative moments to outbursts of ecstatic, affirmative vitality.',
-  'zas.p3.stupid':          'Finn plays violin very fast. Martín presses keys very rhythmically. Sometimes they also play weird instruments. It sounds good, for most of it.',
+  'zas.p3.stupid':          'Finn Stamer\'s expressiveness and playful virtuosity on the violin shape the melodic language, while Martín Zamorano lays the foundation with his polyphonic approach and groove-oriented, percussive sound. The duo\'s versatility is reflected in their varied instrumentation, including Hardanger fiddle, octave violin, prepared piano, and Fender Rhodes. In their own compositions, this versatility crystallises into music that ranges from introspective and meditative moments to outbursts of ecstatic, affirmative vitality.',
   'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
   'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
 

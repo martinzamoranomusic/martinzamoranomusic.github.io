@@ -62,29 +62,34 @@ window.I18N_DE = {
   'vita.photo4':            'Foto Zamorano 5 (Credit: Lukas Palatinus)',
 
   /* ── vita.html — Teamsection (Madness Mode) ─────────────────────────── */
-  'vita.team.h2':              'Triff das Team hinter Martín Zamorano Music',
+  'vita.team.h2':              'Triff das Team hinter Martín Zamorano',
   'vita.team.member1.role':    'Der Pianist',
   'vita.team.member1.bio':     'Drückt die Tasten. Manchmal mehrere gleichzeitig. Hat dafür sehr lange studiert.',
   'vita.team.member2.role':    'Der Komponist',
-  'vita.team.member2.bio':     'Erfindet Noten. Schreibt sie auf. Fragt sich dann, ob das so gemeint war.',
+  'vita.team.member2.bio':     'Erfindet Noten. Schreibt sie auf. Fängt dann an, sich zu hinterfragen.',
   'vita.team.member3.role':    'Der Produzent',
-  'vita.team.member3.bio':     'Zuständig für den Sound. Und für den anderen Sound. Und eigentlich für alle Sounds.',
+  'vita.team.member3.bio':     'Haben Sie sich nicht auch immer schon gefragt, was ein Produzent macht?',
   'vita.team.member4.role':    'Der Booking Manager',
-  'vita.team.member4.bio':     'Beantwortet E-Mails, wenn er daran denkt. Sehr netter Kerl. Antwortet bald.',
+  'vita.team.member4.bio':     'Beantwortet E-Mails, wenn er daran denkt, jeden dritten Freitag im Monat. Sehr netter Kerl an sich. Antwortet sicher bald.',
   'vita.team.member5.role':    'Der Social-Media-Direktor',
-  'vita.team.member5.bio':     'Postet gelegentlich. Vorwiegend spät nachts. Inhalte: unklar. Engagement: überraschend gut.',
+  'vita.team.member5.bio':     'Postet gelegentlich. Vorwiegend spät nachts. Inhalte: unklar. Engagement: muss ja.',
   'vita.team.member6.role':    'Der Philosoph',
-  'vita.team.member6.bio':     'Stellt Fragen, die niemand gestellt hat. Beantwortet sie auch. Meistens am Klavier.',
+  'vita.team.member6.bio':     'Stellt Fragen, die niemand gestellt hat. Sie zu beantworten wäre wirklich unter seiner Würde.',
   'vita.team.member7.role':    'Die IT-Abteilung',
   'vita.team.member7.bio':     'Hat einmal einen Computer neu gestartet. Es hat funktioniert. Seitdem ist er der IT-Experte.',
-
+  'vita.team.member8.role':    'Creative Director',
+  'vita.team.member8.bio':     'Hat die Ästhetik im Griff, so lange es Ocker ist. Hat offenbar ein Faible für Minispiele.',
+  'vita.team.member9.role':    'Fleißbienchen &amp; Vibe-Coder',
+  'vita.team.member9.bio':     'Baut die Website. Fragt sich dabei, ob das auch Kunst ist.',
+  'vita.team.member10.role':   'CTO',
+  'vita.team.member10.bio':    'Verantwortlich für alles. Wirklich für alles.',
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Ihr Browser unterstützt kein Audio-Element.',
   'improv.useless.btn':       'Nutzloser Knopf',
 
   /* ── healing.html ───────────────────────────────────────── */
   'healing.intro':          'Diese fünf Bilder sind der grafische Teil des interdisziplinären Kunstwerks „Five Stages of Healing" zum Thema „Emotionales Heilen". Ausgangspunkt ist die Auseinandersetzung mit den fünf Phasen der Trauer nach dem Modell von Elisabeth Kübler-Ross und die künstlerische Übertragung dieser psychologischen Theorie auf den Prozess des Liebeskummers. Daraus entsteht ein innerer künstlerischer Dialog, der Dichtung, Malerei und Musik miteinander verbindet. Die fünf Bilder, die aus dem emotionalen Prozess hervorgehen und als emotionales Material für die musikalische Improvisation dienen, spiegeln die chaotische und zyklische Natur des Heilens wider und schildern zugleich die wesentlichen Aspekte jeder Phase des Prozesses. Sie laden sowohl die mitwirkenden Musiker:innen als auch das Publikum dazu ein, eigene Erfahrungen von Verlust und Akzeptanz zu reflektieren.',
-  'healing.intro.stupid':   'Martin hat sich in jemanden verliebt. Es hat nicht funktioniert. Er hat fünf Bilder gemalt. Jetzt könnt ihr sie anschauen.',
+  'healing.intro.stupid':   'Martin hat sich in jemanden verliebt. Es hat nicht funktioniert. Er hat fünf Bilder gemalt. Viel Spaß damit, oder auch nicht, mir egal.',
   'healing.poems.h2':       'Gedichte',
   'healing.essay.h2':       'Five Stages of Healing',
   'healing.essay.p1':       'Vor einigen Jahren machte mich Volkhardt Preuß bei einem seiner berühmten Seminare – in diesem Fall über Monteverdis Orfeo – mit den fünf Phasen der Verkündigung Marias bekannt. Besonders interessant war, wie die Maler und Denker der Renaissance diese fünf theologischen Kapitel als Grundlage nutzten, um sich mit grundsätzlichen menschlichen Gemütszuständen auseinanderzusetzen und den Umgang mit dem Unerwarteten künstlerisch zu schildern. Dies wird auf bemerkenswerte Weise in Michael Baxandalls Buch "Die Wirklichkeit der Bilder – Malerei und Erfahrung im Italien der Renaissance" beschrieben.',
@@ -98,11 +103,11 @@ window.I18N_DE = {
 
   /* ── zamoranoandstamer.html ─────────────────────────────── */
   'zas.p1':                 'Eine langjährige Freundschaft und eine tiefe Liebe zur Folkmusik vereint die beiden jungen Musiker aus Hamburg, die sich im Duo zusammengefunden haben, um die Begegnung zwischen nordischer Folkmusik und Jazz auszuloten.',
-  'zas.p1.stupid':          'Zwei Leute, die Folkmusik mögen und irgendwann dachten: „Warum machen wir das nicht zusammen?"',
+  'zas.p1.stupid':          'Eine langjährige Freundschaft und eine zu tiefe Liebe zur Folkmusik vereint die beiden jungen Musiker aus Hamburg, die sich im Duo zusammengefunden haben, um die Begegnung zwischen nordischer Folkmusik und Jazz auszulöschen.',
   'zas.p2':                 'In ihren Arrangements von Tunes aus Skandinavien und dem Keltischen Raum verbinden sie improvisatorische Elemente und harmonische Feinheiten mit dem melodischen Reichtum und der Ausdruckskraft der traditionellen Musik.',
-  'zas.p2.stupid':          'Sie spielen alte Melodien, aber komisch. Das ist auf Absicht.',
+  'zas.p2.stupid':          'In ihren Arrangements von Schund aus Skandinavien und dem Keltischen Raum verbinden sie improvisatorische Elemente und harmonische Grobheiten mit der melodischen Armut und der Ausdruckskraft der traditionellen Musik.',
   'zas.p3':                 'Finn Stamers Expressivität und spielerische Virtuosität auf der Geige gestalten die melodische Sprache, während Martín Zamorano das Fundament mit seinem polyphonen Ansatz und groove-orientiertem, perkussivem Sound legt. Die Vielseitigkeit des Duos zeigt sich durch die vielfältige Instrumentation, wie Hardangerfiedel, Oktavgeige, präpariertes Klavier und Fender Rhodes. In ihren Eigenkompositionen kristallisiert sich diese Versatilität heraus, die von introspektiven und meditativen Momenten bis hin zu Ausbrüchen ekstatischer und affirmativer Vitalität reicht.',
-  'zas.p3.stupid':          'Finn spielt Geige sehr schnell. Martin drückt Tasten sehr rhythmisch. Manchmal spielen sie auch komische Instrumente. Es klingt gut, also manchmal jedenfalls.',
+  'zas.p3.stupid':          'Finn Stamers Expressivität und spielerische Virtuosität auf der Geige gestalten die melodische Sprache, während Martín Zamorano das Fundament mit seinem großen Ego, polyamorösem Ansatz und grobmotorischem, perkussivem Sound legt. Die Vielseitigkeit des Duos zeigt sich durch die vielfältige Instrumentation, wie Hardangerfiedel, Oktavgeige, präpariertes Klavier und Fender Rhodes. In ihren Eigenkompositionen kristallisiert sich diese Versatilität heraus, die von introspektiven und meditativen Momenten  - in einfachen Worten: Langweilig! - bis hin zu Ausbrüchen ekstatischer und prätentiöser Vitalität reicht.',
   'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
   'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
 

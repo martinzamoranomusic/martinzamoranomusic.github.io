@@ -61,7 +61,7 @@ window.I18N_ES = {
   'vita.photo4':            'Zamorano 5 (Crédito: Lukas Palatinus)',
 
   /* ── vita.html — Sección de equipo (Modo Madness) ────────── */
-  'vita.team.h2':              'El equipo detrás de Martín Zamorano Music',
+  'vita.team.h2':              'El equipo detrás de Martín Zamorano',
   'vita.team.member1.role':    'El Pianista',
   'vita.team.member1.bio':     'Pulsa teclas. A veces varias a la vez. Estudió muchísimo tiempo para esto.',
   'vita.team.member2.role':    'El Compositor',
@@ -69,14 +69,19 @@ window.I18N_ES = {
   'vita.team.member3.role':    'El Productor',
   'vita.team.member3.bio':     'Responsable del sonido. Y del otro sonido. Y básicamente de todos los sonidos.',
   'vita.team.member4.role':    'El Manager de Booking',
-  'vita.team.member4.bio':     'Responde emails cuando se acuerda. Muy majo. Responde pronto.',
+  'vita.team.member4.bio':     'Responde los correos cuando se acuerda, normalmente el tercer viernes de cada mes. Muy majo. Probablemente responde pronto.',
   'vita.team.member5.role':    'El Director de Redes Sociales',
-  'vita.team.member5.bio':     'Publica de vez en cuando. Sobre todo de madrugada. Contenido: dudoso. Engagement: sorprendentemente bueno.',
+  'vita.team.member5.bio':     'Publica de vez en cuando. Sobre todo de madrugada. Contenido: dudoso. Engagement: bueno, tiene que serlo.',
   'vita.team.member6.role':    'El Filósofo',
-  'vita.team.member6.bio':     'Hace preguntas que nadie hizo. También las responde. Generalmente al piano.',
+  'vita.team.member6.bio':     'Hace preguntas que nadie le ha hecho. Responderlas sería realmente indigno de él.',
   'vita.team.member7.role':    'El Departamento de IT',
   'vita.team.member7.bio':     'Una vez reinició un ordenador. Funcionó. Desde entonces es el experto en informática.',
-
+  'vita.team.member8.role':    'Creative Director',
+  'vita.team.member8.bio':     'Tiene un buen dominio de la estética, siempre y cuando sea ocre. Al parecer, tiene predilección por los minijuegos.',
+  'vita.team.member9.role':    'Abeja ocupada &amp; codificador de Vibe',
+  'vita.team.member9.bio':     'Builds the Website. Sometimes asks himself whether that\s art as well.',
+  'vita.team.member10.role':   'CTO',
+  'vita.team.member10.bio':    'Responsible for everything. Yes, everything.',
   /* ── improvisation.html ─────────────────────────────────── */
   'improv.audio.unsupported': 'Tu navegador no soporta el elemento de audio.',
   'improv.useless.btn': 'Botón Inútil',
@@ -97,11 +102,11 @@ window.I18N_ES = {
 
   /* ── zamoranoandstamer.html ─────────────────────────────── */
   'zas.p1':                 'Una larga amistad y un profundo amor por la música folk unen a estos dos jóvenes músicos de Hamburgo, que se han reunido en dúo para explorar el encuentro entre la música folk nórdica y el jazz.',
-  'zas.p1.stupid':          'Dos personas a las que les gusta la música folk y en algún momento pensaron: "¿Por qué no lo hacemos juntos?"',
+  'zas.p1.stupid':          'Una larga amistad y un profundo amor por la música folk unen a estos dos jóvenes músicos de Hamburgo, que se han reunido en dúo para explorar el encuentro entre la música folk nórdica y el jazz.',
   'zas.p2':                 'En sus arreglos de temas de Escandinavia y el mundo celta, combinan elementos improvisatorios y sutilezas armónicas con la riqueza melódica y la expresividad de la música tradicional.',
-  'zas.p2.stupid':          'Tocan melodías antiguas, pero de forma rara. Es a propósito.',
+  'zas.p2.stupid':          'En sus arreglos de temas de Escandinavia y el mundo celta, combinan elementos improvisatorios y sutilezas armónicas con la riqueza melódica y la expresividad de la música tradicional.',
   'zas.p3':                 'La expresividad y la virtuosidad lúdica de Finn Stamer al violín configuran el lenguaje melódico, mientras que Martín Zamorano sienta las bases con su enfoque polifónico y su sonido percusivo orientado al groove. La versatilidad del dúo se refleja en su variada instrumentación: violín Hardanger, violín octava, piano preparado y Fender Rhodes. En sus composiciones propias, esta versatilidad cristaliza en música que va desde momentos introspectivos y meditativos hasta estallidos de vitalidad extática y afirmativa.',
-  'zas.p3.stupid':          'Finn toca el violín muy rápido. Martín pulsa teclas muy rítmicamente. A veces también tocan instrumentos raros. Suena bien.',
+  'zas.p3.stupid':          'La expresividad y la virtuosidad lúdica de Finn Stamer al violín configuran el lenguaje melódico, mientras que Martín Zamorano sienta las bases con su enfoque polifónico y su sonido percusivo orientado al groove. La versatilidad del dúo se refleja en su variada instrumentación: violín Hardanger, violín octava, piano preparado y Fender Rhodes. En sus composiciones propias, esta versatilidad cristaliza en música que va desde momentos introspectivos y meditativos hasta estallidos de vitalidad extática y afirmativa.',
   'zas.presskit.de':        'DEUTSCH Press Kit Zamorano&amp;Stamer (PDF)',
   'zas.presskit.en':        'ENGLISH Press Kit Zamorano&amp;Stamer (PDF)',
 
