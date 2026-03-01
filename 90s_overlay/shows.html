@@ -269,15 +269,6 @@
 
 <script src="../assets/shows-data.js"></script>
 <script>
-// ── Labyrinth gate ───────────────────────────────────────
-(function(){
-  try {
-    if (!localStorage.getItem('mz_labyrinth_won')) {
-      window.location.replace('labyrinth.html');
-    }
-  } catch(e) {}
-})();
-
 (function(){
   var n = new Date();
   document.getElementById('clock').textContent =

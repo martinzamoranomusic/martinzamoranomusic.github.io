@@ -198,6 +198,38 @@
       .portrait-gc { width: 90px; }
       .photo-grid a img { width: 90px; height: 70px; }
     }
+
+    .rotating-head-box {
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+      border: 4px ridge #ff00ff;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .rotating-head-title {
+      font-size: 1rem;
+      color: #00ffff;
+      text-shadow: 2px 2px #ff00ff, -2px -2px #ffff00;
+      margin: 0 0 6px;
+      animation: rainbow 0.8s linear infinite;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    #rotating3dCanvas {
+      border: 3px ridge #ffff00;
+      background: #000033;
+      display: block;
+      margin: 0 auto;
+      image-rendering: pixelated;
+    }
+
+    .rotating-head-subtitle {
+      font-size: 0.7rem;
+      color: #ff8800;
+      margin-top: 5px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -216,8 +248,15 @@
   <marquee behavior="scroll" direction="left" scrollamount="5"
            style="color:#00ffff; font-weight:bold; font-size:0.9rem; margin:6px 0;">
     *** OFFIZIELLE BIOGRAFIE *** Pianist *** Komponist *** Hamburg *** seit 1995 ***
-    Elbjazz *** FOLKBaltica *** Bachfest Hamburg *** Deutsche SchauSpielHaus ***
+    GERNE SPIELE ICH AUCH AUF IHRER HOCHZEIT *** Deutsche SchauSpielHaus ***
   </marquee>
+
+  <hr class="divider">
+
+  <div class="rotating-head-box">
+    <div class="rotating-head-title">~*~ Lernen Sie mich von allen Seiten kennen ~*~</div>
+    <canvas id="rotating3dCanvas" width="400" height="200"></canvas>
+  </div>
 
   <hr class="divider">
 
@@ -403,7 +442,7 @@
       <a href="musik.html" class="btn-gc">PIANO</a>
       <a href="improvisation.html" class="btn-gc">IMPROV</a>
       <a href="zamoranoandstamer.html" class="btn-gc">Z &amp; S</a>
-      <a href="shows.html" class="btn-gc">SHOWS</a>
+      <a href="labyrinth.html" class="btn-gc">SHOWS</a>
       <a href="kontakt.html" class="btn-gc">KONTAKT</a>
       <a href="labyrinth.html" class="btn-gc">LABYRINTH!!!</a>
     </div>
@@ -421,5 +460,106 @@
   <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
 
 </div>
+
+<script>
+  (function() {
+    var canvas = document.getElementById('rotating3dCanvas');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var angle = 0;
+    var img = new Image();
+    img.src = '../assets/images/IMG_4000.png';
+
+    // Rainbow colors cycling for the text
+    var rainbowColors = ['#ff0000','#ff8800','#ffff00','#00ff00','#00ffff','#ff00ff'];
+    var colorIdx = 0;
+    var colorTick = 0;
+
+    // Terrible scanline flicker phase
+    var flickerOn = true;
+    var flickerTick = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Background — deep space navy with "stars"
+      ctx.fillStyle = '#000033';
+      ctx.fillRect(0, 0, W, H);
+
+      // "Stars" (static noise dots — very 90s)
+      ctx.fillStyle = '#ffffff';
+      var starPositions = [
+        [12,8],[45,22],[180,15],[160,90],[30,140],[190,170],
+        [70,180],[150,50],[20,60],[195,120],[100,5],[85,195]
+      ];
+      starPositions.forEach(function(s) {
+        ctx.fillRect(s[0], s[1], 1, 1);
+      });
+
+      // fake 3D: squish the image width based on cos(angle)
+      // when cos is near 0, the face is "edge on", show a thin sliver
+      var cosA = Math.cos(angle);
+      var absCos = Math.abs(cosA);
+
+      // Add terrible pixelation by drawing at low res then scaling up
+      var imgW = Math.max(4, Math.floor(absCos * 180));
+      var imgH = 210;
+      var cx = W / 2;
+      var cy = H / 2 - 10;
+
+      if (img.complete && img.naturalWidth > 0) {
+        ctx.save();
+        // Translate to center
+        ctx.translate(cx, cy);
+
+        // Terrible "3D lighting": tint darker when edge-on
+        ctx.globalAlpha = 0.3 + absCos * 0.7;
+
+        // When facing left half, add a cheap blue tint overlay (fake shading)
+        ctx.drawImage(img, -imgW / 2, -imgH / 2, imgW, imgH);
+
+        // Cheap colour tint for "shadow side"
+        if (cosA < 0) {
+          ctx.globalAlpha = 0.15;
+          ctx.fillStyle = '#0000ff';
+          ctx.fillRect(-imgW / 2, -imgH / 2, imgW, imgH);
+        }
+
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      } else {
+        // Fallback: coloured rectangle with "M"
+        ctx.fillStyle = '#0000aa';
+        ctx.fillRect(cx - imgW/2, cy - imgH/2, imgW, imgH);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 48px Comic Sans MS';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('M', cx, cy);
+      }
+
+      // Scanline overlay — terrible flickering CRT effect
+      flickerTick++;
+      if (flickerTick % 8 === 0) flickerOn = !flickerOn;
+      if (flickerOn) {
+        ctx.globalAlpha = 0.10;
+        ctx.fillStyle = '#000000';
+        for (var y = 0; y < H; y += 2) {
+          ctx.fillRect(0, y, W, 1);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+
+      // Advance angle — deliberately jerky (low FPS feel)
+      angle += 0.045;
+    }
+
+    img.onload = function() { draw(); };
+
+    // Run at ~20fps for that authentic low-budget feel
+    setInterval(draw, 50);
+  })();
+</script>
 </body>
 </html>

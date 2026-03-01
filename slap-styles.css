@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background: linear-gradient(135deg, #1a1410 0%, #2d2419 100%);
+    background: linear-gradient(135deg, #e09c6e 0%, #f0b266 100%);
     color: #f5f0e8;
     min-height: 100vh;
     padding: 2rem;
@@ -27,7 +27,7 @@ body {
 
 .header h1 {
     font-size: 2.5rem;
-    color: #C17A3A;
+    color: #c13ab8;
     margin-bottom: 1rem;
     letter-spacing: 2px;
 }
@@ -46,11 +46,11 @@ body {
 
 .back-button:hover {
     background: #C17A3A;
-    color: #1a1410;
+    color: #9d6a48;
 }
 
 .slap-counter {
-    background: #2d2419;
+    background: #46d85a;
     padding: 1rem 2rem;
     border-radius: 8px;
     border: 1px solid rgba(193, 122, 58, 0.2);

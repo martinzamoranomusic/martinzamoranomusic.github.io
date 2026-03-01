@@ -332,6 +332,9 @@ function winLevel() {
         winContent.insertBefore(martinImg, winContent.firstChild);
     }
     
+    // Unlock the shows page
+    try { localStorage.setItem('mz_labyrinth_won', '1'); } catch(e) {}
+
     document.getElementById('winMessage').classList.remove('hidden');
 }
 

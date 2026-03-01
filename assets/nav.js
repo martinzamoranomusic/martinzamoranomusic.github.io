@@ -46,7 +46,7 @@
     // In madness-mode, kontakt goes through the bodyguard gate,
     // and shows goes through the labyrinth gate.
     const kontaktHref = root + (mode === 'stupid' ? 'bodyguard.html' : 'kontakt.html');
-    const showsHref   = root + (mode === 'stupid' ? 'shows-gate.html' : 'shows.html');
+    const showsHref   = root + 'shows-gate.html';
 
     header.innerHTML = [
       '<div class="site-title">',
