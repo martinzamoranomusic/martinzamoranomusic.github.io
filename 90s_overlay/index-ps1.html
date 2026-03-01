@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARTIN ZAMORANO - PlayStation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(ellipse at center, #1a1a4e 0%, #000010 100%);
+      min-height: 100vh;
+      font-family: 'Share Tech Mono', monospace;
+      color: #c8c8c8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 40px 0;
+      overflow-x: hidden;
+    }
+
+    /* CRT scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 3px,
+        rgba(0,0,0,0.25) 3px, rgba(0,0,0,0.25) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── PS1 top bar ── */
+    .ps1-topbar {
+      width: 100%;
+      background: linear-gradient(to right, #2a2a6e, #1a1a4e, #2a2a6e);
+      border-bottom: 2px solid #4a4a8e;
+      padding: 6px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #8888cc;
+    }
+
+    .ps1-logo {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #ccccff;
+      text-shadow: 0 0 10px #6666ff;
+    }
+
+    /* ── main screen area ── */
+    .ps1-screen {
+      width: 100%;
+      max-width: 640px;
+      padding: 20px 16px;
+    }
+
+    /* ── memory card slot UI ── */
+    .ps1-slots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .ps1-slot {
+      background: linear-gradient(180deg, #2a2a5e 0%, #1a1a3e 100%);
+      border: 1px solid #4a4a8e;
+      padding: 10px;
+      position: relative;
+    }
+
+    .ps1-slot-header {
+      font-size: 11px;
+      color: #6666aa;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #3a3a6e;
+      padding-bottom: 4px;
+    }
+
+    .ps1-slot-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #3a3a7e, #2a2a5e);
+      border: 1px solid #5a5a9e;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      float: left;
+      margin-right: 8px;
+    }
+
+    .ps1-slot-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+
+    .ps1-slot-title {
+      font-size: 11px;
+      color: #aaaaee;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .ps1-slot-sub {
+      font-size: 10px;
+      color: #6666aa;
+    }
+
+    .ps1-slot::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    /* ── big card / panel ── */
+    .ps1-panel {
+      background: linear-gradient(180deg, #2a2a5e 0%, #1a1a3e 100%);
+      border: 1px solid #4a4a8e;
+      margin-bottom: 12px;
+    }
+
+    .ps1-panel-title {
+      background: linear-gradient(to right, #3a3a8e, #2a2a6e);
+      color: #aaaaee;
+      font-size: 11px;
+      letter-spacing: 3px;
+      padding: 4px 10px;
+      border-bottom: 1px solid #4a4a8e;
+    }
+
+    .ps1-panel-body { padding: 10px 12px; }
+
+    /* ── selected item highlight ── */
+    .ps1-item {
+      padding: 5px 8px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 3px solid transparent;
+    }
+    .ps1-item:hover, .ps1-item.sel {
+      background: rgba(100, 100, 200, 0.2);
+      border-left-color: #8888ff;
+      color: #ffffff;
+    }
+    .ps1-item-dot {
+      width: 6px;
+      height: 6px;
+      background: #4444aa;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .ps1-item.sel .ps1-item-dot { background: #aaaaff; box-shadow: 0 0 4px #8888ff; }
+
+    /* ── link buttons ── */
+    .ps1-btnrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 12px 12px;
+    }
+
+    .ps1-btn {
+      background: linear-gradient(180deg, #3a3a7e 0%, #2a2a5e 100%);
+      border: 1px solid #5a5a9e;
+      color: #aaaaee;
+      font-family: inherit;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .ps1-btn:hover {
+      background: linear-gradient(180deg, #5a5a9e 0%, #3a3a7e 100%);
+      color: #ffffff;
+      border-color: #8888cc;
+    }
+
+    /* ── show rows ── */
+    .show-row {
+      font-size: 11px;
+      padding: 4px 0;
+      border-bottom: 1px solid #2a2a5e;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .show-row:last-child { border-bottom: none; }
+    .show-date    { color: #8888ff; min-width: 70px; flex-shrink: 0; }
+    .show-venue   { color: #aaaaee; }
+    .show-project { color: #6666aa; font-size: 10px; margin-left: auto; }
+
+    a { color: #8888ff; text-decoration: none; }
+    a:hover { color: #ccccff; }
+
+    /* ── bottom bar ── */
+    .ps1-bottombar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to right, #1a1a4e, #0a0a2e, #1a1a4e);
+      border-top: 1px solid #3a3a6e;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 20px;
+      font-size: 11px;
+      color: #6666aa;
+      letter-spacing: 1px;
+    }
+
+    .ps1-btn-hint {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ps1-symbol {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: bold;
+    }
+    .sym-x      { background: #224; border: 1px solid #55f; color: #88f; }
+    .sym-o      { background: #422; border: 1px solid #f55; color: #f88; }
+    .sym-square { background: #242; border: 1px solid #5f5; color: #8f8; border-radius: 2px; }
+    .sym-tri    { background: #244; border: 1px solid #5ff; color: #8ff; }
+
+    .ps1-clock { margin-left: auto; }
+
+    /* ── blinking save light ── */
+    .save-dot {
+      width: 6px; height: 6px;
+      background: #ff4444;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 4px;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.1;} }
+  </style>
+</head>
+<body>
+
+  <div class="ps1-topbar">
+    <span class="ps1-logo">PlayStation</span>
+    <span>MEMORY CARD</span>
+    <span><span class="save-dot"></span>SAVING...</span>
+  </div>
+
+  <div class="ps1-screen">
+
+    <!-- Memory card slots -->
+    <div class="ps1-slots">
+      <div class="ps1-slot">
+        <div class="ps1-slot-header">SLOT 1 — MAIN DATA</div>
+        <div class="ps1-slot-icon">
+          <img src="../assets/images/a3363914671_10.jpg" alt="Album" />
+        </div>
+        <div class="ps1-slot-title">MARTIN ZAMORANO</div>
+        <div class="ps1-slot-sub">PIANIST / KOMPONIST<br>HAMBURG, DE</div>
+      </div>
+      <div class="ps1-slot">
+        <div class="ps1-slot-header">SLOT 2 — SAVE FILE</div>
+        <div class="ps1-slot-icon" style="font-size:24px;">&#9834;</div>
+        <div class="ps1-slot-title">JETZT NEU:</div>
+        <div class="ps1-slot-sub">DIESE WEBSITE!<br>ER HAT EIN KLAVIER!!</div>
+      </div>
+    </div>
+
+    <!-- Welcome -->
+    <div class="ps1-panel">
+      <div class="ps1-panel-title">WELCOME MESSAGE</div>
+      <div class="ps1-panel-body" style="font-size:12px; color:#8888aa; line-height:1.8; letter-spacing:1px;">
+        DU HAST DICH VERIRRT. MACHT NICHTS.<br>
+        JETZT MUSST DU LEIDER WAS UEBER MARTIN ZAMORANO ERFAHREN.
+      </div>
+      <div class="ps1-btnrow">
+        <a href="https://martinzamorano.bandcamp.com/" target="_blank" class="ps1-btn">BANDCAMP</a>
+        <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" class="ps1-btn">INSTAGRAM</a>
+        <a href="https://open.spotify.com/artist/1N9ltuIHjJ0w8lKa0Yadxr" target="_blank" class="ps1-btn">SPOTIFY</a>
+        <a href="https://www.youtube.com/@martinzamoranomusic" target="_blank" class="ps1-btn">YOUTUBE</a>
+      </div>
+    </div>
+
+    <!-- Album -->
+    <div class="ps1-panel">
+      <div class="ps1-panel-title">GAME DATA — NEW RELEASE</div>
+      <div class="ps1-panel-body" style="display:flex; gap:12px; align-items:flex-start;">
+        <img src="../assets/images/a3363914671_10.jpg"
+             style="width:64px;height:64px;object-fit:cover;border:1px solid #4a4a8e;flex-shrink:0;image-rendering:pixelated;" />
+        <div>
+          <div style="color:#aaaaee; font-size:11px; letter-spacing:1px; margin-bottom:4px;">
+            PRE-APOCALYPTIC ANTI-CYNICAL<br>POST-POSTMODERNIST PIANO JUKEBOX
+          </div>
+          <div style="color:#6666aa; font-size:10px; margin-bottom:8px;">
+            DAS ALBUM, AUF DAS NIEMAND GEWARTET HAT!
+          </div>
+          <a href="https://martinzamorano.bandcamp.com/album/pre-apocalyptic-anti-cynical-post-postmodernist-piano-jukebox"
+             target="_blank" class="ps1-btn">[ PLAY ]</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shows -->
+    <div class="ps1-panel">
+      <div class="ps1-panel-title">MISSION SELECT — UPCOMING SHOWS</div>
+      <div class="ps1-panel-body">
+        <div id="shows-ps1"><div style="color:#6666aa;font-size:11px;">LOADING SAVE DATA...</div></div>
+      </div>
+      <div class="ps1-btnrow">
+        <a href="../shows.html" class="ps1-btn">ALL SHOWS</a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="ps1-panel">
+      <div class="ps1-panel-title">SELECT STAGE</div>
+      <div class="ps1-panel-body" style="padding:4px 0;">
+        <div class="ps1-item sel"><span class="ps1-item-dot"></span>VITA</div>
+        <div class="ps1-item" onclick="window.location='../musik.html'"><span class="ps1-item-dot"></span>PIANO</div>
+        <div class="ps1-item" onclick="window.location='../improvisation.html'"><span class="ps1-item-dot"></span>IMPROVISATION</div>
+        <div class="ps1-item" onclick="window.location='../shows.html'"><span class="ps1-item-dot"></span>SHOWS</div>
+        <div class="ps1-item" onclick="window.location='../kontakt.html'"><span class="ps1-item-dot"></span>KONTAKT</div>
+        <div class="ps1-item" onclick="window.location='../mental-pocus-records.html'"><span class="ps1-item-dot"></span>MENTAL POCUS RECORDS</div>
+        <div class="ps1-item" onclick="window.location='labyrinth.html'"><span class="ps1-item-dot"></span>LABYRINTH [BONUS STAGE]</div>
+      </div>
+      <div class="ps1-btnrow">
+        <a href="vita.html" class="ps1-btn">[ X ] SELECT</a>
+        <a href="../index.html" class="ps1-btn">[ O ] NORMAL VERSION</a>
+      </div>
+    </div>
+
+    <div style="text-align:center; font-size:10px; color:#3a3a6e; letter-spacing:2px; margin-top:8px;">
+      (C) 2026 MARTIN ZAMORANO PRODUCTIONS INC.
+    </div>
+  </div>
+
+  <div class="ps1-bottombar">
+    <div class="ps1-btn-hint"><span class="ps1-symbol sym-x">X</span> SELECT</div>
+    <div class="ps1-btn-hint"><span class="ps1-symbol sym-o">O</span> BACK</div>
+    <div class="ps1-btn-hint"><span class="ps1-symbol sym-tri">^</span> INFO</div>
+    <div class="ps1-btn-hint"><span class="ps1-symbol sym-square">&#9632;</span> DELETE</div>
+    <div class="ps1-clock" id="ps1-clock">00:00</div>
+  </div>
+
+  <script src="../assets/shows-data.js"></script>
+  <script>
+    (function() {
+      var now = new Date();
+      document.getElementById('ps1-clock').textContent =
+        now.getHours().toString().padStart(2,'0') + ':' +
+        now.getMinutes().toString().padStart(2,'0');
+
+      function parseDate(str) {
+        var p = str.split('.'); return new Date(+p[2], +p[1]-1, +p[0]);
+      }
+      var today = new Date(); today.setHours(0,0,0,0);
+      var next3 = (window.SHOWS_DATA || [])
+        .filter(function(s) { return parseDate(s.date) >= today; })
+        .sort(function(a,b) { return parseDate(a.date) - parseDate(b.date); })
+        .slice(0, 3);
+      var el = document.getElementById('shows-ps1');
+      if (!next3.length) { el.innerHTML = '<div style="color:#6666aa;font-size:11px;">NO SAVE DATA FOUND.</div>'; return; }
+      el.innerHTML = next3.map(function(s) {
+        var v = s.url ? '<a href="'+s.url+'" target="_blank">'+s.venue+'</a>' : s.venue;
+        return '<div class="show-row"><span class="show-date">'+s.date+'</span><span class="show-venue">'+v+', '+s.city+'</span><span class="show-project">'+s.project+'</span></div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

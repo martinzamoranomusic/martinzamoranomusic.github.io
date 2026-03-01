@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>~*~ MARTIN ZAMORANO ~*~ VITA ~*~</title>
+  <style>
+    body {
+      background-color: #000080;
+      background-image:
+        radial-gradient(circle, #ffff00 1px, transparent 1px),
+        radial-gradient(circle, #ff00ff 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px;
+      background-position: 0 0, 20px 20px;
+      color: #ffff00;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    a { color: #00ffff; }
+    a:visited { color: #ff00ff; }
+    a:hover { color: #ff0000; text-decoration: underline overline; }
+
+    h1 {
+      font-size: 2.4rem;
+      text-shadow: 3px 3px #ffff00, -3px -3px #00ffff;
+      animation: rainbow 0.8s linear infinite;
+      margin: 0.5rem 0;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: #00ff00;
+      text-shadow: 2px 2px #000;
+      margin: 0 0 0.5rem;
+    }
+
+    h3 { color: #ff00ff; font-size: 1rem; margin: 0 0 0.5rem; }
+
+    p { font-size: 0.82rem; line-height: 1.9; color: #ffffcc; margin: 0 0 0.75rem; text-align: left; }
+
+    @keyframes rainbow {
+      0%   { color: #ff0000; }
+      16%  { color: #ff8800; }
+      33%  { color: #ffff00; }
+      50%  { color: #00ff00; }
+      66%  { color: #0088ff; }
+      83%  { color: #ff00ff; }
+      100% { color: #ff0000; }
+    }
+
+    .main-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      border: 4px ridge #ffff00;
+      background: rgba(0,0,0,0.6);
+      padding: 12px;
+    }
+
+    .stars { color: #ffff00; letter-spacing: 3px; }
+
+    .divider {
+      border: none;
+      border-top: 3px dashed #ff00ff;
+      margin: 12px 0;
+    }
+
+    .box {
+      border: 3px outset #00ffff;
+      background: rgba(0,0,128,0.8);
+      padding: 10px 14px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .box-title {
+      background: #ff0000;
+      color: #ffff00;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 2px 8px;
+      margin: -10px -14px 10px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .blink { animation: blink 0.7s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .rotate { animation: spin 4s linear infinite; display: inline-block; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* portrait floated left like old personal pages */
+    .portrait-gc {
+      float: left;
+      width: 130px;
+      height: auto;
+      border: 4px ridge #00ffff;
+      margin: 0 14px 10px 0;
+    }
+
+    /* photo grid — old-school table-like wrap */
+    .photo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .photo-grid a img {
+      width: 130px;
+      height: 100px;
+      object-fit: cover;
+      border: 3px outset #ffff00;
+      display: block;
+      transition: border-color 0.1s;
+    }
+
+    .photo-grid a:hover img { border-color: #ff0000; border-style: inset; }
+
+    /* awards list */
+    .award-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .award-list li {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #ffffcc;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .award-list li::before {
+      content: '>> ';
+      color: #00ff00;
+      position: absolute;
+      left: 0;
+    }
+
+    /* download links */
+    .dl-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .dl-list li a {
+      display: inline-block;
+      background: linear-gradient(to bottom, #ffff00, #ff8800);
+      color: #000080;
+      border: 3px outset #ffffff;
+      font-family: 'Comic Sans MS', cursive;
+      font-weight: bold;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      text-decoration: none;
+    }
+
+    .dl-list li a:hover {
+      background: linear-gradient(to bottom, #ff0000, #ff00ff);
+      color: #ffff00;
+      border-style: inset;
+    }
+
+    .btn-gc {
+      display: inline-block;
+      background: linear-gradient(to bottom, #ffff00, #ff8800);
+      color: #000080;
+      border: 3px outset #ffffff;
+      font-family: 'Comic Sans MS', cursive;
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 3px;
+    }
+
+    .btn-gc:hover {
+      background: linear-gradient(to bottom, #ff0000, #ff00ff);
+      color: #ffff00;
+      border-style: inset;
+    }
+
+    .ie-warning { font-size: 0.65rem; color: #888; margin-top: 6px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .portrait-gc { width: 90px; }
+      .photo-grid a img { width: 90px; height: 70px; }
+    }
+  </style>
+</head>
+<body>
+<div class="main-wrap">
+
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+  <h1>MARTIN ZAMORANO</h1>
+  <h2>~*~ VITA &amp; BIOGRAFIE ~*~</h2>
+  <p style="text-align:center">
+    <span class="rotate">&#9835;</span>
+    &nbsp; PIANIST &bull; KOMPONIST &bull; HAMBURG &nbsp;
+    <span class="rotate">&#9835;</span>
+  </p>
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+
+  <marquee behavior="scroll" direction="left" scrollamount="5"
+           style="color:#00ffff; font-weight:bold; font-size:0.9rem; margin:6px 0;">
+    *** OFFIZIELLE BIOGRAFIE *** Pianist *** Komponist *** Hamburg *** seit 1995 ***
+    Elbjazz *** FOLKBaltica *** Bachfest Hamburg *** Deutsche SchauSpielHaus ***
+  </marquee>
+
+  <hr class="divider">
+
+  <!-- Bio -->
+  <div class="box">
+    <div class="box-title">~~~ UEBER MICH ~~~</div>
+
+    <img class="portrait-gc"
+         src="../assets/images/464905209_9404329619594615_2878854906070236741_n.jpg"
+         alt="Foto: Nils Joehnk" />
+
+    <p>
+      Stellen Sie sich vor, Thom Yorke haette Klavierunterricht bei Bach und Brad Mehldau
+      genommen und wuerde dann ueber Minimal Music mit Pharoah Sanders improvisieren --
+      das ist eine der vielen Moeglichkeiten, wie man die Musik von Martin Zamorano beschreiben koennte.
+    </p>
+
+    <p>
+      <strong style="color:#00ffff">Martin Zamorano</strong> (*1995, Madrid) ist ein in Hamburg
+      lebender Pianist, Komponist und Musikpaedagoge. Seine klangliche Identitaet ist gepraegt von
+      einem genreuebergreifenden Ansatz, der seine klassischen Wurzeln mit Jazztradition, Popkultur,
+      Folk und freier Improvisation verbindet.
+    </p>
+
+    <p>
+      Nach einer klassischen Klavierausbildung am Konservatorium Arturo Soria in Madrid studierte er
+      Komposition (B. Mus.) und Musiktheorie (M. Mus.) an der Hochschule fuer Musik und Theater Hamburg --
+      gefolgt von einem zweiten Master in Jazz Performance &amp; Production. Er ist aktiv in Hamburgs
+      Musikszene -- von popnahen Projekten mit FiNDiNG CLEO und seinem Folkduo Zamorano&amp;Stamer
+      bis hin zu avantgardistischer Improvisation im Jazzquartett WARMBLUETIG.
+    </p>
+
+    <p>
+      2023 gruendete er das ECOllective Ensemble, seit 2024 ist er Mitinitiator des experimentellen
+      Labels Mental Pocus Records. In der Spielzeit 2025/26 arbeitet er erstmals mit dem
+      Deutschen SchauSpielHaus Hamburg -- fuer die Produktion
+      <em style="color:#ffff00">Vampire's Mountain</em> von Philippe Quesne.
+    </p>
+
+    <p>
+      Seit 2021 lehrt er Musiktheorie an der Hochschule fuer Musik Luebeck, seit 2023 unterrichtet er
+      Klavier fuer Popularmusik an der Staatlichen Jugendmusikschule Hamburg.
+    </p>
+
+    <div style="clear:both"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Awards -->
+  <div class="box">
+    <div class="box-title">~~~ PREISE &amp; AUSZEICHNUNGEN ~~~</div>
+    <ul class="award-list">
+      <li>Preis beim Kompositionswettbewerb der Oper Leipzig (2019)</li>
+      <li>Teilnahme am Genre-Fluid Composers Lab (New Amsterdam, NY, 2020)</li>
+      <li>DAAD-Preis fuer internationale Studierende (2021)</li>
+      <li>Elbjazz Festival, Hamburg</li>
+      <li>FOLKBaltica Festival</li>
+      <li>Bachfest Hamburg</li>
+      <li>Festival fuer Alte Musik Koeln</li>
+      <li>Deutsches SchauSpielHaus Hamburg (2025/26)</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Photo gallery -->
+  <div class="box">
+    <div class="box-title">~~~ FOTOS ~~~</div>
+    <p style="font-size:0.75rem; color:#aaa; text-align:center; margin-bottom:8px;">
+      Klicken zum Vergrossern!!! &nbsp;<span class="blink">** NEU **</span>
+    </p>
+    <div class="photo-grid">
+      <a href="../assets/images/465449436_9404329929594584_3540499126917132473_n.jpg" target="_blank">
+        <img src="../assets/images/465449436_9404329929594584_3540499126917132473_n.jpg" alt="Foto: Nils Joehnk" />
+      </a>
+      <a href="../assets/images/Kuenstlerfoto_1_-3-.JPG" target="_blank">
+        <img src="../assets/images/Kuenstlerfoto_1_-3-.JPG" alt="Foto: Alan Finlay" />
+      </a>
+      <a href="../assets/images/464905209_9404329619594615_2878854906070236741_n.jpg" target="_blank">
+        <img src="../assets/images/464905209_9404329619594615_2878854906070236741_n.jpg" alt="Foto: Nils Joehnk" />
+      </a>
+      <a href="../assets/images/Martin_sel_-_9_of_21.jpg" target="_blank">
+        <img src="../assets/images/Martin_sel_-_9_of_21.jpg" alt="Foto: Alan Finlay" />
+      </a>
+      <a href="../assets/images/Martin_sel_-_10_of_21_-2-.jpg" target="_blank">
+        <img src="../assets/images/Martin_sel_-_10_of_21_-2-.jpg" alt="Foto: Alan Finlay" />
+      </a>
+      <a href="../assets/images/IMG_3796.jpg" target="_blank">
+        <img src="../assets/images/IMG_3796.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+      <a href="../assets/images/IMG_3701.jpg" target="_blank">
+        <img src="../assets/images/IMG_3701.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+      <a href="../assets/images/IMG_4000.jpg" target="_blank">
+        <img src="../assets/images/IMG_4000.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+      <a href="../assets/images/IMG_4041.jpg" target="_blank">
+        <img src="../assets/images/IMG_4041.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+      <a href="../assets/images/IMG_3880.jpg" target="_blank">
+        <img src="../assets/images/IMG_3880.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+      <a href="../assets/images/IMG_3769.jpg" target="_blank">
+        <img src="../assets/images/IMG_3769.jpg" alt="Foto: Lukas Palatinus" />
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Downloads -->
+  <div class="box">
+    <div class="box-title">~~~ PRESSKIT &amp; DOWNLOADS ~~~</div>
+    <p style="font-size:0.75rem; color:#aaa;">Zum Herunterladen klicken!!! Rechtsklick &gt; Speichern unter!!!</p>
+    <ul class="dl-list">
+      <li><a href="../assets/pdfs/VITA_DEU_25_short_and_long.pdf" target="_blank">[PDF] VITA (DEU) 2025 -- Kurz- und Langfassung</a></li>
+      <li><a href="../assets/pdfs/VITA_ENG_25_short_and_long.pdf" target="_blank">[PDF] VITA (ENG) 2025 -- Short and Long</a></li>
+      <li><a href="../assets/pdfs/VITA_ESP_25_short_and_long.pdf" target="_blank">[PDF] VITA (ESP) 2025 -- Corta y Larga</a></li>
+      <li><a href="../assets/images/Kuenstlerfoto_1.jpg" target="_blank">[JPG] Foto 1 (Credit: Alan Finlay)</a></li>
+      <li><a href="../assets/images/Martin_sel_9_of_21.jpg" target="_blank">[JPG] Foto 2 (Credit: Alan Finlay)</a></li>
+      <li><a href="../assets/images/IMG_3796.jpg" target="_blank">[JPG] Foto 3 (Credit: Lukas Palatinus)</a></li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Nav -->
+  <div class="box">
+    <div class="box-title">~~~ NAVIGATION ~~~</div>
+    <div style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center;">
+      <a href="index.html" class="btn-gc">HOME</a>
+      <a href="../musik.html" class="btn-gc">PIANO</a>
+      <a href="../improvisation.html" class="btn-gc">IMPROV</a>
+      <a href="../zamoranoandstamer.html" class="btn-gc">Z &amp; S</a>
+      <a href="../healing.html" class="btn-gc">HEALING</a>
+      <a href="../mental-pocus-records.html" class="btn-gc">MPR</a>
+      <a href="../shows.html" class="btn-gc">SHOWS</a>
+      <a href="../kontakt.html" class="btn-gc">KONTAKT</a>
+      <a href="labyrinth.html" class="btn-gc">LABYRINTH!!!</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p style="font-size:0.7rem; color:#888;">
+    &copy; 2026 Martin Zamorano &bull;
+    <a href="../impressum.html">Impressum</a> &bull;
+    <a href="../datenschutz.html">Datenschutz</a> &bull;
+    <a href="../vita.html" style="color:#00ffff">Zur normalen Version</a>
+  </p>
+  <p class="ie-warning">Diese Seite wurde mit Microsoft FrontPage 98 erstellt. Foto-Credits: Nils Joehnk, Alan Finlay, Lukas Palatinus.</p>
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+
+</div>
+</body>
+</html>

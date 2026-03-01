@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Martin Zamorano -- Offizielle Homepage</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body {
+      background-color: #008080;
+      background-image: url('../assets/images/bg_home.jpg');
+      background-repeat: repeat;
+      background-size: 300px;
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .desktop {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 50px;
+    }
+
+    /* Title bar close/min/max buttons look */
+    .window {
+      margin-bottom: 0;
+    }
+
+    .window-body {
+      padding: 12px;
+    }
+
+    /* Hero window */
+    .hero-content {
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+      margin: 0 0 6px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .hero-content .tagline {
+      font-size: 0.85rem;
+      color: #444;
+      margin-bottom: 14px;
+    }
+
+    marquee {
+      background: navy;
+      color: yellow;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      margin: 10px 0;
+    }
+
+    /* Social links as toolbar buttons */
+    .toolbar {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .toolbar a {
+      text-decoration: none;
+    }
+
+    .toolbar button {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+    }
+
+    .toolbar svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Album section */
+    .album-inner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .album-inner img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border: 2px inset #808080;
+      flex-shrink: 0;
+    }
+
+    .album-info {
+      flex: 1;
+    }
+
+    .album-info h3 {
+      font-size: 0.85rem;
+      margin: 0 0 6px;
+    }
+
+    .album-info p {
+      font-size: 0.8rem;
+      margin: 0 0 8px;
+      color: #333;
+    }
+
+    /* Shows table */
+    .shows-table-98 {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .shows-table-98 th {
+      background: navy;
+      color: white;
+      padding: 3px 6px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .shows-table-98 td {
+      padding: 3px 6px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .shows-table-98 tr:nth-child(even) td {
+      background: #f0f0f0;
+    }
+
+    /* Status bar at bottom */
+    .status-bar {
+      display: flex;
+      gap: 2px;
+    }
+
+    .status-bar-field {
+      flex: 1;
+    }
+
+    /* Visitor counter */
+    .counter {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      color: lime;
+      background: black;
+      padding: 4px 10px;
+      display: inline-block;
+      border: 2px inset #808080;
+    }
+
+    .counter-box {
+      text-align: center;
+      padding: 8px;
+    }
+
+    .best-viewed {
+      font-size: 0.7rem;
+      color: #444;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* Taskbar */
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #c0c0c0;
+      border-top: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 4px;
+      z-index: 999;
+      height: 36px;
+    }
+
+    .start-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+    }
+
+    .start-btn img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .taskbar-clock {
+      margin-left: auto;
+      font-size: 0.75rem;
+      border: 1px inset #808080;
+      padding: 2px 8px;
+      background: #c0c0c0;
+    }
+
+    .taskbar-window-btn {
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      min-width: 120px;
+      text-align: left;
+    }
+
+    /* blinking NEW! badge */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    .blink {
+      animation: blink 1s step-start infinite;
+      color: red;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="desktop">
+
+    <!-- WINDOW 1: Hero -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Martin Zamorano -- Willkommen!</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <marquee behavior="scroll" direction="left">
+          ** HERZLICH WILLKOMMEN auf der OFFIZIELLEN Homepage von MARTIN ZAMORANO ** Pianist - Komponist - Hamburgs Nummer 1 ** NEUE SHOWS verfuegbar! ** Bitte JavaScript aktivieren **
+        </marquee>
+        <div class="hero-content">
+          <h1>Moin, moin!</h1>
+          <p class="tagline">Komponist &amp; Pianist -- Hamburg, Deutschland<br>
+            <span class="blink">** NEU **</span> Jetzt mit <strong>Farbe</strong>!
+          </p>
+          <div class="toolbar">
+            <a href="https://martinzamorano.bandcamp.com/" target="_blank" rel="noopener">
+              <button>Bandcamp</button>
+            </a>
+            <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" rel="noopener">
+              <button>Instagram</button>
+            </a>
+            <a href="https://www.facebook.com/martinzamoranomusic" target="_blank" rel="noopener">
+              <button>Facebook</button>
+            </a>
+            <a href="https://i.ebayimg.com/images/g/RTMAAeSweitoU6MF/s-l1600.jpg" target="_blank" rel="noopener">
+              <button>Spotify</button>
+            </a>
+            <a href="https://www.youtube.com/@martinzamoranomusic" target="_blank" rel="noopener">
+              <button>YouTube</button>
+            </a>
+          </div>
+          <div class="counter-box">
+            <div>Besucher Nr.</div>
+            <div class="counter" id="visitor-counter">0004312</div>
+            <div class="best-viewed">Best viewed in Internet Explorer 6.0 at 800x600</div>
+          </div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <p class="status-bar-field">Homepage geladen</p>
+        <p class="status-bar-field">Keine Viren gefunden</p>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: Album -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Neues Album -- Jetzt erhaeltlich!</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="album-inner">
+          <img src="../assets/images/IMG_3880_Flamingo.png" alt="Martin Zamorano" />
+          <div class="album-info">
+            <span class="blink">** NEU **</span>
+            <h3>Pre-Apocalyptic Anti-Cynical Post-Postmodernist Piano Jukebox</h3>
+            <p>Das neue Album -- jetzt auf Bandcamp zum Streamen und Download.</p>
+            <a href="https://martinzamorano.bandcamp.com/album/pre-apocalyptic-anti-cynical-post-postmodernist-piano-jukebox" target="_blank" rel="noopener">
+              <button>Auf Bandcamp anhoeren &raquo;</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: Shows -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Naechste Shows</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div id="shows-98"><p>Laedt...</p></div>
+        <br>
+        <a href="../shows.html"><button>Alle Shows ansehen &raquo;</button></a>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: Navigation -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Meine Website -- Navigation</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <ul class="tree-view">
+          <li>
+            <details open>
+              <summary>Martin Zamorano</summary>
+              <ul>
+                <li><a href="vita.html">Vita / Biografie</a></li>
+                <li>
+                  <details>
+                    <summary>Musik</summary>
+                    <ul>
+                      <li><a href="musik.html">Piano</a></li>
+                      <li><a href="improvisation.html">Improvisation</a></li>
+                      <li><a href="zamoranoandstamer.html">Zamorano &amp; Stamer</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>Projekte</summary>
+                    <ul>
+                      <li><a href="healing.html">The Healing Project</a></li>
+                      <li><a href="../musiktheorie.html">Kontrapunkt &amp; Musiktheorie</a></li>
+                      <li><a href="mental-pocus-records.html">Mental Pocus Records</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li><a href="shows.html">Shows</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WINDOW 5: Footer -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Info</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body" style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem;">
+        <span>&copy; 2026 Martin Zamorano</span>
+        <span>
+          <a href="../impressum.html">Impressum</a> &middot;
+          <a href="../datenschutz.html">Datenschutz</a> &middot;
+          <a href="../vita.html">Zur normalen Version &rarr;</a>
+        </span>
+      </div>
+    </div>
+
+  </div><!-- /.desktop -->
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button class="start-btn">Start</button>
+    <button class="taskbar-window-btn">Martin Zamorano</button>
+    <div class="taskbar-clock" id="taskbar-clock">00:00</div>
+  </div>
+
+  <script src="../assets/shows-data.js"></script>
+  <script>
+    // Taskbar clock
+    function updateClock() {
+      var now = new Date();
+      var h = now.getHours().toString().padStart(2, '0');
+      var m = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('taskbar-clock').textContent = h + ':' + m;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+
+    // Visitor counter — random number that increments each visit
+    (function() {
+      var base = 4312;
+      try {
+        var stored = parseInt(localStorage.getItem('mz_visits98') || base, 10);
+        stored++;
+        localStorage.setItem('mz_visits98', stored);
+        document.getElementById('visitor-counter').textContent = stored.toString().padStart(7, '0');
+      } catch(e) {}
+    })();
+
+    // Shows
+    (function() {
+      function parseDate(str) {
+        var p = str.split('.'); return new Date(+p[2], +p[1]-1, +p[0]);
+      }
+      var today = new Date(); today.setHours(0,0,0,0);
+      var next3 = (window.SHOWS_DATA || [])
+        .filter(function(s) { return parseDate(s.date) >= today; })
+        .sort(function(a,b)  { return parseDate(a.date) - parseDate(b.date); })
+        .slice(0, 3);
+
+      var el = document.getElementById('shows-98');
+      if (!next3.length) {
+        el.innerHTML = '<p>Keine bevorstehenden Shows.</p>';
+        return;
+      }
+      var rows = next3.map(function(s) {
+        var v = s.url
+          ? '<a href="' + s.url + '" target="_blank">' + s.venue + '</a>'
+          : s.venue;
+        return '<tr><td>' + s.date + '</td><td>' + v + '</td><td>' + s.city + '</td><td>' + s.project + '</td></tr>';
+      }).join('');
+      el.innerHTML = '<table class="shows-table-98">'
+        + '<thead><tr><th>Datum</th><th>Venue</th><th>Stadt</th><th>Projekt</th></tr></thead>'
+        + '<tbody>' + rows + '</tbody></table>';
+    })();
+  </script>
+</body>
+</html>

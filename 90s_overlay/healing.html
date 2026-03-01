@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Healing Project -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body{background-color:#008080;font-family:Arial,sans-serif;padding:20px;margin:0;}
+    .desktop{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:50px;}
+    .window-body{padding:12px;}
+    marquee{background:navy;color:yellow;font-weight:bold;font-size:.9rem;padding:4px 0;margin:8px 0;}
+    .nav-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+    .nav-btns a{text-decoration:none;}
+    .healing-stage img{width:100%;border:2px inset #808080;margin:6px 0 12px;display:block;}
+    .healing-stage h3{font-size:.9rem;margin:0 0 2px;}
+    .healing-stage em{font-size:.8rem;color:#444;}
+    .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
+    .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">The Healing Project -- Five Stages of Healing</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee>** EMOTIONALES HEILEN ** INTERDISZIPLINARE KUNST ** DICHTUNG ** MALEREI ** MUSIK **</marquee>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Ueber das Projekt</div></div>
+    <div class="window-body">
+      <p style="font-size:.82rem;margin:0 0 8px;">Diese fünf Bilder sind der grafische Teil des interdisziplinären Kunstwerks „Five Stages of Healing". Ausgangspunkt ist die Auseinandersetzung mit den fünf Phasen der Trauer nach Kübler-Ross und die Übertragung auf den Prozess des Liebeskummers.</p>
+      <div class="nav-btns">
+        <a href="../assets/audio/Fast_Mix_Liebeshummer_II.mp3" target="_blank"><button>&#127925; Liebeshummer II (MP3)</button></a>
+        <a href="../assets/audio/Fast_Mix_Liebeshummer_I.mp3" target="_blank"><button>&#127925; Liebeshummer I (MP3)</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Die funf Phasen</div></div>
+    <div class="window-body">
+      <div class="healing-stage">
+        <h3>1. Fragen</h3>
+        <em>Coffee Stain</em>
+        <img src="../assets/images/1._Fragen_-_Coffee_Stain.png" alt="1. Fragen — Coffee Stain" />
+      </div>
+      <div class="healing-stage">
+        <h3>2. Gedanken</h3>
+        <em>Mapa de la Tristeza</em>
+        <img src="../assets/images/2._Gedanken_-_Mapa_de_la_Tristeza.png" alt="2. Gedanken — Mapa de la Tristeza" />
+      </div>
+      <div class="healing-stage">
+        <h3>3. Vorwurf</h3>
+        <em>Tackern und Lochern</em>
+        <img src="../assets/images/3._Vorwurf_-_Tackern_und_Lochern.png" alt="3. Vorwurf — Tackern und Lochern" />
+      </div>
+      <div class="healing-stage">
+        <h3>4. Mutlosigkeit</h3>
+        <em>The pounds of sadness and Lil' Ghost</em>
+        <img src="../assets/images/4._Mutlosigkeit_-_The_pounds_of_sadness_and_Lil-_Ghost.png" alt="4. Mutlosigkeit" />
+      </div>
+      <div class="healing-stage">
+        <h3>5. Selbstwirksamkeit</h3>
+        <em>It's ok, shadow</em>
+        <img src="../assets/images/5._Selbstwirksamkeit_-_It-s_OK__shadow.png" alt="5. Selbstwirksamkeit — It's ok, shadow" />
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Gedichte (PDFs)</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="../assets/pdfs/2025_FUNF_LIEBESHUMMER_gefiltert.pdf" target="_blank"><button>&#128196; Fünf LiebesHUMMER</button></a>
+        <a href="../assets/pdfs/LOVE_INFLUENZA.pdf" target="_blank"><button>&#128196; LOVE influenza</button></a>
+        <a href="../assets/pdfs/Honigg_Las.pdf" target="_blank"><button>&#128196; Honigg Las</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="improvisation.html"><button>Improvisation</button></a>
+        <a href="zamoranoandstamer.html"><button>Z&amp;S</button></a>
+        <a href="mental-pocus-records.html"><button>MPR</button></a>
+        <a href="shows.html"><button>Shows</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+        <a href="../healing.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div>
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">The Healing Project</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+<script>
+  (function(){var n=new Date();document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");})();
+</script>
+</body>
+</html>

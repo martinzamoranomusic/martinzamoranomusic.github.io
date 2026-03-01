@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARTIN ZAMORANO - MS-DOS 6.22</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #aaa;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      font-size: 15px;
+      min-height: 100vh;
+    }
+
+    /* CRT scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 2px,
+        rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── QBASIC menu bar ── */
+    .menubar {
+      background: #00a;
+      color: #fff;
+      display: flex;
+      gap: 0;
+      font-size: 14px;
+      height: 20px;
+      align-items: center;
+    }
+    .menubar-title {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+    }
+    .menubar-item {
+      padding: 0 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .menubar-item:hover, .menubar-item.active { background: #fff; color: #000; }
+    .menubar-item span { text-decoration: underline; }
+
+    /* ── main edit area ── */
+    .editor {
+      background: #00a;
+      color: #fff;
+      padding: 4px 8px;
+      min-height: calc(100vh - 40px);
+    }
+
+    /* line numbers */
+    .line { display: flex; gap: 12px; min-height: 20px; }
+    .ln   { color: #0ff; min-width: 36px; text-align: right; flex-shrink: 0; user-select: none; }
+    .lc   { flex: 1; }
+
+    /* syntax colours */
+    .kw  { color: #ff0; }   /* keywords: REM, PRINT, INPUT etc */
+    .str { color: #0f0; }   /* strings */
+    .num { color: #f80; }   /* numbers */
+    .cmt { color: #888; }   /* comments */
+    .fn  { color: #0ff; }   /* function names */
+    .lbl { color: #f0f; }   /* labels */
+
+    a { color: #0ff; text-decoration: none; }
+    a:hover { color: #ff0; text-decoration: underline; }
+
+    /* ── dialog box ── */
+    .dialog {
+      background: #00a;
+      border: 2px solid #fff;
+      padding: 0;
+      margin: 20px auto;
+      max-width: 560px;
+      box-shadow: 4px 4px 0 #000;
+    }
+    .dialog-title {
+      background: #055;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .dialog-body { padding: 10px 14px; }
+
+    /* ── status bar ── */
+    .statusbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #00a;
+      color: #fff;
+      font-size: 13px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 20px;
+    }
+    .statusbar-right { margin-left: auto; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: #fff;
+      vertical-align: text-bottom;
+      animation: blink 0.6s step-start infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .dos-btn {
+      background: #055;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 1px 10px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      margin: 3px 2px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .dos-btn:hover { background: #fff; color: #000; }
+
+    .show-row { margin: 3px 0; font-size: 13px; }
+    .show-date { color: #0ff; }
+    .show-venue { color: #0f0; }
+    .show-project { color: #888; }
+
+    .pb { padding-bottom: 80px; }
+  </style>
+</head>
+<body>
+
+  <!-- Menu bar -->
+  <div class="menubar">
+    <div class="menubar-item"><span>F</span>ile</div>
+    <div class="menubar-item"><span>E</span>dit</div>
+    <div class="menubar-item"><span>V</span>iew</div>
+    <div class="menubar-item"><span>S</span>earch</div>
+    <div class="menubar-item"><span>R</span>un</div>
+    <div class="menubar-item active"><span>D</span>ebug</div>
+    <div class="menubar-item"><span>O</span>ptions</div>
+    <div class="menubar-title">MARTIN_ZAMORANO.BAS</div>
+    <div class="menubar-item"><span>H</span>elp</div>
+  </div>
+
+  <!-- Editor area -->
+  <div class="editor pb">
+
+    <div class="line"><span class="ln">1</span><span class="lc"><span class="kw">REM</span> <span class="cmt">================================================</span></span></div>
+    <div class="line"><span class="ln">2</span><span class="lc"><span class="kw">REM</span> <span class="cmt"> MARTIN ZAMORANO - OFFIZIELLE HOMEPAGE v1.0   </span></span></div>
+    <div class="line"><span class="ln">3</span><span class="lc"><span class="kw">REM</span> <span class="cmt"> (C) 2026 MARTIN ZAMORANO PRODUCTIONS         </span></span></div>
+    <div class="line"><span class="ln">4</span><span class="lc"><span class="kw">REM</span> <span class="cmt">================================================</span></span></div>
+    <div class="line"><span class="ln">5</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">6</span><span class="lc"><span class="kw">PRINT</span> <span class="str">"JETZT NEU: DIESE WEBSITE!"</span></span></div>
+    <div class="line"><span class="ln">7</span><span class="lc"><span class="kw">PRINT</span> <span class="str">"ER HAT EIN KLAVIER!!"</span></span></div>
+    <div class="line"><span class="ln">8</span><span class="lc"><span class="kw">PRINT</span> <span class="str">"DU HAST DICH VERIRRT. MACHT NICHTS."</span></span></div>
+    <div class="line"><span class="ln">9</span><span class="lc"><span class="kw">PRINT</span> <span class="str">"JETZT MUSST DU LEIDER WAS UEBER MARTIN ERFAHREN."</span></span></div>
+    <div class="line"><span class="ln">10</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">11</span><span class="lc"><span class="kw">REM</span> <span class="cmt">-- SOCIAL LINKS --</span></span></div>
+    <div class="line"><span class="ln">12</span><span class="lc"><span class="kw">PRINT</span> <span class="str">"LINKS:"</span></span></div>
+    <div class="line"><span class="ln">13</span><span class="lc">
+      <a href="https://martinzamorano.bandcamp.com/" target="_blank" class="dos-btn">BANDCAMP</a>
+      <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" class="dos-btn">INSTAGRAM</a>
+      <a href="https://open.spotify.com/artist/1N9ltuIHjJ0w8lKa0Yadxr" target="_blank" class="dos-btn">SPOTIFY</a>
+      <a href="https://www.youtube.com/@martinzamoranomusic" target="_blank" class="dos-btn">YOUTUBE</a>
+    </span></div>
+    <div class="line"><span class="ln">14</span><span class="lc">&nbsp;</span></div>
+
+    <!-- Album dialog -->
+    <div class="line"><span class="ln">15</span><span class="lc"><span class="kw">REM</span> <span class="cmt">-- NEUES ALBUM --</span></span></div>
+    <div class="line"><span class="ln">16</span><span class="lc">
+      <div class="dialog" style="margin-top:6px; margin-bottom:6px;">
+        <div class="dialog-title">
+          <span>Neues Album</span>
+          <span>[X]</span>
+        </div>
+        <div class="dialog-body" style="display:flex; gap:12px; align-items:flex-start;">
+          <img src="../assets/images/a3363914671_10.jpg" style="width:72px;height:72px;object-fit:cover;border:1px solid #fff;flex-shrink:0;" />
+          <div>
+            <div style="color:#ff0; margin-bottom:4px; font-size:13px;">PRE-APOCALYPTIC ANTI-CYNICAL<br>POST-POSTMODERNIST PIANO JUKEBOX</div>
+            <div style="color:#888; font-size:12px; margin-bottom:8px;">DAS ALBUM, AUF DAS NIEMAND GEWARTET HAT!</div>
+            <a href="https://martinzamorano.bandcamp.com/album/pre-apocalyptic-anti-cynical-post-postmodernist-piano-jukebox"
+               target="_blank" class="dos-btn">[ ANHOEREN ]</a>
+          </div>
+        </div>
+      </div>
+    </span></div>
+
+    <div class="line"><span class="ln">17</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">18</span><span class="lc"><span class="kw">REM</span> <span class="cmt">-- NAECHSTE SHOWS --</span></span></div>
+    <div class="line"><span class="ln">19</span><span class="lc">
+      <div class="dialog" style="margin-top:6px; margin-bottom:6px;">
+        <div class="dialog-title"><span>Shows</span><span>[?]</span></div>
+        <div class="dialog-body">
+          <div id="shows-dos"><span class="cmt">LOADING...</span></div>
+          <br>
+          <a href="../shows.html" class="dos-btn">[ ALLE SHOWS ]</a>
+        </div>
+      </div>
+    </span></div>
+
+    <div class="line"><span class="ln">20</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">21</span><span class="lc"><span class="kw">REM</span> <span class="cmt">-- NAVIGATION --</span></span></div>
+    <div class="line"><span class="ln">22</span><span class="lc">
+      <a href="vita.html" class="dos-btn">VITA</a>
+      <a href="../musik.html" class="dos-btn">PIANO</a>
+      <a href="../improvisation.html" class="dos-btn">IMPROV</a>
+      <a href="../shows.html" class="dos-btn">SHOWS</a>
+      <a href="../kontakt.html" class="dos-btn">KONTAKT</a>
+      <a href="../mental-pocus-records.html" class="dos-btn">MPR</a>
+      <a href="labyrinth.html" class="dos-btn">LABYRINTH</a>
+    </span></div>
+    <div class="line"><span class="ln">23</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">24</span><span class="lc"><span class="kw">END</span></span></div>
+    <div class="line"><span class="ln">25</span><span class="lc">&nbsp;</span></div>
+    <div class="line"><span class="ln">26</span><span class="lc"><span class="cmt">Ok</span></span></div>
+    <div class="line"><span class="ln">27</span><span class="lc"><span class="cursor">&nbsp;</span></span></div>
+
+  </div>
+
+  <!-- Status bar -->
+  <div class="statusbar">
+    <span>&lt;Shift+F1=Help&gt; &lt;F5=Run&gt; &lt;F8=Step&gt;</span>
+    <span class="statusbar-right">
+      <a href="../impressum.html" style="color:#fff; margin-right:12px;">IMPRESSUM</a>
+      <a href="../index.html" style="color:#fff;">NORMAL VERSION</a>
+    </span>
+  </div>
+
+  <script src="../assets/shows-data.js"></script>
+  <script>
+    (function() {
+      function parseDate(str) {
+        var p = str.split('.'); return new Date(+p[2], +p[1]-1, +p[0]);
+      }
+      var today = new Date(); today.setHours(0,0,0,0);
+      var next3 = (window.SHOWS_DATA || [])
+        .filter(function(s) { return parseDate(s.date) >= today; })
+        .sort(function(a,b) { return parseDate(a.date) - parseDate(b.date); })
+        .slice(0, 3);
+      var el = document.getElementById('shows-dos');
+      if (!next3.length) { el.innerHTML = '<span class="cmt">NO UPCOMING SHOWS.</span>'; return; }
+      el.innerHTML = next3.map(function(s) {
+        var v = s.url ? '<a href="'+s.url+'" target="_blank">'+s.venue+'</a>' : s.venue;
+        return '<div class="show-row"><span class="show-date">'+s.date+'</span>  <span class="show-venue">'+v+'</span>  <span class="show-project">'+s.project+'</span></div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

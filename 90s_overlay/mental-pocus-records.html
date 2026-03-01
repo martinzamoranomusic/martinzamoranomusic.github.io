@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Pocus Records -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body{background-color:#008080;font-family:Arial,sans-serif;padding:20px;margin:0;}
+    .desktop{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:50px;}
+    .window-body{padding:12px;}
+    marquee{background:navy;color:yellow;font-weight:bold;font-size:.9rem;padding:4px 0;margin:8px 0;}
+    .nav-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+    .nav-btns a{text-decoration:none;}
+    .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
+    .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Mental Pocus Records</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee>** IMPROVISED ART ** SONIC POETRY ** HAMBURG ** WEIRD MAGIC **</marquee>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">About Mental Pocus Records</div></div>
+    <div class="window-body">
+      <p style="font-size:.82rem;margin:0 0 6px;">Mental Pocus Records is a collaborative space for explorative music, improvisation, sonic poetry and a bit of weird magic. The label is based in Hamburg (Germany) and is curated by Danica Hobden and Martín Zamorano.</p>
+      <p style="font-size:.82rem;margin:0 0 6px;">The philosophy behind our idea is simple:</p>
+      <ul style="font-size:.82rem;margin:0 0 6px;padding-left:18px;">
+        <li>Create a musical space for young artists working within the realms of improvised art, regardless of genre, form or language.</li>
+        <li>Connect improvisation artists within Hamburg and Europe.</li>
+        <li>Share music independently of the financial agendas of the so-called "music industry".</li>
+      </ul>
+      <p style="font-size:.82rem;margin:0;">For more, visit us on <a href="https://mentalpocusrecords.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a> or <a href="https://www.instagram.com/mentalpocusrecords/" target="_blank" rel="noopener">Instagram</a>.</p>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Latest Release</div></div>
+    <div class="window-body">
+      <p style="font-size:.85rem;font-weight:bold;margin:0 0 6px;">Fragments of Spirit Vol. I — ECOllective enSEMBLE</p>
+      <iframe style="border:2px inset #808080;width:100%;height:120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1849331253/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless></iframe>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Links</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="https://mentalpocusrecords.bandcamp.com/" target="_blank" rel="noopener"><button>Bandcamp</button></a>
+        <a href="https://www.instagram.com/mentalpocusrecords/" target="_blank" rel="noopener"><button>Instagram</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="improvisation.html"><button>Improvisation</button></a>
+        <a href="zamoranoandstamer.html"><button>Z&amp;S</button></a>
+        <a href="healing.html"><button>Healing</button></a>
+        <a href="shows.html"><button>Shows</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+        <a href="../mental-pocus-records.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div>
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Mental Pocus Records</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+<script>
+  (function(){var n=new Date();document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");})();
+</script>
+</body>
+</html>

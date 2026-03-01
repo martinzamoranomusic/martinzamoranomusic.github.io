@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zamorano &amp; Stamer -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body{background-color:#008080;font-family:Arial,sans-serif;padding:20px;margin:0;}
+    .desktop{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:50px;}
+    .window-body{padding:12px;}
+    marquee{background:navy;color:yellow;font-weight:bold;font-size:.9rem;padding:4px 0;margin:8px 0;}
+    .nav-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+    .nav-btns a{text-decoration:none;}
+    .yt-thumb{position:relative;cursor:pointer;display:block;}
+    .yt-thumb img{width:100%;display:block;border:2px inset #808080;}
+    .yt-thumb-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+    .yt-thumb-btn svg{width:52px;height:36px;}
+    .yt-thumb iframe{width:100%;aspect-ratio:16/9;border:2px inset #808080;display:block;}
+    .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0;}
+    .video-title{font-size:.8rem;margin:0 0 4px;font-weight:bold;}
+    .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
+    .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+    @media(max-width:500px){.video-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Zamorano &amp; Stamer</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee>** FOLK ** JAZZ ** HARDANGER-FIEDEL ** KLAVIER ** HAMBURG **</marquee>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Ueber das Duo</div></div>
+    <div class="window-body">
+      <img src="../assets/images/FIN_0295.jpg" alt="Zamorano &amp; Stamer" style="width:100%;max-height:220px;object-fit:cover;border:2px inset #808080;margin-bottom:10px;" />
+      <p style="font-size:.82rem;margin:0 0 6px;">Eine langjährige Freundschaft und eine tiefe Liebe zur Folkmusik vereint die beiden jungen Musiker aus Hamburg, die sich im Duo zusammengefunden haben, um die Begegnung zwischen nordischer Folkmusik und Jazz auszuloten.</p>
+      <p style="font-size:.82rem;margin:0 0 6px;">In ihren Arrangements von Tunes aus Skandinavien und dem Keltischen Raum verbinden sie improvisatorische Elemente und harmonische Feinheiten mit dem melodischen Reichtum der traditionellen Musik.</p>
+      <p style="font-size:.82rem;margin:0;">Finn Stamers Expressivität auf der Geige gestaltet die melodische Sprache, während Martín Zamorano das Fundament mit seinem polyphonen, perkussiven Sound legt. Besetzung: Hardangerfiedel, Oktavgeige, präpariertes Klavier, Fender Rhodes.</p>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Videos -- From the Klangmanufaktur</div></div>
+    <div class="window-body">
+      <div class="video-grid">
+        <div>
+          <p class="video-title">Spring</p>
+          <div class="yt-thumb" data-vid="1L4Iy1oLn1U">
+            <img src="https://img.youtube.com/vi/1L4Iy1oLn1U/hqdefault.jpg" alt="" />
+            <div class="yt-thumb-btn"><svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.8 0 34 0 34 0S12.2 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.4 0 24 0 24s0 11.6 1.5 16.3a8.5 8.5 0 0 0 6 6C12.2 48 34 48 34 48s21.8 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.6 68 24 68 24s0-11.6-1.5-16.3z" fill="#888"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
+          </div>
+        </div>
+        <div>
+          <p class="video-title">Da lounge bar</p>
+          <div class="yt-thumb" data-vid="o4MOWCQAhpk">
+            <img src="https://img.youtube.com/vi/o4MOWCQAhpk/hqdefault.jpg" alt="" />
+            <div class="yt-thumb-btn"><svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.8 0 34 0 34 0S12.2 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.4 0 24 0 24s0 11.6 1.5 16.3a8.5 8.5 0 0 0 6 6C12.2 48 34 48 34 48s21.8 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.6 68 24 68 24s0-11.6-1.5-16.3z" fill="#888"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Downloads</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="../assets/pdfs/Zamorano_Stamer_DEUTSCH_Presskit.pdf" target="_blank"><button>&#128196; Press Kit (DE)</button></a>
+        <a href="../assets/pdfs/Zamorano_Stamer_ENGLISH_Press_kit.pdf" target="_blank"><button>&#128196; Press Kit (EN)</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="improvisation.html"><button>Improvisation</button></a>
+        <a href="healing.html"><button>Healing</button></a>
+        <a href="mental-pocus-records.html"><button>MPR</button></a>
+        <a href="shows.html"><button>Shows</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+        <a href="../zamoranoandstamer.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div>
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Z&amp;S</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+<script>
+  document.querySelectorAll(".yt-thumb").forEach(function(el){
+    el.addEventListener("click",function(){
+      var vid=el.dataset.vid;
+      el.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+vid+'?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+    });
+  });
+  (function(){var n=new Date();document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");})();
+</script>
+</body>
+</html>

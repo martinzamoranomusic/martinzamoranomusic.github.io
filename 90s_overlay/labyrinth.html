@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body {
+      background-color: #008080;
+      margin: 0;
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .desktop {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      max-width: 660px;
+    }
+
+    /* ── Main game window ── */
+    .game-window {
+      width: 100%;
+    }
+
+    .window-body {
+      padding: 6px;
+      background: #c0c0c0;
+    }
+
+    /* ── Top toolbar: mine counter | face button | timer ── */
+    .ms-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #c0c0c0;
+      border: 2px inset #808080;
+      padding: 4px 8px;
+      margin-bottom: 6px;
+    }
+
+    .ms-counter {
+      font-family: 'Courier New', monospace;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: red;
+      background: black;
+      padding: 2px 6px;
+      border: 2px inset #808080;
+      letter-spacing: 2px;
+      min-width: 50px;
+      text-align: right;
+    }
+
+    .ms-face-btn {
+      width: 34px;
+      height: 34px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      font-weight: bold;
+      border: 2px outset #fff;
+    }
+
+    .ms-face-btn:active {
+      border: 2px inset #808080;
+    }
+
+    /* ── Canvas wrapper with inset border ── */
+    .canvas-wrap {
+      border: 3px inset #808080;
+      display: inline-block;
+      line-height: 0;
+      width: 100%;
+    }
+
+    #gameCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      image-rendering: pixelated;
+    }
+
+    /* ── Info panel below canvas ── */
+    .ms-info {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .ms-info .status-bar-field {
+      font-size: 0.75rem;
+    }
+
+    /* ── Mobile arrow pad ── */
+    .mobile-controls {
+      display: none;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .arrow-pad { display: inline-block; }
+
+    .arrow-row {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .arrow-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border: 2px outset #fff;
+      background: #c0c0c0;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .arrow-btn:active { border: 2px inset #808080; }
+    .arrow-up { display: block; margin: 0 auto 3px auto; }
+
+    .tilt-row {
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    .tilt-row label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) and (hover: none),
+           (max-width: 768px) and (pointer: coarse) {
+      .mobile-controls { display: block; }
+    }
+
+    body.is-touch .mobile-controls { display: block; }
+
+    /* ── Win / lose dialog ── */
+    .ms-dialog-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ms-dialog-overlay.visible {
+      display: flex;
+    }
+
+    .ms-dialog {
+      min-width: 280px;
+    }
+
+    .ms-dialog .window-body {
+      text-align: center;
+      padding: 16px;
+    }
+
+    .ms-dialog img {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto 12px;
+      image-rendering: pixelated;
+    }
+
+    .ms-dialog p {
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .ms-dialog .btn-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* ── Controls window ── */
+    .controls-window {
+      margin-top: 8px;
+    }
+
+    .controls-window .window-body {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+
+    .controls-window ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .controls-window li {
+      margin-bottom: 3px;
+    }
+
+    kbd {
+      background: #c0c0c0;
+      border: 1px outset #fff;
+      padding: 1px 4px;
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+
+    /* ── Taskbar ── */
+    .taskbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #c0c0c0;
+      border-top: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 4px;
+      z-index: 999;
+      height: 36px;
+    }
+
+    .taskbar-clock {
+      margin-left: auto;
+      font-size: 0.75rem;
+      border: 1px inset #808080;
+      padding: 2px 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="desktop">
+
+    <!-- Main game window -->
+    <div class="window game-window">
+      <div class="title-bar">
+        <div class="title-bar-text">Bring Martin zur Show</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close" onclick="window.location='index.html'"></button>
+        </div>
+      </div>
+      <div class="window-body">
+
+        <!-- MS toolbar row -->
+        <div class="ms-toolbar">
+          <div class="ms-counter" id="ms-level">L01</div>
+          <button class="ms-face-btn" id="faceBtn" title="New Game">:)</button>
+          <div class="ms-counter" id="ms-timer">0:00</div>
+        </div>
+
+        <!-- Canvas -->
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas"></canvas>
+        </div>
+
+        <!-- Status bar -->
+        <div class="ms-info status-bar">
+          <p class="status-bar-field" id="ms-moves">Schritte: 0</p>
+          <p class="status-bar-field">Pfeiltasten zum Bewegen</p>
+        </div>
+
+        <!-- Mobile controls -->
+        <div class="mobile-controls" id="mobileControls">
+          <div class="arrow-pad">
+            <button class="arrow-btn arrow-up" id="btnUp">^</button>
+            <div class="arrow-row">
+              <button class="arrow-btn" id="btnLeft">&lt;</button>
+              <button class="arrow-btn" id="btnDown">v</button>
+              <button class="arrow-btn" id="btnRight">&gt;</button>
+            </div>
+          </div>
+          <div class="tilt-row">
+            <label>
+              <input type="checkbox" id="tiltToggle" />
+              Tilt-Steuerung aktivieren
+            </label>
+          </div>
+        </div>
+
+      </div><!-- /.window-body -->
+    </div><!-- /.game-window -->
+
+    <!-- How-to window -->
+    <div class="window controls-window">
+      <div class="title-bar">
+        <div class="title-bar-text">Hilfe</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <ul>
+          <li>Bewege dich mit <kbd>^</kbd> <kbd>v</kbd> <kbd>&lt;</kbd> <kbd>&gt;</kbd> Pfeiltasten</li>
+          <li>Erreiche das Klavier am Ende des Labyrinths</li>
+          <li>Lauf nicht gegen die Wand. Du Idiot.</li>
+          <li>Es wird immer schwerer.</li>
+        </ul>
+        <br>
+        <a href="index.html"><button>Zurueck zur Homepage</button></a>
+      </div>
+    </div>
+
+  </div><!-- /.desktop -->
+
+  <!-- Win dialog -->
+  <div class="ms-dialog-overlay" id="winDialog">
+    <div class="window ms-dialog">
+      <div class="title-bar">
+        <div class="title-bar-text">Glueckwunsch!</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" id="dialogClose"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <img src="../assets/images/martin_bgremoved.png" alt="Martin" id="winImg" onerror="this.style.display='none'" />
+        <p id="winStats">Level abgeschlossen!</p>
+        <div class="btn-row">
+          <button id="nextLevelBtn">Naechstes Level</button>
+          <a href="../labyrinth-giveup.html"><button>Aufgeben</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button onclick="window.location='index.html'">Start</button>
+    <button>Martin</button>
+    <div class="taskbar-clock" id="taskbar-clock">00:00</div>
+  </div>
+
+  <script>
+    // ── Touch detection ──────────────────────────────────────
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      document.body.classList.add('is-touch');
+    }
+
+    // ── Taskbar clock ────────────────────────────────────────
+    function updateClock() {
+      var now = new Date();
+      document.getElementById('taskbar-clock').textContent =
+        now.getHours().toString().padStart(2,'0') + ':' +
+        now.getMinutes().toString().padStart(2,'0');
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+
+    // ── Canvas setup ─────────────────────────────────────────
+    const canvas = document.getElementById('gameCanvas');
+    const ctx    = canvas.getContext('2d');
+    const MAZE_SIZE   = 15;
+    const CANVAS_SIZE = 600;
+    canvas.width  = CANVAS_SIZE;
+    canvas.height = CANVAS_SIZE;
+
+    // ── Colours — faithful Minesweeper palette ───────────────
+    const C = {
+      wallFace:   '#c0c0c0',  // raised tile face
+      wallLight:  '#ffffff',  // top/left highlight
+      wallShadow: '#808080',  // bottom/right shadow
+      wallDark:   '#404040',  // outer dark edge
+      path:       '#c0c0c0',  // revealed / open cell (flat)
+      pathBorder: '#808080',
+      playerBg:   '#0000aa',  // blue like the number cells
+      playerFg:   '#ffffff',
+      goalBg:     '#ffff00',
+      goalFg:     '#000000',
+    };
+
+    // ── Game state ───────────────────────────────────────────
+    let state = {
+      level: 1,
+      moves: 0,
+      startTime: null,
+      timerInterval: null,
+      player: { x: 1, y: 1 },
+      goal:   { x: MAZE_SIZE - 2, y: MAZE_SIZE - 2 },
+      maze:   [],
+    };
+
+    // ── Maze generation (recursive backtracking) ─────────────
+    function generateMaze(size, level) {
+      const maze = Array(size).fill(null).map(() => Array(size).fill(1));
+      function carve(x, y) {
+        maze[y][x] = 0;
+        const dirs = [[0,-2],[2,0],[0,2],[-2,0]].sort(() => Math.random() - 0.5);
+        for (const [dx, dy] of dirs) {
+          const nx = x + dx, ny = y + dy;
+          if (nx > 0 && nx < size-1 && ny > 0 && ny < size-1 && maze[ny][nx] === 1) {
+            maze[y + dy/2][x + dx/2] = 0;
+            carve(nx, ny);
+          }
+        }
+      }
+      carve(1, 1);
+      const extra = Math.min(level * 3, 20);
+      for (let i = 0; i < extra; i++) {
+        const x = Math.floor(Math.random() * (size - 2)) + 1;
+        const y = Math.floor(Math.random() * (size - 2)) + 1;
+        maze[y][x] = 0;
+      }
+      return maze;
+    }
+
+    // ── Draw a single raised (wall) tile ────────────────────
+    function drawRaisedTile(x, y, cs) {
+      const bw = 2; // border width
+      // face
+      ctx.fillStyle = C.wallFace;
+      ctx.fillRect(x, y, cs, cs);
+      // top highlight
+      ctx.fillStyle = C.wallLight;
+      ctx.fillRect(x, y, cs, bw);
+      ctx.fillRect(x, y, bw, cs);
+      // bottom shadow
+      ctx.fillStyle = C.wallShadow;
+      ctx.fillRect(x, y + cs - bw, cs, bw);
+      ctx.fillRect(x + cs - bw, y, bw, cs);
+      // outer dark corner
+      ctx.fillStyle = C.wallDark;
+      ctx.fillRect(x + cs - 1, y, 1, cs);
+      ctx.fillRect(x, y + cs - 1, cs, 1);
+    }
+
+    // ── Draw a flat (path) cell ──────────────────────────────
+    function drawFlatCell(x, y, cs) {
+      ctx.fillStyle = C.path;
+      ctx.fillRect(x, y, cs, cs);
+      // single-pixel inset border to mimic revealed cell
+      ctx.fillStyle = C.pathBorder;
+      ctx.fillRect(x, y, 1, cs);
+      ctx.fillRect(x, y, cs, 1);
+    }
+
+    // ── Images ───────────────────────────────────────────────
+    const playerImage = new Image();
+    playerImage.src = '../assets/images/IMG_4000.png';
+    let playerImageLoaded = false;
+    playerImage.onload = function() { playerImageLoaded = true; draw(); };
+
+    const goalImage = new Image();
+    goalImage.src = '../assets/images/lulu-wu-35fycLrg6U8-unsplash.jpg';
+    let goalImageLoaded = false;
+    goalImage.onload = function() { goalImageLoaded = true; draw(); };
+
+    // ── Main draw ────────────────────────────────────────────
+    function draw() {
+      ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+      const cs = CANVAS_SIZE / MAZE_SIZE;
+
+      for (let row = 0; row < MAZE_SIZE; row++) {
+        for (let col = 0; col < MAZE_SIZE; col++) {
+          const px = col * cs, py = row * cs;
+          if (state.maze[row][col] === 1) {
+            drawRaisedTile(px, py, cs);
+          } else {
+            drawFlatCell(px, py, cs);
+          }
+        }
+      }
+
+      // Goal — piano image, or yellow P fallback
+      const gx = state.goal.x * cs, gy = state.goal.y * cs;
+      if (goalImageLoaded) {
+        ctx.drawImage(goalImage, gx + 1, gy + 1, cs - 2, cs - 2);
+      } else {
+        ctx.fillStyle = C.goalBg;
+        ctx.fillRect(gx + 1, gy + 1, cs - 2, cs - 2);
+        ctx.fillStyle = C.goalFg;
+        ctx.font = `bold ${cs * 0.55}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('P', gx + cs / 2, gy + cs / 2);
+      }
+
+      // Player — Martin image, larger than cell like original; blue M fallback
+      const px = state.player.x * cs, py = state.player.y * cs;
+      if (playerImageLoaded) {
+        const imgSize = cs * 4.4;
+        ctx.drawImage(playerImage, px + cs / 2 - imgSize / 2, py + cs / 2 - imgSize / 2, imgSize, imgSize);
+      } else {
+        ctx.fillStyle = C.playerBg;
+        ctx.fillRect(px + 1, py + 1, cs - 2, cs - 2);
+        ctx.fillStyle = C.playerFg;
+        ctx.font = `bold ${cs * 0.55}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('M', px + cs / 2, py + cs / 2);
+      }
+    }
+
+    // ── Init ─────────────────────────────────────────────────
+    function initGame() {
+      state.maze   = generateMaze(MAZE_SIZE, state.level);
+      state.player = { x: 1, y: 1 };
+      state.goal   = { x: MAZE_SIZE - 2, y: MAZE_SIZE - 2 };
+      state.maze[1][1] = 0;
+      state.maze[state.goal.y][state.goal.x] = 0;
+      state.moves    = 0;
+      state.startTime = Date.now();
+      document.getElementById('faceBtn').textContent = ':)';
+      document.getElementById('winDialog').classList.remove('visible');
+      updateUI();
+      if (!state.timerInterval) {
+        state.timerInterval = setInterval(updateTimer, 1000);
+      }
+      draw();
+    }
+
+    // ── Movement ─────────────────────────────────────────────
+    function movePlayer(dx, dy) {
+      const nx = state.player.x + dx;
+      const ny = state.player.y + dy;
+      if (nx >= 0 && nx < MAZE_SIZE && ny >= 0 && ny < MAZE_SIZE && state.maze[ny][nx] === 0) {
+        state.player.x = nx;
+        state.player.y = ny;
+        state.moves++;
+        updateUI();
+        draw();
+        if (nx === state.goal.x && ny === state.goal.y) winLevel();
+      }
+    }
+
+    // ── UI updates ───────────────────────────────────────────
+    function updateUI() {
+      document.getElementById('ms-level').textContent = 'L' + state.level.toString().padStart(2, '0');
+      document.getElementById('ms-moves').textContent = 'Schritte: ' + state.moves;
+    }
+
+    function updateTimer() {
+      if (!state.startTime) return;
+      const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+      const m = Math.floor(elapsed / 60);
+      const s = elapsed % 60;
+      document.getElementById('ms-timer').textContent = m + ':' + s.toString().padStart(2,'0');
+    }
+
+    // ── Win ──────────────────────────────────────────────────
+    function winLevel() {
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
+      const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+      const m = Math.floor(elapsed / 60);
+      const s = elapsed % 60;
+      document.getElementById('faceBtn').textContent = 'B)';
+      document.getElementById('winStats').textContent =
+        'Level ' + state.level + ' in ' + m + ':' + s.toString().padStart(2,'0') +
+        ' mit ' + state.moves + ' Schritten. Martin haette es schneller geschafft.';
+      document.getElementById('winDialog').classList.add('visible');
+    }
+
+    // ── Event listeners ──────────────────────────────────────
+    document.addEventListener('keydown', function(e) {
+      switch(e.key) {
+        case 'ArrowUp':    e.preventDefault(); movePlayer(0,-1); break;
+        case 'ArrowDown':  e.preventDefault(); movePlayer(0, 1); break;
+        case 'ArrowLeft':  e.preventDefault(); movePlayer(-1,0); break;
+        case 'ArrowRight': e.preventDefault(); movePlayer( 1,0); break;
+      }
+    });
+
+    document.getElementById('btnUp').addEventListener('click',    function(){ movePlayer(0,-1); });
+    document.getElementById('btnDown').addEventListener('click',  function(){ movePlayer(0, 1); });
+    document.getElementById('btnLeft').addEventListener('click',  function(){ movePlayer(-1,0); });
+    document.getElementById('btnRight').addEventListener('click', function(){ movePlayer( 1,0); });
+
+    document.getElementById('faceBtn').addEventListener('click', function() {
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
+      initGame();
+    });
+
+    document.getElementById('nextLevelBtn').addEventListener('click', function() {
+      state.level++;
+      initGame();
+    });
+
+    document.getElementById('dialogClose').addEventListener('click', function() {
+      document.getElementById('winDialog').classList.remove('visible');
+    });
+
+    // ── Tilt (iOS + Android) ─────────────────────────────────
+    let tiltEnabled = false;
+    let lastMoveTime = 0;
+
+    document.getElementById('tiltToggle').addEventListener('change', async function(e) {
+      tiltEnabled = e.target.checked;
+      if (tiltEnabled) {
+        if (typeof DeviceOrientationEvent !== 'undefined' &&
+            typeof DeviceOrientationEvent.requestPermission === 'function') {
+          try {
+            const perm = await DeviceOrientationEvent.requestPermission();
+            if (perm !== 'granted') { tiltEnabled = false; e.target.checked = false; return; }
+          } catch(err) { tiltEnabled = false; e.target.checked = false; return; }
+        }
+        window.addEventListener('deviceorientation', handleTilt);
+      } else {
+        window.removeEventListener('deviceorientation', handleTilt);
+      }
+    });
+
+    function handleTilt(event) {
+      if (!tiltEnabled) return;
+      const now = Date.now();
+      if (now - lastMoveTime < 200) return;
+      const beta = event.beta, gamma = event.gamma, threshold = 15;
+      if (Math.abs(beta) > Math.abs(gamma)) {
+        if (beta < -threshold)     { movePlayer(0,-1); lastMoveTime = now; }
+        else if (beta > threshold) { movePlayer(0, 1); lastMoveTime = now; }
+      } else {
+        if (gamma < -threshold)     { movePlayer(-1,0); lastMoveTime = now; }
+        else if (gamma > threshold) { movePlayer( 1,0); lastMoveTime = now; }
+      }
+    }
+
+    // ── Start ────────────────────────────────────────────────
+    initGame();
+  </script>
+</body>
+</html>

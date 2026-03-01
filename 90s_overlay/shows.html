@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shows -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body{background-color:#008080;font-family:Arial,sans-serif;padding:20px;margin:0;}
+    .desktop{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:50px;}
+    .window-body{padding:12px;}
+    marquee{background:navy;color:yellow;font-weight:bold;font-size:.9rem;padding:4px 0;margin:8px 0;}
+    .nav-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+    .nav-btns a{text-decoration:none;}
+    table{width:100%;border-collapse:collapse;font-size:.78rem;}
+    th{background:#000080;color:#fff;padding:4px 6px;text-align:left;border:1px solid #808080;}
+    td{padding:3px 6px;border:1px solid #c0c0c0;vertical-align:top;}
+    tr:nth-child(odd) td{background:#f0f0f0;}
+    tr:nth-child(even) td{background:#fff;}
+    .past td{color:#888;}
+    .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
+    .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Shows -- Martin Zamorano</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee id="marquee-text">** LOADING SHOWS DATA **</marquee>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Upcoming Shows</div></div>
+    <div class="window-body" id="shows-upcoming">
+      <p style="font-size:.8rem;">Loading...</p>
+    </div>
+  </div>
+
+  <div class="window" id="past-window">
+    <div class="title-bar"><div class="title-bar-text">Past Shows</div></div>
+    <div class="window-body" id="shows-past">
+      <p style="font-size:.8rem;">Loading...</p>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="improvisation.html"><button>Improvisation</button></a>
+        <a href="zamoranoandstamer.html"><button>Z&amp;S</button></a>
+        <a href="healing.html"><button>Healing</button></a>
+        <a href="mental-pocus-records.html"><button>MPR</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+        <a href="../shows.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div>
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Shows</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+
+<script src="../assets/shows-data.js"></script>
+<script>
+(function(){
+  var n=new Date();
+  document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");
+
+  function parseDate(str){var p=str.split('.');return new Date(+p[2],+p[1]-1,+p[0]);}
+
+  var today=new Date();today.setHours(0,0,0,0);
+  var upcoming=[],past=[];
+  (window.SHOWS_DATA||[]).forEach(function(s){
+    (parseDate(s.date)>=today?upcoming:past).push(s);
+  });
+  upcoming.sort(function(a,b){return parseDate(a.date)-parseDate(b.date);});
+  past.sort(function(a,b){return parseDate(b.date)-parseDate(a.date);});
+
+  function buildTable(shows,isPast){
+    var rows=shows.map(function(s){
+      var venue=s.url?'<a href="'+s.url+'" target="_blank" rel="noopener">'+s.venue+'</a>':s.venue;
+      return '<tr class="'+(isPast?'past':'')+'"><td>'+s.date+'</td><td>'+venue+'</td><td>'+s.city+'</td><td>'+s.project+'</td></tr>';
+    }).join('');
+    return '<table><thead><tr><th>Datum</th><th>Venue</th><th>Stadt</th><th>Projekt</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+
+  var upEl=document.getElementById('shows-upcoming');
+  var pastEl=document.getElementById('shows-past');
+
+  if(upcoming.length){
+    upEl.innerHTML=buildTable(upcoming,false);
+  } else {
+    upEl.innerHTML='<p style="font-size:.8rem;">Keine bevorstehenden Shows.</p>';
+  }
+
+  if(past.length){
+    pastEl.innerHTML=buildTable(past,true);
+  } else {
+    pastEl.innerHTML='<p style="font-size:.8rem;">Keine vergangenen Shows.</p>';
+  }
+
+  var marqueeText=upcoming.length
+    ? upcoming.map(function(s){return s.date+' @ '+s.venue+', '+s.city;}).join(' *** ')
+    : 'Keine bevorstehenden Shows';
+  document.getElementById('marquee-text').textContent='*** '+marqueeText+' ***';
+})();
+</script>
+</body>
+</html>

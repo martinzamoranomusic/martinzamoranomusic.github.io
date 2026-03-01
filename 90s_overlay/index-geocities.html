@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>~*~ MARTIN ZAMORANO ~*~ OFFICIAL HOMEPAGE ~*~</title>
+  <style>
+    body {
+      background-color: #000080;
+      background-image:
+        radial-gradient(circle, #ffff00 1px, transparent 1px),
+        radial-gradient(circle, #ff00ff 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px;
+      background-position: 0 0, 20px 20px;
+      color: #ffff00;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    a { color: #00ffff; }
+    a:visited { color: #ff00ff; }
+    a:hover { color: #ff0000; text-decoration: underline overline; }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff0000;
+      text-shadow: 3px 3px #ffff00, -3px -3px #00ffff;
+      animation: rainbow 0.8s linear infinite;
+      margin: 0.5rem 0;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #00ff00;
+      text-shadow: 2px 2px #000;
+    }
+
+    h3 {
+      color: #ff00ff;
+      font-size: 1.1rem;
+    }
+
+    @keyframes rainbow {
+      0%   { color: #ff0000; }
+      16%  { color: #ff8800; }
+      33%  { color: #ffff00; }
+      50%  { color: #00ff00; }
+      66%  { color: #0088ff; }
+      83%  { color: #ff00ff; }
+      100% { color: #ff0000; }
+    }
+
+    .main-table {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      border: 4px ridge #ffff00;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 3px dashed #ff00ff;
+      margin: 12px 0;
+    }
+
+    .box {
+      border: 3px outset #00ffff;
+      background: rgba(0,0,128,0.8);
+      padding: 10px 14px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .box-title {
+      background: #ff0000;
+      color: #ffff00;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 2px 8px;
+      margin: -10px -14px 10px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .blink { animation: blink 0.6s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .rotate { animation: spin 4s linear infinite; display: inline-block; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .btn-gc {
+      display: inline-block;
+      background: linear-gradient(to bottom, #ffff00, #ff8800);
+      color: #000080;
+      border: 3px outset #ffffff;
+      font-family: 'Comic Sans MS', cursive;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 3px;
+    }
+
+    .btn-gc:hover {
+      background: linear-gradient(to bottom, #ff0000, #ff00ff);
+      color: #ffff00;
+      border-style: inset;
+    }
+
+    .album-img {
+      float: left;
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border: 4px ridge #00ffff;
+      margin: 0 12px 8px 0;
+    }
+
+    .show-row { margin: 6px 0; font-size: 0.85rem; }
+    .show-date  { color: #00ff00; font-weight: bold; }
+    .show-venue { color: #ffff00; }
+    .show-project { color: #aaaaaa; font-size: 0.75rem; }
+
+    .nav-links { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin: 8px 0; }
+
+    .counter-img {
+      background: #000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      border: 2px inset #00ff00;
+      padding: 2px 10px;
+      display: inline-block;
+    }
+
+    .stars { color: #ffff00; letter-spacing: 3px; }
+
+    .guestbook-strip {
+      background: #000;
+      border: 2px solid #ff00ff;
+      padding: 6px;
+      font-size: 0.75rem;
+      color: #ff00ff;
+      margin: 8px 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    table.nav-table { width: 100%; border-collapse: collapse; }
+    table.nav-table td { padding: 3px 6px; border: 1px solid #ffff00; font-size: 0.8rem; text-align: center; }
+    table.nav-table td:hover { background: #000080; }
+
+    .ie-warning {
+      font-size: 0.65rem;
+      color: #888888;
+      margin-top: 6px;
+    }
+
+    .under-construction {
+      font-size: 0.75rem;
+      color: #ffff00;
+      background: repeating-linear-gradient(
+        45deg, #000000, #000000 5px, #ffcc00 5px, #ffcc00 10px
+      );
+      color: #000;
+      padding: 4px 12px;
+      font-weight: bold;
+      display: inline-block;
+      margin: 6px 0;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      .album-img { width: 80px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-table">
+
+  <!-- Header -->
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+  <h1>MARTIN ZAMORANO</h1>
+  <h2>~*~ OFFIZIELLE HOMEPAGE ~*~</h2>
+  <p><span class="rotate">&#9835;</span>
+     &nbsp; PIANIST &bull; KOMPONIST &bull; HAMBURG &nbsp;
+     <span class="rotate">&#9835;</span></p>
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+
+  <marquee behavior="bounce" direction="left" scrollamount="6"
+           style="color:#00ffff; font-weight:bold; font-size:1rem;">
+    *** WILLKOMMEN auf der COOLSTEN Musikerseite des Internets!!! ***
+    NEUE SHOWS verfuegbar!!! *** Bandcamp-Album JETZT ERHAELTLICH ***
+  </marquee>
+
+  <p>
+    <span class="under-construction">!!! SEITE NOCH IM AUFBAU !!!</span>
+  </p>
+
+  <hr class="divider">
+
+  <!-- About -->
+  <div class="box">
+    <div class="box-title">~~~ UEBER MICH ~~~</div>
+    <p style="font-size:0.85rem; line-height:1.8">
+      Hallo und <span class="blink">HERZLICH WILLKOMMEN</span> auf meiner Homepage!!!
+      Ich bin <strong style="color:#00ffff">Martin Zamorano</strong>, Pianist und Komponist aus Hamburg.
+      Diese Seite wurde mit viel Liebe und Microsoft FrontPage 98 erstellt.
+      Ihr Browser braucht mindestens <strong>800x600</strong> Aufloesung.
+    </p>
+    <div class="nav-links">
+      <a href="https://martinzamorano.bandcamp.com/" target="_blank" class="btn-gc">BANDCAMP</a>
+      <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" class="btn-gc">INSTAGRAM</a>
+      <a href="https://open.spotify.com/artist/1N9ltuIHjJ0w8lKa0Yadxr" target="_blank" class="btn-gc">SPOTIFY</a>
+      <a href="https://www.youtube.com/@martinzamoranomusic" target="_blank" class="btn-gc">YOUTUBE</a>
+      <a href="https://www.facebook.com/martinzamoranomusic" target="_blank" class="btn-gc">FACEBOOK</a>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <div>Du bist Besucher Nummer:</div>
+      <div class="counter-img" id="gc-counter">0004312</div>
+      <div class="ie-warning">Best viewed in Internet Explorer 4.0 &bull; 800x600 &bull; 256 colors</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Album -->
+  <div class="box">
+    <div class="box-title">~~~ NEUES ALBUM ~~~</div>
+    <img class="album-img" src="../assets/images/a3363914671_10.jpg" alt="Album" />
+    <h3><span class="blink">*** NEU ***</span> Pre-Apocalyptic Anti-Cynical Post-Postmodernist Piano Jukebox</h3>
+    <p style="font-size:0.8rem; line-height:1.8">
+      Jetzt auf Bandcamp erhaeltlich!!! Das beste Album das du je hoeren wirst!!!
+      <span class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+    </p>
+    <a href="https://martinzamorano.bandcamp.com/album/pre-apocalyptic-anti-cynical-post-postmodernist-piano-jukebox"
+       target="_blank" class="btn-gc">
+      &gt;&gt; JETZT ANHOEREN &lt;&lt;
+    </a>
+    <div style="clear:both"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Shows -->
+  <div class="box">
+    <div class="box-title">~~~ LIVE SHOWS ~~~</div>
+    <div id="shows-gc"><p style="font-size:0.8rem">Laedt...</p></div>
+    <br>
+    <a href="../shows.html" class="btn-gc">ALLE SHOWS ANZEIGEN</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Navigation -->
+  <div class="box">
+    <div class="box-title">~~~ NAVIGATION ~~~</div>
+    <table class="nav-table">
+      <tr>
+        <td><a href="../vita.html">VITA</a></td>
+        <td><a href="../musik.html">PIANO</a></td>
+        <td><a href="../improvisation.html">IMPROV</a></td>
+        <td><a href="../zamoranoandstamer.html">Z &amp; S</a></td>
+      </tr>
+      <tr>
+        <td><a href="../healing.html">HEALING</a></td>
+        <td><a href="../mental-pocus-records.html">MPR</a></td>
+        <td><a href="../shows.html">SHOWS</a></td>
+        <td><a href="../kontakt.html">KONTAKT</a></td>
+      </tr>
+      <tr>
+        <td colspan="4"><a href="labyrinth.html">*** LABYRINTH GAME ***</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Guestbook -->
+  <div class="guestbook-strip">
+    [GAESTEBUCH] &gt; 0 Eintraege &bull; Sei der Erste! &bull;
+    <a href="../kontakt.html" style="color:#ff00ff">Eintrag hinzufuegen &gt;&gt;</a>
+  </div>
+
+  <!-- Footer -->
+  <p style="font-size:0.7rem; color:#888888; margin-top:10px;">
+    &copy; 2026 Martin Zamorano &bull;
+    <a href="../impressum.html">Impressum</a> &bull;
+    <a href="../datenschutz.html">Datenschutz</a> &bull;
+    <a href="../index.html" style="color:#00ffff">Zur normalen Version</a>
+  </p>
+  <p class="ie-warning">Diese Seite wurde mit Microsoft FrontPage 98 erstellt.</p>
+  <p class="stars">* * * * * * * * * * * * * * * * * * * * *</p>
+
+</div>
+
+<script src="../assets/shows-data.js"></script>
+<script>
+  // counter
+  (function() {
+    try {
+      var s = parseInt(localStorage.getItem('mz_visits_gc') || 4312, 10);
+      s++;
+      localStorage.setItem('mz_visits_gc', s);
+      document.getElementById('gc-counter').textContent = s.toString().padStart(7, '0');
+    } catch(e) {}
+  })();
+
+  // shows
+  (function() {
+    function parseDate(str) {
+      var p = str.split('.'); return new Date(+p[2], +p[1]-1, +p[0]);
+    }
+    var today = new Date(); today.setHours(0,0,0,0);
+    var next3 = (window.SHOWS_DATA || [])
+      .filter(function(s) { return parseDate(s.date) >= today; })
+      .sort(function(a,b) { return parseDate(a.date) - parseDate(b.date); })
+      .slice(0, 3);
+    var el = document.getElementById('shows-gc');
+    if (!next3.length) { el.innerHTML = '<p style="font-size:0.8rem">Keine Shows gefunden.</p>'; return; }
+    el.innerHTML = next3.map(function(s) {
+      var v = s.url ? '<a href="'+s.url+'" target="_blank">'+s.venue+'</a>' : s.venue;
+      return '<div class="show-row">'
+        + '<span class="show-date">'+s.date+'</span> &bull; '
+        + '<span class="show-venue">'+v+'</span>, '+s.city+'<br>'
+        + '<span class="show-project">'+s.project+'</span>'
+        + '</div>';
+    }).join('');
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body{background-color:#008080;font-family:Arial,sans-serif;padding:20px;margin:0;}
+    .desktop{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:50px;}
+    .window-body{padding:12px;}
+    marquee{background:navy;color:yellow;font-weight:bold;font-size:.9rem;padding:4px 0;margin:8px 0;}
+    .nav-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+    .nav-btns a{text-decoration:none;}
+    .field-row{display:flex;flex-direction:column;margin-bottom:8px;gap:2px;}
+    .field-row label{font-size:.8rem;font-weight:bold;}
+    .field-row input, .field-row textarea{font-family:Arial,sans-serif;font-size:.82rem;padding:4px;border:2px inset #808080;background:#fff;width:100%;box-sizing:border-box;}
+    .field-row textarea{height:80px;resize:vertical;}
+    .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
+    .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Kontakt -- Martin Zamorano</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee>** SCHREIB MIR EINE NACHRICHT ** SEND ME A MESSAGE **</marquee>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Neue Nachricht verfassen</div></div>
+    <div class="window-body">
+      <p style="font-size:.82rem;margin:0 0 10px;">Wenn du Kontakt aufnehmen möchtest, schreib mir eine E-Mail über das untenstehende Formular.</p>
+      <form action="https://formspree.io/f/xreayqon" method="POST" id="contact-form">
+        <div class="field-row">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Dein Name" />
+        </div>
+        <div class="field-row">
+          <label for="telefon">Telefon</label>
+          <input type="tel" id="telefon" name="telefon" placeholder="Optional" />
+        </div>
+        <div class="field-row">
+          <label for="email">E-Mail *</label>
+          <input type="email" id="email" name="email" required placeholder="deine@email.de" />
+        </div>
+        <div class="field-row">
+          <label for="message">Nachricht *</label>
+          <textarea id="message" name="message" required placeholder="Deine Nachricht..."></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+        <div style="margin-top:10px;">
+          <button type="submit">&#128231; Absenden</button>
+          <button type="reset" style="margin-left:6px;">&#10006; Leeren</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="window" id="success-window" style="display:none;">
+    <div class="title-bar"><div class="title-bar-text">Nachricht gesendet!</div></div>
+    <div class="window-body">
+      <p style="font-size:.85rem;">&#10004; Deine Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei dir!</p>
+      <button onclick="document.getElementById('success-window').style.display='none';document.getElementById('contact-form').reset();">OK</button>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="improvisation.html"><button>Improvisation</button></a>
+        <a href="zamoranoandstamer.html"><button>Z&amp;S</button></a>
+        <a href="healing.html"><button>Healing</button></a>
+        <a href="mental-pocus-records.html"><button>MPR</button></a>
+        <a href="shows.html"><button>Shows</button></a>
+        <a href="../kontakt.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div>
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Kontakt</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+<script>
+  (function(){
+    var n=new Date();
+    document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");
+
+    // Handle async Formspree submission
+    var form=document.getElementById("contact-form");
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var data=new FormData(form);
+      fetch(form.action,{method:"POST",body:data,headers:{"Accept":"application/json"}})
+        .then(function(r){
+          if(r.ok){
+            document.getElementById("success-window").style.display="";
+            form.reset();
+          } else {
+            alert("Fehler beim Senden. Bitte versuche es erneut.");
+          }
+        })
+        .catch(function(){alert("Netzwerkfehler. Bitte versuche es erneut.");});
+    });
+  })();
+</script>
+</body>
+</html>
