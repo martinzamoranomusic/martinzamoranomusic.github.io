@@ -45,18 +45,13 @@
       align-items: flex-end;
       height: 280px;
       border: 2px inset #808080;
-      background: #c0c0c0 url('../assets/images/bg_home.jpg') center/cover;
+      background: #c0c0c0;
       overflow: hidden;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><text y="36" font-size="36">👋</text></svg>') 24 24, pointer;
     }
 
     .martin-arena::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(192,192,192,.4);
-      pointer-events: none;
-      z-index: 0;
+      display: none;
     }
 
     #martin-img {

@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -336,6 +336,7 @@
         <p id="winStats">Level abgeschlossen!</p>
         <div class="btn-row">
           <button id="nextLevelBtn">Naechstes Level</button>
+          <a href="shows.html"><button>🎹 Zu den Shows!</button></a>
           <a href="../labyrinth-giveup.html"><button>Aufgeben</button></a>
         </div>
       </div>
@@ -566,6 +567,8 @@
       document.getElementById('winStats').textContent =
         'Level ' + state.level + ' in ' + m + ':' + s.toString().padStart(2,'0') +
         ' mit ' + state.moves + ' Schritten. Martin haette es schneller geschafft.';
+      // Set gate flag so shows page is unlocked
+      try { localStorage.setItem('mz_labyrinth_won', '1'); } catch(e) {}
       document.getElementById('winDialog').classList.add('visible');
     }
 

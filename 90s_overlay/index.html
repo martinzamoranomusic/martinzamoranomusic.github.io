@@ -332,6 +332,56 @@
       </div>
     </div>
 
+    <!-- WINDOW 3b: Reviews -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Gästebuch &amp; Rezensionen</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <marquee direction="right" scrollamount="2" style="margin-bottom:8px;">&#9733;&#9733;&#9733;&#9733;&#9733; &#9733;&#9733;&#9733;&#9733;&#9733; &#9733;&#9733;&#9733;&#9733;&#9733; &#9733;&#9733;&#9733;&#9733;&#9733; &#9733;&#9733;&#9733;&#9733;&#9733;</marquee>
+        <table id="reviews-table" style="width:100%;border-collapse:collapse;font-size:.78rem;">
+          <tbody id="reviews-body"></tbody>
+        </table>
+      </div>
+      <div class="status-bar">
+        <p class="status-bar-field" id="reviews-count">6 Rezensionen geladen</p>
+        <p class="status-bar-field">Keine Fake-Bewertungen*</p>
+      </div>
+    </div>
+
+    <!-- WINDOW 3c: Games -->
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Spiele &amp; Unterhaltung</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p style="font-size:.78rem;margin:0 0 8px;"><span class="blink">** NEU **</span> Jetzt mit interaktiven Spielen!</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="labyrinth.html" style="text-decoration:none;">
+            <button style="padding:6px 12px;font-size:.8rem;">
+              Labyrinth<br><span style="font-size:.65rem;font-weight:normal;">Bring Martin zur Show</span>
+            </button>
+          </a>
+          <a href="slap.html" style="text-decoration:none;">
+            <button style="padding:6px 12px;font-size:.8rem;">
+              Slap-O-Mat<br><span style="font-size:.65rem;font-weight:normal;">Schellen verteilen</span>
+            </button>
+          </a>
+        </div>
+        <p style="font-size:.65rem;color:#888;margin-top:8px;">* Das Labyrinth ist ein Pflichtprogramm, um die Shows zu sehen.</p>
+      </div>
+    </div>
+
     <!-- WINDOW 4: Navigation -->
     <div class="window">
       <div class="title-bar">
@@ -451,6 +501,53 @@
       el.innerHTML = '<table class="shows-table-98">'
         + '<thead><tr><th>Datum</th><th>Venue</th><th>Stadt</th><th>Projekt</th></tr></thead>'
         + '<tbody>' + rows + '</tbody></table>';
+    })();
+
+    // Reviews — same pool as nav.js, shuffled, 6 picked
+    (function() {
+      var pool = [
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Ich hab nur reingehört, und fand das schon ok.', author: 'Birgit, Bild-Zeitung' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Ich steh nicht auf Klassik, aber Zamorano kann man sich geben.', author: 'Katja, mag die Farbe grün' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Bestimmt gut, wenn man sich auskennt.', author: 'Anja, besitzt drei identische Schals' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Passt ganz gut im Hintergrund beim Wechseln der Bremsbeläge.', author: 'Rainer, Bundesagentur für Arbeit' },
+        { stars: '&#9733;&#9733;&#9734;&#9734;&#9734;', text: 'Hab ihn aus Versehen auf Spotify gespielt. Nicht schlecht, aber ich wollte eigentlich Marquess.', author: 'Kevin, Bewertung auf Google Maps' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9733;', text: 'Meine Katze hat aufgehört, die Pflanzen zu fressen. Ich weiß nicht ob das daran liegt.', author: 'Hannelore, Hamburg-Bergedorf' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Klingt wie Musik. Definitiv Musik.', author: 'Hans-Dieter, ehemaliger Finanzbeamter' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Ich hab meiner Mutter das geschickt. Sie hat nicht geantwortet. Aber sie hat auch sonst nie geantwortet.', author: 'Torsten, WhatsApp-Gruppenleiter' },
+        { stars: '&#9733;&#9734;&#9734;&#9734;&#9734;', text: 'Ich dachte, das wäre ein Podcast über Steuern. War es nicht. Trotzdem okay.', author: 'Siegfried, wär gerne reich' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Hab beim Zuhören aus Versehen ein Gemälde gekauft. Keine Ahnung wie das passiert ist.', author: 'Gudrun, Bäckereifachverkäuferin' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Mein Arzt sagt, ich soll mich entspannen. Das hier zählt glaube ich nicht, aber es hat auch nicht geschadet.', author: 'Bernd, Krankenkassenmitglied' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9733;', text: 'Ich hab den Link an meinen Ex geschickt. Er hat zurückgeschrieben. Danke, Martín.', author: 'Sabrina, wieder glücklich vergeben' },
+        { stars: '&#9733;&#9733;&#9734;&#9734;&#9734;', text: 'Die Musik ist gut, aber die Website hat mich verwirrt. Wo ist der Warenkorb?', author: 'Manfred, Radfahrer aus Leidenschaft' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Hab ihn auf einer Hochzeit gehört. Die Ehe hat gehalten. Zufall? Vielleicht.', author: 'Elfriede, Standesamt Altona' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Sehr schön. Hab dabei geweint, aber ich weine auch bei IKEA-Werbung.', author: 'Jürgen, emotional offen seit 2019' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Hab\'s meiner Yogagruppe vorgespielt. Zwei sind eingeschlafen, eine hat Erleuchtung erfahren.', author: 'Miriam, klatscht manchmal zwischen den Sätzen' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Stellt euch vor, ein Saxophon lernt tanzen und stolpert die ganze Zeit. So ungefähr.', author: 'Heiko, geprüfter Gesichtsausdrucksträger' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Hab\'s neulich angemacht, als Besuch kam. Alle dachten, ich hätte Kultur.', author: 'Fatma, Leiterin Eskalationsmanagement Süd' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Meine Alexa hat gefragt, ob alles okay ist. Das fand ich übergriffig.', author: 'Nadine, Effizienzberaterin für Freizeitgestaltung' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Zamorano ist der Lamborghini unter den Kommunisten.', author: 'Gerd, Innovationsbeauftragter für analoge Prozesse' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9734;', text: 'Seine Improvisation erinnert mich an den Moment, in dem eine Waschmaschine voller Besteck in den Schleudergang schaltet.', author: 'Torsten, Fachkraft für das Glattstreichen von Rollrasen' },
+        { stars: '&#9733;&#9733;&#9733;&#9733;&#9733;', text: 'Ich arbeite im Escape Room. Wir spielen das jetzt im letzten Raum. Niemand will mehr raus.', author: 'Tom, Head of Controlled Panic' },
+        { stars: '&#9733;&#9733;&#9733;&#9734;&#9734;', text: 'Ich versteh die Noten nicht, aber die Töne klingen nett.', author: 'Waltraud, Rentnerin aus Pinneberg' },
+      ];
+      // Fisher-Yates shuffle
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+      }
+      var picked = pool.slice(0, 6);
+      var tbody = document.getElementById('reviews-body');
+      tbody.innerHTML = picked.map(function(r, idx) {
+        var bg = idx % 2 === 0 ? ' style="background:#f0f0f0;"' : '';
+        return '<tr' + bg + '>'
+          + '<td style="padding:5px 8px;border:1px solid #c0c0c0;width:30%;">'
+          + '<strong>' + r.author + '</strong><br>'
+          + '<span style="color:gold;">' + r.stars + '</span>'
+          + '</td>'
+          + '<td style="padding:5px 8px;border:1px solid #c0c0c0;">&bdquo;' + r.text + '&ldquo;</td>'
+          + '</tr>';
+      }).join('');
+      document.getElementById('reviews-count').textContent = '6 von 23 Rezensionen geladen';
     })();
 
     // Background music — starts on first user interaction (browser autoplay policy)
