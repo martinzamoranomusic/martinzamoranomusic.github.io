@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slap-O-Mat -- Martin Zamorano</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body { background-color: #008080; font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+    .desktop { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 50px; }
+    .window-body { padding: 12px; }
+    marquee { background: navy; color: yellow; font-weight: bold; font-size: .9rem; padding: 4px 0; margin: 8px 0; }
+    .nav-btns { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .nav-btns a { text-decoration: none; }
+    .taskbar { position: fixed; bottom: 0; left: 0; right: 0; background: #c0c0c0; border-top: 2px solid #fff; display: flex; align-items: center; gap: 4px; padding: 2px 4px; z-index: 999; height: 36px; }
+    .taskbar-clock { margin-left: auto; font-size: .75rem; border: 1px inset #808080; padding: 2px 8px; }
+
+    /* Counter display */
+    .slap-counter-98 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: .85rem;
+    }
+    .slap-count-display {
+      font-family: 'Courier New', monospace;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: red;
+      background: black;
+      padding: 2px 10px;
+      border: 2px inset #808080;
+      letter-spacing: 3px;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    /* Martin image arena */
+    .martin-arena {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 280px;
+      border: 2px inset #808080;
+      background: #c0c0c0 url('../assets/images/bg_home.jpg') center/cover;
+      overflow: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><text y="36" font-size="36">👋</text></svg>') 24 24, pointer;
+    }
+
+    .martin-arena::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(192,192,192,.4);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #martin-img {
+      position: relative;
+      z-index: 1;
+      height: 240px;
+      width: auto;
+      object-fit: contain;
+      transform-origin: bottom center;
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+      transition: none;
+    }
+
+    /* Invisible click-catcher overlay */
+    .arena-click {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><text y="36" font-size="36">👋</text></svg>') 24 24, pointer;
+    }
+
+    @keyframes slap98 {
+      0%   { transform: rotate(0deg); }
+      20%  { transform: rotate(-18deg) scale(.93); }
+      50%  { transform: rotate(12deg); }
+      75%  { transform: rotate(-6deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    #martin-img.slapped { animation: slap98 .3s ease; }
+
+    .slap-effect {
+      position: absolute;
+      font-size: 1.6rem;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      pointer-events: none;
+      animation: slapFly .7s ease-out forwards;
+      z-index: 10;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    @keyframes slapFly {
+      0%   { opacity: 1; transform: translate(0,0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--tx,20px), var(--ty,-60px)) scale(1.5) rotate(20deg); }
+    }
+
+    /* Milestone popup */
+    #milestone-msg {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 200;
+      min-width: 260px;
+    }
+  </style>
+</head>
+<body>
+<div class="desktop">
+
+  <!-- Title window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Slap-O-Mat 98 -- Martin Zamorano</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="window.location='index.html'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <marquee>** KLICK AUF MARTIN ** SO OFT DU WILLST ** ER VERDIENT ES ** WAHRSCHEINLICH **</marquee>
+    </div>
+  </div>
+
+  <!-- Game window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Schlagen.exe</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="slap-counter-98">
+        <span>Ausgeteilte Schellen:</span>
+        <div class="slap-count-display" id="slap-count">000</div>
+      </div>
+      <div class="martin-arena" id="martin-arena">
+        <img id="martin-img" src="../assets/images/3a900e2a-5b03-415d-bb2c-73904c085423.png" alt="Martin" draggable="false" />
+        <div class="arena-click" id="arena-click"></div>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field" id="slap-status">Bereit zum Schlagen.</p>
+      <p class="status-bar-field">Klick = 1 Schelle</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="window">
+    <div class="title-bar"><div class="title-bar-text">Navigation</div></div>
+    <div class="window-body">
+      <div class="nav-btns">
+        <a href="index.html"><button>&#8592; Home</button></a>
+        <a href="vita.html"><button>Vita</button></a>
+        <a href="musik.html"><button>Piano</button></a>
+        <a href="shows.html"><button>Shows</button></a>
+        <a href="labyrinth.html"><button>Labyrinth</button></a>
+        <a href="kontakt.html"><button>Kontakt</button></a>
+        <a href="../slap.html"><button>Normale Version</button></a>
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field">&copy; 2026 Martin Zamorano</p>
+      <p class="status-bar-field"><a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a></p>
+    </div>
+  </div>
+
+</div><!-- /.desktop -->
+
+<!-- Milestone popup (Win98 dialog style) -->
+<div id="milestone-msg">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text" id="milestone-title">Info</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" id="milestone-close"></button>
+      </div>
+    </div>
+    <div class="window-body" style="text-align:center; padding:16px 20px;">
+      <p id="milestone-text" style="font-size:.85rem; margin-bottom:12px;"></p>
+      <button id="milestone-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="taskbar">
+  <button>Start</button>
+  <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Slap-O-Mat</button>
+  <div class="taskbar-clock" id="clock">00:00</div>
+</div>
+
+<script>
+(function(){
+  // Clock
+  var n = new Date();
+  document.getElementById('clock').textContent =
+    n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0');
+
+  var slapCount = 0;
+  var martinImg = document.getElementById('martin-img');
+  var arena     = document.getElementById('martin-arena');
+  var clickZone = document.getElementById('arena-click');
+  var countEl   = document.getElementById('slap-count');
+  var statusEl  = document.getElementById('slap-status');
+
+  var martinImages = [
+    '../assets/images/3a900e2a-5b03-415d-bb2c-73904c085423.png',
+    '../assets/images/martin_damage_1.png',
+    '../assets/images/martin_damage_2.png',
+    '../assets/images/martin_damage_3.png',
+    '../assets/images/martin_damage_4.png',
+  ];
+
+  var slapTexts = ['SLAP!', 'POW!', 'WHACK!', 'BAM!', 'SMACK!', 'BONK!', 'OW!', 'UGH!'];
+
+  // Synthetic slap sound
+  var AudioCtx = window.AudioContext || window.webkitAudioContext;
+  var audioCtx = null;
+
+  function playSlap() {
+    if (!AudioCtx) return;
+    if (!audioCtx) audioCtx = new AudioCtx();
+    var now = audioCtx.currentTime, dur = 0.15;
+    var sz = Math.floor(audioCtx.sampleRate * dur);
+    var buf = audioCtx.createBuffer(1, sz, audioCtx.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < sz; i++) d[i] = Math.random()*2-1;
+    var src = audioCtx.createBufferSource(); src.buffer = buf;
+    var lp = audioCtx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 7000;
+    var pres = audioCtx.createBiquadFilter(); pres.type = 'peaking'; pres.frequency.value = 1500; pres.gain.value = 9;
+    var g = audioCtx.createGain();
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(1.6, now + 0.002);
+    g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+    src.connect(lp); lp.connect(pres); pres.connect(g); g.connect(audioCtx.destination);
+    src.start(now); src.stop(now + dur);
+  }
+
+  function updateImage() {
+    var idx = slapCount < 10 ? 0 : slapCount < 25 ? 1 : slapCount < 50 ? 2 : slapCount < 75 ? 3 : 4;
+    martinImg.src = martinImages[idx];
+  }
+
+  function showEffect(e) {
+    var rect = arena.getBoundingClientRect();
+    var el = document.createElement('div');
+    el.className = 'slap-effect';
+    el.textContent = slapTexts[Math.floor(Math.random() * slapTexts.length)];
+    el.style.left = (e.clientX - rect.left) + 'px';
+    el.style.top  = (e.clientY - rect.top)  + 'px';
+    el.style.setProperty('--tx', ((Math.random()-.5)*160) + 'px');
+    el.style.setProperty('--ty', (-60 - Math.random()*80) + 'px');
+    arena.appendChild(el);
+    setTimeout(function(){ el.remove(); }, 700);
+  }
+
+  function showMilestone(title, text) {
+    document.getElementById('milestone-title').textContent = title;
+    document.getElementById('milestone-text').textContent  = text;
+    document.getElementById('milestone-msg').style.display = '';
+  }
+
+  document.getElementById('milestone-close').addEventListener('click', function(){
+    document.getElementById('milestone-msg').style.display = 'none';
+  });
+  document.getElementById('milestone-ok').addEventListener('click', function(){
+    document.getElementById('milestone-msg').style.display = 'none';
+  });
+
+  function handleSlap(e) {
+    playSlap();
+    slapCount++;
+    countEl.textContent = slapCount.toString().padStart(3, '0');
+    updateImage();
+
+    martinImg.classList.remove('slapped');
+    void martinImg.offsetWidth; // reflow to restart animation
+    martinImg.classList.add('slapped');
+    setTimeout(function(){ martinImg.classList.remove('slapped'); }, 300);
+
+    showEffect(e);
+
+    var messages = {
+      10:  ['Schmerz.exe', 'Martin fragt sich, ob er zu weit gegangen ist.'],
+      25:  ['Kritischer Treffer!', 'Das fühlt er morgen noch.'],
+      50:  ['Halb kaputt', 'Martin hat schon schlechtere Konzerte erlebt. Fast.'],
+      75:  ['Unzerstörbar', 'Martin hat eine dicke Haut entwickelt.'],
+      100: ['Highscore!', 'Du hast 100 Schellen verteilt. Martin ist beeindruckt. Und verletzt.'],
+    };
+
+    if (messages[slapCount]) {
+      showMilestone(messages[slapCount][0], messages[slapCount][1]);
+    }
+
+    statusEl.textContent = slapCount + ' Schelle' + (slapCount !== 1 ? 'n' : '') + ' verteilt.';
+  }
+
+  clickZone.addEventListener('click', handleSlap);
+  clickZone.addEventListener('touchstart', function(e){
+    e.preventDefault();
+    var t = e.touches[0];
+    handleSlap({ clientX: t.clientX, clientY: t.clientY });
+  }, { passive: false });
+
+  updateImage();
+})();
+</script>
+</body>
+</html>

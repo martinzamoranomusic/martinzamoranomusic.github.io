@@ -8,9 +8,12 @@
   <style>
     body {
       background-color: #008080;
-      background-image: url('../assets/images/bg_home.jpg');
-      background-repeat: repeat;
-      background-size: 300px;
+      background-image:
+        url('../assets/images/IMG_3880_Flamingo.png'),
+        url('../assets/images/bg_home.jpg');
+      background-repeat: repeat, repeat;
+      background-size: 120px, 300px;
+      background-position: 60px 60px, 0 0;
       font-family: 'Arial', sans-serif;
       padding: 20px;
       margin: 0;
@@ -250,21 +253,21 @@
       </div>
       <div class="window-body">
         <marquee behavior="scroll" direction="left">
-          ** HERZLICH WILLKOMMEN auf der OFFIZIELLEN Homepage von MARTIN ZAMORANO ** Pianist - Komponist - Hamburgs Nummer 1 ** NEUE SHOWS verfuegbar! ** Bitte JavaScript aktivieren **
+          ** DU HAST DICH VERIRRT. MACHT NICHTS. ** ER HAT EIN KLAVIER!! ** NEUE SHOWS verfuegbar! ** Bitte JavaScript aktivieren **
         </marquee>
         <div class="hero-content">
-          <h1>Moin, moin!</h1>
-          <p class="tagline">Komponist &amp; Pianist -- Hamburg, Deutschland<br>
+          <h1>JETZT NEU: Diese Website!</h1>
+          <p class="tagline">ER hat ein Klavier!! -- Hamburg, Deutschland<br>
             <span class="blink">** NEU **</span> Jetzt mit <strong>Farbe</strong>!
           </p>
           <div class="toolbar">
             <a href="https://martinzamorano.bandcamp.com/" target="_blank" rel="noopener">
               <button>Bandcamp</button>
             </a>
-            <a href="https://www.instagram.com/martinzamoranomusic/" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/heyemmet/" target="_blank" rel="noopener">
               <button>Instagram</button>
             </a>
-            <a href="https://www.facebook.com/martinzamoranomusic" target="_blank" rel="noopener">
+            <a href="https://de.wikipedia.org/wiki/Facebook" target="_blank" rel="noopener">
               <button>Facebook</button>
             </a>
             <a href="https://i.ebayimg.com/images/g/RTMAAeSweitoU6MF/s-l1600.jpg" target="_blank" rel="noopener">
@@ -299,11 +302,11 @@
       </div>
       <div class="window-body">
         <div class="album-inner">
-          <img src="../assets/images/IMG_3880_Flamingo.png" alt="Martin Zamorano" />
+          <img src="../assets/images/a3363914671_10.jpg" alt="Martin Zamorano" />
           <div class="album-info">
             <span class="blink">** NEU **</span>
             <h3>Pre-Apocalyptic Anti-Cynical Post-Postmodernist Piano Jukebox</h3>
-            <p>Das neue Album -- jetzt auf Bandcamp zum Streamen und Download.</p>
+            <p>Das Album, auf das niemand gewartet hat! -- jetzt erhaeltlich auf keiner Ihrer Lieblings-Musik-Streaming-Platforms.</p>
             <a href="https://martinzamorano.bandcamp.com/album/pre-apocalyptic-anti-cynical-post-postmodernist-piano-jukebox" target="_blank" rel="noopener">
               <button>Auf Bandcamp anhoeren &raquo;</button>
             </a>
@@ -325,7 +328,7 @@
       <div class="window-body">
         <div id="shows-98"><p>Laedt...</p></div>
         <br>
-        <a href="../shows.html"><button>Alle Shows ansehen &raquo;</button></a>
+        <a href="shows.html"><button>Alle Shows ansehen &raquo;</button></a>
       </div>
     </div>
 
@@ -353,16 +356,6 @@
                       <li><a href="musik.html">Piano</a></li>
                       <li><a href="improvisation.html">Improvisation</a></li>
                       <li><a href="zamoranoandstamer.html">Zamorano &amp; Stamer</a></li>
-                    </ul>
-                  </details>
-                </li>
-                <li>
-                  <details>
-                    <summary>Projekte</summary>
-                    <ul>
-                      <li><a href="healing.html">The Healing Project</a></li>
-                      <li><a href="../musiktheorie.html">Kontrapunkt &amp; Musiktheorie</a></li>
-                      <li><a href="mental-pocus-records.html">Mental Pocus Records</a></li>
                     </ul>
                   </details>
                 </li>
@@ -401,8 +394,14 @@
   <div class="taskbar">
     <button class="start-btn">Start</button>
     <button class="taskbar-window-btn">Martin Zamorano</button>
+    <button id="music-btn" style="font-size:.75rem;padding:2px 8px;min-width:80px;text-align:left;" title="Musik an/aus">♪ Musik</button>
     <div class="taskbar-clock" id="taskbar-clock">00:00</div>
   </div>
+
+  <!-- Background music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="../assets/audio/Fast_Mix_Liebeshummer_II.mp3" type="audio/mpeg" />
+  </audio>
 
   <script src="../assets/shows-data.js"></script>
   <script>
@@ -452,6 +451,38 @@
       el.innerHTML = '<table class="shows-table-98">'
         + '<thead><tr><th>Datum</th><th>Venue</th><th>Stadt</th><th>Projekt</th></tr></thead>'
         + '<tbody>' + rows + '</tbody></table>';
+    })();
+
+    // Background music — starts on first user interaction (browser autoplay policy)
+    (function() {
+      var musicBtn = document.getElementById('music-btn');
+      var bgMusic  = document.getElementById('bg-music');
+      var playing  = false;
+
+      function tryPlay() {
+        bgMusic.play().then(function() {
+          playing = true;
+          musicBtn.textContent = '♪ Mute';
+        }).catch(function() {});
+      }
+
+      // Start on first click anywhere on the page
+      document.addEventListener('click', function startOnce() {
+        tryPlay();
+        document.removeEventListener('click', startOnce);
+      }, { once: true });
+
+      // Mute/unmute toggle
+      musicBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // don't also trigger the startOnce
+        if (playing) {
+          bgMusic.pause();
+          playing = false;
+          musicBtn.textContent = '♪ Musik';
+        } else {
+          tryPlay();
+        }
+      });
     })();
   </script>
 </body>

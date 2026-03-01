@@ -208,21 +208,18 @@
   }
 
   /* ── 13. Fun-mode nav visibility + page guard ───────────────────────── */
-  // kontakt.html is NOT a fun-only page — it's always accessible
+  // labyrinth and slap are always visible now
   const FUN_PAGES = ['labyrinth.html', 'slap.html'];
 
   function applyFunNavVisibility() {
+    // always show — no longer restricted to stupid mode
     document.querySelectorAll('.main-nav li[data-nav-mode="fun"]').forEach(function (li) {
-      li.style.display = mode === 'stupid' ? '' : 'none';
+      li.style.display = '';
     });
   }
 
   function guardFunPage() {
-    if (mode === 'stupid') return;
-    const filename = path.split('/').pop() || 'index.html';
-    if (FUN_PAGES.some(function (p) { return filename === p; })) {
-      window.location.replace(root + 'index.html');
-    }
+    // no longer guarded — accessible in both modes
   }
 
   /* ── 14. HotFire popup (madness mode, index page only) ─────────────── */
@@ -425,10 +422,9 @@
     }
   }
 
-  /* ── 17. Pigeon minigame (madness mode, kontakt page only) ──────────── */
+  /* ── 17. Pigeon minigame (kontakt page only — always active) ──────── */
   function initPigeonGame() {
     const filename = path.split('/').pop() || 'index.html';
-    if (mode !== 'stupid') return;
     if (filename !== 'kontakt.html') return;
 
     const arena      = document.getElementById('pigeon-arena');

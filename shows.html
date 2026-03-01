@@ -6,26 +6,209 @@
   <title>Shows | Martín Zamorano</title>
   <link rel="stylesheet" href="assets/style.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     body {
-      background-image: url('assets/images/bg_improvisation.jpg');
-      background-size: cover; background-attachment: fixed;
-      background-position: center top; background-repeat: no-repeat;
+      background: radial-gradient(ellipse at center, #1a1a4e 0%, #000010 100%);
+      min-height: 100vh;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
     }
-    body::before {
-      content: ''; position: fixed; inset: 0;
-      background: rgba(11,11,11,.88); z-index: 0; pointer-events: none;
+
+    /* CRT scanlines overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 3px,
+        rgba(0,0,0,0.18) 3px, rgba(0,0,0,0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 9990;
     }
-    header { position: relative; z-index: 100; }
-    main.page-content, footer { position: relative; z-index: 1; }
+
+    header {
+      position: relative;
+      z-index: 9991;
+      background: linear-gradient(to right, #2a2a6e, #1a1a4e, #2a2a6e) !important;
+      border-bottom: 2px solid #4a4a8e !important;
+      backdrop-filter: none !important;
+    }
+
+    /* Override nav colours for PS1 theme */
+    header .site-title a { color: #ccccff !important; text-shadow: 0 0 10px #6666ff; }
+    header .main-nav a,
+    header .nav-dropdown-toggle { color: #8888cc !important; }
+    header .main-nav a:hover,
+    header .main-nav a.active,
+    header .nav-dropdown-toggle:hover,
+    header .nav-dropdown-toggle.active { color: #ffffff !important; background: rgba(100,100,200,.2) !important; }
+    header .nav-dropdown { background: rgba(10,10,46,.97) !important; border-color: #4a4a8e !important; }
+    header .lang-switcher a { color: #6666aa !important; border-color: transparent !important; }
+    header .lang-switcher a.active,
+    header .lang-switcher a:hover { color: #ccccff !important; border-color: #6666aa !important; }
+
+    main.page-content {
+      max-width: 720px;
+      padding: 2rem 1rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PS1 top bar ── */
+    .ps1-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #8888cc;
+      margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid #3a3a6e;
+    }
+
+    .ps1-logo {
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #ccccff;
+      text-shadow: 0 0 10px #6666ff;
+    }
+
+    .save-dot {
+      width: 7px; height: 7px;
+      background: #ff4444;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.1;} }
+
+    /* ── PS1 panel ── */
+    .ps1-panel {
+      background: linear-gradient(180deg, #2a2a5e 0%, #1a1a3e 100%);
+      border: 1px solid #4a4a8e;
+      margin-bottom: 16px;
+    }
+
+    .ps1-panel-title {
+      background: linear-gradient(to right, #3a3a8e, #2a2a6e);
+      color: #aaaaee;
+      font-size: 11px;
+      letter-spacing: 3px;
+      padding: 5px 12px;
+      border-bottom: 1px solid #4a4a8e;
+    }
+
+    .ps1-panel-body { padding: 10px 14px; }
+
+    /* ── Show rows ── */
+    .ps1-show-row {
+      padding: 7px 0;
+      border-bottom: 1px solid #2a2a5e;
+      display: grid;
+      grid-template-columns: 82px 1fr auto;
+      gap: 8px 14px;
+      align-items: baseline;
+      font-size: 12px;
+      letter-spacing: .5px;
+    }
+    .ps1-show-row:last-child { border-bottom: none; }
+
+    .ps1-show-date    { color: #8888ff; font-size: 11px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .ps1-show-venue   { color: #ddddff; }
+    .ps1-show-venue a { color: #aaaaff; text-decoration: none; transition: color .2s; }
+    .ps1-show-venue a:hover { color: #ffffff; }
+    .ps1-show-city    { color: #6666aa; font-size: 10px; white-space: nowrap; }
+    .ps1-show-project { grid-column: 2 / -1; color: #6666aa; font-size: 10px; font-style: italic; letter-spacing: 1px; }
+
+    .ps1-show-row--past { opacity: .45; }
+
+    .ps1-empty {
+      color: #6666aa;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 6px 0;
+    }
+
+    /* ── bottom bar ── */
+    .ps1-bottombar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to right, #1a1a4e, #0a0a2e, #1a1a4e);
+      border-top: 1px solid #3a3a6e;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 20px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: #6666aa;
+      letter-spacing: 1px;
+      z-index: 9989;
+    }
+
+    .ps1-hint { display: flex; align-items: center; gap: 5px; }
+    .ps1-sym {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: bold;
+    }
+    .sym-x { background:#224; border:1px solid #55f; color:#88f; }
+    .sym-o { background:#422; border:1px solid #f55; color:#f88; }
+    .ps1-clock { margin-left: auto; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(to right, #1a1a4e, #0a0a2e, #1a1a4e) !important;
+      border-top: 1px solid #3a3a6e !important;
+      color: #6666aa !important;
+      margin-bottom: 28px; /* clear the fixed ps1-bottombar */
+    }
+    footer a { color: #6666aa !important; }
+    footer a:hover { color: #aaaaee !important; }
+    footer .footer-copy { color: #6666aa !important; }
+    button.mode-toggle { color: #6666aa !important; }
+    button.mode-toggle:hover, button.mode-toggle.active { color: #aaaaee !important; }
+
+    @media (max-width: 600px) {
+      .ps1-show-row {
+        grid-template-columns: 72px 1fr;
+      }
+      .ps1-show-city { display: none; }
+    }
   </style>
 </head>
 <body>
   <header></header>
 
   <main class="page-content">
-    <h1 data-i18n="shows.upcoming">Upcoming Shows</h1>
-    <div id="shows-upcoming"></div>
-    <div id="shows-past"></div>
+
+    <div class="ps1-topbar">
+      <span class="ps1-logo">SHOWS</span>
+      <span>MEMORY CARD</span>
+      <span><span class="save-dot"></span>LOADING...</span>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="ps1-panel" id="panel-upcoming">
+      <div class="ps1-panel-title" data-i18n="shows.upcoming">UPCOMING SHOWS</div>
+      <div class="ps1-panel-body" id="shows-upcoming">
+        <p class="ps1-empty">LOADING SAVE DATA...</p>
+      </div>
+    </div>
+
+    <!-- Past -->
+    <div class="ps1-panel" id="panel-past" style="display:none;">
+      <div class="ps1-panel-title" data-i18n="shows.past">PAST SHOWS</div>
+      <div class="ps1-panel-body" id="shows-past"></div>
+    </div>
+
   </main>
 
   <footer>
@@ -36,6 +219,13 @@
     <p class="footer-copy" data-i18n="site.footer.copy">&copy; 2026 Martín Zamorano</p>
   </footer>
 
+  <!-- PS1 bottom hint bar -->
+  <div class="ps1-bottombar">
+    <div class="ps1-hint"><span class="ps1-sym sym-x">X</span> SELECT</div>
+    <div class="ps1-hint"><span class="ps1-sym sym-o">O</span> BACK</div>
+    <div class="ps1-clock" id="ps1-clock">00:00</div>
+  </div>
+
   <script src="assets/i18n/de.js"></script>
   <script src="assets/i18n/en.js"></script>
   <script src="assets/i18n/es.js"></script>
@@ -43,9 +233,14 @@
   <script src="assets/nav.js"></script>
   <script>
     (function () {
+      // Clock
+      var now = new Date();
+      document.getElementById('ps1-clock').textContent =
+        now.getHours().toString().padStart(2,'0') + ':' +
+        now.getMinutes().toString().padStart(2,'0');
+
       function parseDate(str) {
-        var p = str.split('.');
-        return new Date(+p[2], +p[1] - 1, +p[0]);
+        var p = str.split('.'); return new Date(+p[2], +p[1]-1, +p[0]);
       }
 
       function venueHTML(show) {
@@ -54,47 +249,44 @@
           : show.venue;
       }
 
-      function buildTable(shows, past) {
-        var rows = shows.map(function (s) {
-          return '<tr>'
-            + '<td class="show-date">'    + s.date              + '</td>'
-            + '<td class="show-venue">'   + venueHTML(s)        + '</td>'
-            + '<td class="show-city">'    + s.city              + '</td>'
-            + '<td class="show-project">' + s.project           + '</td>'
-            + '</tr>';
+      function buildRows(shows, past) {
+        return shows.map(function(s) {
+          return '<div class="ps1-show-row' + (past ? ' ps1-show-row--past' : '') + '">'
+            + '<span class="ps1-show-date">'    + s.date + '</span>'
+            + '<span class="ps1-show-venue">'   + venueHTML(s) + '</span>'
+            + '<span class="ps1-show-city">'    + s.city + '</span>'
+            + '<span class="ps1-show-project">' + s.project + '</span>'
+            + '</div>';
         }).join('');
-        return '<table class="shows-table' + (past ? ' shows-table--past' : '') + '">'
-          + '<tbody>' + rows + '</tbody></table>';
       }
 
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      var activeLang = (function () {
-        try { return localStorage.getItem('mz_lang') || 'de'; } catch (e) { return 'de'; }
-      })();
-      var dicts = { de: window.I18N_DE, en: window.I18N_EN, es: window.I18N_ES };
-      var d = dicts[activeLang] || window.I18N_DE;
-
+      var today = new Date(); today.setHours(0,0,0,0);
       var upcoming = [], past = [];
-      (window.SHOWS_DATA || []).forEach(function (s) {
+      (window.SHOWS_DATA || []).forEach(function(s) {
         (parseDate(s.date) >= today ? upcoming : past).push(s);
       });
+      upcoming.sort(function(a,b) { return parseDate(a.date) - parseDate(b.date); });
+      past.sort(function(a,b)     { return parseDate(b.date) - parseDate(a.date); });
 
-      upcoming.sort(function (a, b) { return parseDate(a.date) - parseDate(b.date); });
-      past.sort(function (a, b) { return parseDate(b.date) - parseDate(a.date); });
+      var activeLang = (function(){ try{ return localStorage.getItem('mz_lang') || 'de'; } catch(e){ return 'de'; } })();
+      var d = (window['I18N_' + activeLang.toUpperCase()]) || window.I18N_DE;
 
-      var upcomingEl = document.getElementById('shows-upcoming');
-      var pastEl     = document.getElementById('shows-past');
+      var upEl   = document.getElementById('shows-upcoming');
+      var pastEl = document.getElementById('shows-past');
 
       if (upcoming.length) {
-        upcomingEl.innerHTML =  buildTable(upcoming, false);
+        upEl.innerHTML = buildRows(upcoming, false);
+        document.querySelector('.ps1-topbar span:last-child').innerHTML =
+          '<span class="save-dot"></span>' + upcoming.length + ' SHOWS FOUND';
       } else {
-        upcomingEl.innerHTML = '<p class="home-shows-empty">' + (d['home.shows.empty'] || 'Keine bevorstehenden Shows.') + '</p>';
+        upEl.innerHTML = '<p class="ps1-empty">' + (d['home.shows.empty'] || 'KEINE BEVORSTEHENDEN SHOWS.') + '</p>';
+        document.querySelector('.ps1-topbar span:last-child').innerHTML =
+          '<span class="save-dot" style="background:#888"></span>NO SAVE DATA';
       }
 
       if (past.length) {
-        pastEl.innerHTML = '<h2>' + (d['shows.past'] || 'Past Shows') + '</h2>' + buildTable(past, true);
+        pastEl.innerHTML = buildRows(past, true);
+        document.getElementById('panel-past').style.display = '';
       }
     })();
   </script>

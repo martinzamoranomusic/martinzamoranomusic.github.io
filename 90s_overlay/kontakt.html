@@ -18,6 +18,57 @@
     .field-row textarea{height:80px;resize:vertical;}
     .taskbar{position:fixed;bottom:0;left:0;right:0;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;gap:4px;padding:2px 4px;z-index:999;height:36px;}
     .taskbar-clock{margin-left:auto;font-size:.75rem;border:1px inset #808080;padding:2px 8px;}
+
+    /* ── Bodyguard styles ── */
+    #bodyguard-gate { display: flex; flex-direction: column; gap: 16px; }
+    .bodyguard-arena { display: flex; justify-content: center; gap: 40px; padding: 16px 0 8px; }
+    .bg-box { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
+    .bg-box img { width: 90px; height: auto; border: 2px inset #808080; cursor: pointer; transition: filter 0.1s; user-select: none; }
+    .bg-box img.slapped { filter: brightness(2) saturate(0); }
+    .bg-box .hp-bar-wrap { width: 90px; height: 10px; border: 1px inset #808080; background: #fff; }
+    .bg-box .hp-bar { height: 100%; background: lime; transition: width 0.2s, background 0.2s; }
+    .bg-label { font-size: .7rem; font-weight: bold; }
+    .slap-effect { position: absolute; font-size: 1.2rem; pointer-events: none; animation: slapFly .7s ease-out forwards; z-index: 10; }
+    @keyframes slapFly { 0%{opacity:1;transform:translate(0,0) scale(1);} 100%{opacity:0;transform:translate(var(--tx,20px),var(--ty,-60px)) scale(1.6);} }
+    #victory-msg { display:none; text-align:center; padding:10px; font-weight:bold; font-size:.9rem; color: navy; }
+    #contact-section { display: none; }
+
+    /* ── Pigeon game ── */
+    #pigeon-window { display: none; }
+    #pigeon-field {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border: 2px inset #808080;
+      background: #c0c0c0 url('../assets/images/bg_home.jpg') center/cover;
+      overflow: hidden;
+      cursor: crosshair;
+      user-select: none;
+    }
+    #pigeon-field::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(192,192,192,.45);
+      pointer-events: none;
+    }
+    #pigeon-img {
+      position: absolute;
+      width: 64px;
+      height: auto;
+      cursor: crosshair;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes pigeon-spin {
+      0%   { transform: rotate(0deg) scale(1.1); }
+      50%  { transform: rotate(180deg) scale(1.3); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    #pigeon-img.caught { animation: pigeon-spin .5s ease-out forwards; }
+    #pigeon-instruction { font-size: .78rem; font-weight: bold; margin-bottom: 6px; text-align: center; }
+    #pigeon-instruction.caught-text { color: navy; }
+    button#submit-btn:disabled { opacity: .45; cursor: not-allowed; }
   </style>
 </head>
 <body>
@@ -33,45 +84,88 @@
       </div>
     </div>
     <div class="window-body">
-      <marquee>** SCHREIB MIR EINE NACHRICHT ** SEND ME A MESSAGE **</marquee>
+      <marquee>** SCHREIB MIR EINE NACHRICHT ** WENN DU MUSST **</marquee>
     </div>
   </div>
 
-  <div class="window">
-    <div class="title-bar"><div class="title-bar-text">Neue Nachricht verfassen</div></div>
-    <div class="window-body">
-      <p style="font-size:.82rem;margin:0 0 10px;">Wenn du Kontakt aufnehmen möchtest, schreib mir eine E-Mail über das untenstehende Formular.</p>
-      <form action="https://formspree.io/f/xreayqon" method="POST" id="contact-form">
-        <div class="field-row">
-          <label for="name">Name *</label>
-          <input type="text" id="name" name="name" required placeholder="Dein Name" />
+  <!-- BODYGUARD GATE -->
+  <div id="bodyguard-gate">
+    <div class="window">
+      <div class="title-bar"><div class="title-bar-text">Wer Martin sprechen will, muss erst an uns vorbeikommen!</div></div>
+      <div class="window-body">
+        <p style="font-size:.82rem;margin:0 0 10px;text-align:center;font-weight:bold;">Die Jungs wollen eine Verschellerung!</p>
+        <div class="bodyguard-arena">
+          <div class="bg-box" id="box-lucas">
+            <span class="bg-label">Lucas</span>
+            <img src="../assets/images/LucasBodyguard.png" alt="Lucas" id="img-lucas" />
+            <div class="hp-bar-wrap"><div class="hp-bar" id="hp-lucas"></div></div>
+          </div>
+          <div class="bg-box" id="box-hendrik">
+            <span class="bg-label">Hendrik</span>
+            <img src="../assets/images/HendrikBodyguard.png" alt="Hendrik" id="img-hendrik" />
+            <div class="hp-bar-wrap"><div class="hp-bar" id="hp-hendrik"></div></div>
+          </div>
         </div>
-        <div class="field-row">
-          <label for="telefon">Telefon</label>
-          <input type="tel" id="telefon" name="telefon" placeholder="Optional" />
-        </div>
-        <div class="field-row">
-          <label for="email">E-Mail *</label>
-          <input type="email" id="email" name="email" required placeholder="deine@email.de" />
-        </div>
-        <div class="field-row">
-          <label for="message">Nachricht *</label>
-          <textarea id="message" name="message" required placeholder="Deine Nachricht..."></textarea>
-        </div>
-        <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
-        <div style="margin-top:10px;">
-          <button type="submit">&#128231; Absenden</button>
-          <button type="reset" style="margin-left:6px;">&#10006; Leeren</button>
-        </div>
-      </form>
+        <div id="victory-msg">&#10004; Sie dürfen jetzt mit Martin sprechen.</div>
+      </div>
+      <div class="status-bar">
+        <p class="status-bar-field" id="gate-status">Schlag sie nieder um fortzufahren!</p>
+      </div>
     </div>
   </div>
 
-  <div class="window" id="success-window" style="display:none;">
-    <div class="title-bar"><div class="title-bar-text">Nachricht gesendet!</div></div>
+  <!-- PIGEON GATE (shown after bodyguards defeated) -->
+  <div class="window" id="pigeon-window">
+    <div class="title-bar"><div class="title-bar-text">Sicherheitsstufe 2: Brieftauben-Protokoll</div></div>
     <div class="window-body">
-      <p style="font-size:.85rem;">&#10004; Deine Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei dir!</p>
-      <button onclick="document.getElementById('success-window').style.display='none';document.getElementById('contact-form').reset();">OK</button>
+      <p id="pigeon-instruction">Fang die Brieftaube, um die Nachricht abzuschicken!</p>
+      <div id="pigeon-field">
+        <img id="pigeon-img" src="../assets/images/dadalan-real-aq2u-OMPw4U-unsplash.png" alt="Brieftaube" draggable="false" />
+      </div>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field" id="pigeon-status">Bewege die Maus um die Taube zu fangen!</p>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM (hidden until pigeon caught) -->
+  <div id="contact-section">
+    <div class="window">
+      <div class="title-bar"><div class="title-bar-text">Neue Nachricht verfassen</div></div>
+      <div class="window-body">
+        <p style="font-size:.82rem;margin:0 0 10px;">Wenn du wirklich schreiben musst, tu es. Keine Garantie auf Antwort.</p>
+        <form action="https://formspree.io/f/xreayqon" method="POST" id="contact-form">
+          <div class="field-row">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Dein Name" />
+          </div>
+          <div class="field-row">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="Optional" />
+          </div>
+          <div class="field-row">
+            <label for="email">E-Mail *</label>
+            <input type="email" id="email" name="email" required placeholder="deine@email.de" />
+          </div>
+          <div class="field-row">
+            <label for="message">Nachricht *</label>
+            <textarea id="message" name="message" required placeholder="Deine Nachricht..."></textarea>
+          </div>
+          <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+          <div style="margin-top:10px;">
+            <button type="submit" id="submit-btn">&#128231; Absenden</button>
+            <button type="reset" style="margin-left:6px;">&#10006; Leeren</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="window" id="success-window" style="display:none;">
+      <div class="title-bar"><div class="title-bar-text">Nachricht gesendet!</div></div>
+      <div class="window-body">
+        <p style="font-size:.85rem;">&#10004; Deine Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei dir!</p>
+        <button onclick="document.getElementById('success-window').style.display='none';document.getElementById('contact-form').reset();">OK</button>
+      </div>
     </div>
   </div>
 
@@ -84,8 +178,6 @@
         <a href="musik.html"><button>Piano</button></a>
         <a href="improvisation.html"><button>Improvisation</button></a>
         <a href="zamoranoandstamer.html"><button>Z&amp;S</button></a>
-        <a href="healing.html"><button>Healing</button></a>
-        <a href="mental-pocus-records.html"><button>MPR</button></a>
         <a href="shows.html"><button>Shows</button></a>
         <a href="../kontakt.html"><button>Normale Version</button></a>
       </div>
@@ -96,34 +188,204 @@
     </div>
   </div>
 
-</div>
+</div><!-- /.desktop -->
+
 <div class="taskbar">
   <button>Start</button>
   <button style="font-size:.75rem;padding:2px 10px;min-width:120px;text-align:left;">Kontakt</button>
   <div class="taskbar-clock" id="clock">00:00</div>
 </div>
-<script>
-  (function(){
-    var n=new Date();
-    document.getElementById("clock").textContent=n.getHours().toString().padStart(2,"0")+":"+n.getMinutes().toString().padStart(2,"0");
 
-    // Handle async Formspree submission
-    var form=document.getElementById("contact-form");
-    form.addEventListener("submit",function(e){
-      e.preventDefault();
-      var data=new FormData(form);
-      fetch(form.action,{method:"POST",body:data,headers:{"Accept":"application/json"}})
-        .then(function(r){
-          if(r.ok){
-            document.getElementById("success-window").style.display="";
-            form.reset();
-          } else {
-            alert("Fehler beim Senden. Bitte versuche es erneut.");
-          }
-        })
-        .catch(function(){alert("Netzwerkfehler. Bitte versuche es erneut.");});
+<script>
+(function(){
+  // Clock
+  var n = new Date();
+  document.getElementById('clock').textContent =
+    n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0');
+
+  /* ─── BODYGUARD LOGIC ─────────────────────────────────── */
+  var SLAPS = 10;
+  var lucasHP = SLAPS, hendrikHP = SLAPS;
+  var AudioCtx = window.AudioContext || window.webkitAudioContext;
+  var audioCtx = null;
+
+  function playSlap() {
+    if (!AudioCtx) return;
+    if (!audioCtx) audioCtx = new AudioCtx();
+    var now = audioCtx.currentTime, dur = 0.15;
+    var sz = Math.floor(audioCtx.sampleRate * dur);
+    var buf = audioCtx.createBuffer(1, sz, audioCtx.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i=0;i<sz;i++) d[i]=Math.random()*2-1;
+    var src = audioCtx.createBufferSource(); src.buffer = buf;
+    var lp = audioCtx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=7000;
+    var g = audioCtx.createGain();
+    g.gain.setValueAtTime(0,now); g.gain.linearRampToValueAtTime(1.5,now+.002); g.gain.exponentialRampToValueAtTime(.001,now+dur);
+    src.connect(lp); lp.connect(g); g.connect(audioCtx.destination);
+    src.start(now); src.stop(now+dur);
+  }
+
+  function showSlapFx(box, e) {
+    var rect = box.getBoundingClientRect();
+    var el = document.createElement('div'); el.className = 'slap-effect'; el.textContent = '👋';
+    el.style.left = (e.clientX - rect.left) + 'px';
+    el.style.top  = (e.clientY - rect.top)  + 'px';
+    el.style.setProperty('--tx', ((Math.random()-.5)*120)+'px');
+    el.style.setProperty('--ty', (-(40+Math.random()*60))+'px');
+    box.appendChild(el);
+    setTimeout(function(){ el.remove(); }, 700);
+  }
+
+  function defeat(box, dir) {
+    var rot = dir==='left'?'-90deg':'90deg';
+    box.style.transition='transform .5s ease';
+    box.style.transformOrigin=dir==='left'?'bottom right':'bottom left';
+    box.style.transform='rotate('+rot+')';
+    setTimeout(function(){
+      box.style.transition='transform .5s ease-in, opacity .5s ease-in';
+      box.style.transform='rotate('+rot+') translateX('+(dir==='left'?'-':'')+'160%)';
+      box.style.opacity='0';
+    },550);
+  }
+
+  function checkVictory() {
+    if (lucasHP > 0 || hendrikHP > 0) return;
+    setTimeout(function(){
+      document.getElementById('victory-msg').style.display='block';
+      document.getElementById('gate-status').textContent='Alle besiegt! Weiter zur Taube...';
+      setTimeout(function(){
+        document.getElementById('bodyguard-gate').style.display='none';
+        document.getElementById('pigeon-window').style.display='';
+        initPigeon();
+      }, 2000);
+    }, 1200);
+  }
+
+  function wireGuard(imgId, boxId, hpId, dir, getHP, setHP) {
+    var img = document.getElementById(imgId);
+    var box = document.getElementById(boxId);
+    var hp  = document.getElementById(hpId);
+    img.addEventListener('click', function(e){
+      if (getHP() <= 0) return;
+      playSlap();
+      setHP(getHP()-1);
+      hp.style.width=(getHP()/SLAPS*100)+'%';
+      hp.style.background=getHP()>SLAPS*.4?'lime':getHP()>SLAPS*.2?'orange':'red';
+      img.classList.add('slapped');
+      setTimeout(function(){ img.classList.remove('slapped'); },200);
+      showSlapFx(box, e);
+      document.getElementById('gate-status').textContent=
+        (dir==='left'?'Lucas':'Hendrik')+': '+getHP()+' HP verbleibend';
+      if (getHP()<=0){ defeat(box,dir); checkVictory(); }
     });
-  })();
+  }
+
+  wireGuard('img-lucas','box-lucas','hp-lucas','left',
+    function(){ return lucasHP; }, function(v){ lucasHP=v; });
+  wireGuard('img-hendrik','box-hendrik','hp-hendrik','right',
+    function(){ return hendrikHP; }, function(v){ hendrikHP=v; });
+
+  /* ─── PIGEON LOGIC ────────────────────────────────────── */
+  function initPigeon() {
+    var field      = document.getElementById('pigeon-field');
+    var pigeonImg  = document.getElementById('pigeon-img');
+    var instruction= document.getElementById('pigeon-instruction');
+    var status     = document.getElementById('pigeon-status');
+
+    var FLEE_R  = 200, BASE_SPD = 16, PREDICT = 10, MARGIN = 6, CATCH_R = 14, IDLE_SPD = 0.5;
+    var caught = false, pigeonX = 0, pigeonY = 0, velX = 0, velY = 0;
+    var idleAngle = Math.random()*Math.PI*2, animId;
+    var mouseX=-999, mouseY=-999, prevMX=-999, prevMY=-999, curVX=0, curVY=0;
+
+    function rect() { return field.getBoundingClientRect(); }
+    function half() { return { w: pigeonImg.offsetWidth/2, h: pigeonImg.offsetHeight/2 }; }
+    function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+    function place(x,y){
+      pigeonX=x; pigeonY=y;
+      var h=half();
+      pigeonImg.style.left=(x-h.w)+'px';
+      pigeonImg.style.top =(y-h.h)+'px';
+    }
+
+    var r=rect(), h=half();
+    place(h.w+MARGIN+Math.random()*(r.width-h.w*2-MARGIN*2),
+          h.h+MARGIN+Math.random()*(r.height-h.h*2-MARGIN*2));
+
+    field.addEventListener('mousemove', function(e){
+      var r=rect(); prevMX=mouseX; prevMY=mouseY;
+      mouseX=e.clientX-r.left; mouseY=e.clientY-r.top;
+      curVX=mouseX-prevMX; curVY=mouseY-prevMY;
+    });
+    field.addEventListener('mouseleave', function(){ mouseX=-999; mouseY=-999; curVX=0; curVY=0; });
+    field.addEventListener('touchmove', function(e){
+      e.preventDefault();
+      var r=rect(), t=e.touches[0]; prevMX=mouseX; prevMY=mouseY;
+      mouseX=t.clientX-r.left; mouseY=t.clientY-r.top;
+      curVX=mouseX-prevMX; curVY=mouseY-prevMY;
+    },{passive:false});
+
+    function flee(){
+      if(caught) return;
+      var r=rect(), h=half();
+      var predX=mouseX+curVX*PREDICT, predY=mouseY+curVY*PREDICT;
+      var dx=pigeonX-predX, dy=pigeonY-predY;
+      var dist=Math.sqrt(dx*dx+dy*dy);
+
+      if(dist<FLEE_R && dist>0 && mouseX>-900){
+        var urgency=1+Math.pow((FLEE_R-dist)/FLEE_R,2)*5;
+        velX=(dx/dist)*BASE_SPD*urgency; velY=(dy/dist)*BASE_SPD*urgency;
+        var nx=pigeonX+velX, ny=pigeonY+velY;
+        var hL=nx<h.w+MARGIN, hR=nx>r.width-h.w-MARGIN;
+        var hT=ny<h.h+MARGIN, hB=ny>r.height-h.h+MARGIN;
+        if(hL||hR||hT||hB){
+          if(hL||hR) velX=-velX*.8;
+          if(hT||hB) velY=-velY*.8;
+          var nudge=(Math.random()-.5)*BASE_SPD*3;
+          if(hL||hR) velY+=nudge; else velX+=nudge;
+        }
+        idleAngle=Math.atan2(velY,velX);
+      } else {
+        idleAngle+=(Math.random()-.5)*.15;
+        velX=Math.cos(idleAngle)*IDLE_SPD; velY=Math.sin(idleAngle)*IDLE_SPD;
+      }
+
+      place(clamp(pigeonX+velX,h.w+MARGIN,r.width-h.w-MARGIN),
+            clamp(pigeonY+velY,h.h+MARGIN,r.height-h.h-MARGIN));
+      pigeonImg.style.transform=velX<0?'scaleX(-1)':'scaleX(1)';
+
+      var cdx=mouseX-pigeonX, cdy=mouseY-pigeonY;
+      if(Math.sqrt(cdx*cdx+cdy*cdy)<CATCH_R){
+        caught=true;
+        cancelAnimationFrame(animId);
+        pigeonImg.classList.add('caught');
+        instruction.textContent='Erwischt! Du kannst jetzt absenden.';
+        instruction.classList.add('caught-text');
+        status.textContent='Taube gefangen! Formular wird freigeschaltet...';
+        setTimeout(function(){
+          document.getElementById('pigeon-window').style.display='none';
+          document.getElementById('contact-section').style.display='';
+        },1800);
+        return;
+      }
+      animId=requestAnimationFrame(flee);
+    }
+    animId=requestAnimationFrame(flee);
+  }
+
+  /* ─── FORM SUBMIT ─────────────────────────────────────── */
+  var form = document.getElementById('contact-form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){ document.getElementById('success-window').style.display=''; form.reset(); }
+        else { alert('Fehler beim Senden. Bitte versuche es erneut.'); }
+      })
+      .catch(function(){ alert('Netzwerkfehler. Bitte versuche es erneut.'); });
+  });
+
+})();
 </script>
 </body>
 </html>
